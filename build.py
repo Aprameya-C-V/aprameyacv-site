@@ -65,7 +65,7 @@ def head(title, desc, base, page=""):
       <a href="{base}index.html#about">About</a>
       <a href="{base}index.html#experience">Experience</a>
       <a href="{base}index.html#work">Work</a>
-      <a href="{base}index.html#method">Method</a>
+      <a href="{base}index.html#writing">Writing</a>
       <a href="{base}index.html#stack">Stack</a>
       <a href="{base}index.html#contact">Contact</a>
     </div>
@@ -320,6 +320,20 @@ METHOD = [
     ("State what it does not claim", "Every project page ends with its limits: one seed, small samples, no healthy class, one document per question. A result is only useful with its boundary."),
 ]
 
+LIN = "https://www.linkedin.com"
+WRITING = [
+    ("Post", "SpecLane: getting a 27B model to start on one H100, then making it about 124% faster", "A write-up of the serving study: one setting at a time, what helped, and the one that did not.", "", LIN + "/posts/aprameyacv_llm-inference-vllm-activity-7525993001295458305-SyUB"),
+    ("Post", "Introducing Pramana: open-source decision models", "Two small open models that return a probability for every option and a separate confidence score.", "", LIN + "/posts/aprameyacv_opensource-machinelearning-ai-activity-7519593659529609216-TXTC"),
+    ("Article", "Standardizing the Agentic Lakehouse: Containerized Data Engineering Agent with Apache Iceberg and OCI Generative AI", "An agent that clustered performance data on its own and recommended a larger OCI GPU shape.", "Jan 2026", LIN + "/pulse/standardizing-agentic-lakehouse-containerized-data-engineering-c-v-qpi1c"),
+    ("Article", "Deployment of Large Language Models via Podman Containers and RamaLama", "A secure, OpenAI-compatible LLM API server in under a minute with Podman, RamaLama and llama.cpp.", "Jan 2026", LIN + "/pulse/deployment-large-language-models-via-podman-containers-aprameya-c-v-2ik5c"),
+    ("Article", "The Hidden Structure of AI Reasoning: A Programmatic Audit of LLMs", "A test of a published chain-of-thought paper across six open models.", "Jan 2026", LIN + "/pulse/hidden-structure-ai-reasoning-programmatic-audit-llms-aprameya-c-v-710bc"),
+    ("Article", "Agentic Context Engineering: Evolving Contexts for Self-Improving Language Models", "", "", LIN + "/pulse/agentic-context-engineering-evolving-contexts-language-aprameya-c-v-ts9fc"),
+    ("Article", "Design Principles for Large Language Model Integration in Supply Chain Demand Forecasting", "", "", LIN + "/pulse/design-principles-large-language-model-integration-supply-c-v-gqkec"),
+    ("Article", "Narrating the Planet: How LLMs Are Rewriting the Rules of Geospatial Understanding", "", "", LIN + "/pulse/narrating-planet-how-llms-rewriting-rules-geospatial-aprameya-c-v-wmnyc"),
+    ("Article", "Building CLI Agents with OCI Generative AI", "", "", LIN + "/pulse/building-cli-agents-oci-generative-ai-aprameya-c-v-78lof"),
+    ("Article", "Building the Multi-Perspective Synthesis System with OCI Generative AI and Grok-4: Recursive Refinement and Parallel Chaining", "", "", LIN + "/pulse/building-multi-perspective-synthesis-system-oci-generative-c-v-qolec"),
+]
+
 STACK = [
     ("Agents and retrieval", "ADK, LangGraph, LangChain, Deep Agents, OpenAI SDK, MCP, hybrid retrieval, pgvector, guardrails, agent memory"),
     ("Inference and training", "vLLM, llama.cpp, speculative decoding, FP8 KV cache, CUDA, NVIDIA GPUs, LoRA fine-tuning, Hugging Face"),
@@ -382,6 +396,21 @@ def work_rows():
       </a>
 """
     return rows
+
+
+def writing_rows():
+    out = ""
+    for i, (kind, title, desc, when, href) in enumerate(WRITING):
+        d = f'<span class="wrdesc">{desc}</span>' if desc else ""
+        w = f'<span class="wrwhen mono">{when}</span>' if when else '<span class="wrwhen mono"></span>'
+        out += f"""      <a class="wrrow reveal" href="{href}" target="_blank" rel="noreferrer" style="--i:{i % 6}">
+        <span class="wrkind mono">{kind}</span>
+        <span class="wrmain"><span class="wrtitle">{title}</span>{d}</span>
+        {w}
+        <span class="wrgo">{ARROW}</span>
+      </a>
+"""
+    return out
 
 
 def home():
@@ -485,11 +514,11 @@ def home():
 {band}  </div>
 </section>
 
-<section id="method" class="sec">
+<section id="writing" class="sec">
   <div class="wrap split">
-    <div class="split-l"><p class="eyebrow mono">03 / Method</p><h2>How I measure</h2><p class="muted">The same four habits run through every project on this site.</p></div>
-    <div class="mgrid">
-{method}    </div>
+    <div class="split-l"><p class="eyebrow mono">03 / Writing</p><h2>Writing</h2><p class="muted">Technical posts and articles on LinkedIn, newest first.</p><p class="note"><a href="{LI}" target="_blank" rel="noreferrer">All posts on LinkedIn</a></p></div>
+    <div class="wrlist">
+{writing_rows()}    </div>
   </div>
 </section>
 
