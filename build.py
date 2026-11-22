@@ -416,7 +416,6 @@ def home():
 <header class="hero">
   <div class="wrap hero-grid">
     <div class="hero-copy">
-      <p class="eyebrow mono"><span class="live"></span>AI engineer &middot; Oracle &middot; Bengaluru, India</p>
       <h1 class="name">Aprameya<br><span>C V</span></h1>
       <p class="role">I build agentic and generative AI systems, and measure what they actually do.</p>
       <p class="lede">I take AI from a customer's first conversation to production at Oracle: retrieval, agent design, GPU serving, and the infrastructure underneath. Every project on this site ships with its own benchmark and its own list of what it does not prove.</p>
@@ -432,7 +431,6 @@ def home():
     </div>
     <figure class="portrait-circle reveal">
       <img src="assets/portrait.jpg" width="640" height="640" alt="Portrait of Aprameya C V" fetchpriority="high">
-      <figcaption class="mono"><span class="live"></span>Bengaluru, India</figcaption>
     </figure>
 
   </div>
