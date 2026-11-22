@@ -311,7 +311,7 @@ PROJECTS = [
 
 LEDGER = [
     ("1,100", "+ h", 0, "Hours saved", "Internal AI tools, estimated"),
-    ("80", "+", 0, "People enabled", "Codex adoption; they built 40 to 50 reusable assets"),
+    ("50", "\u201360+ h", 0, "Saved per engagement", "Deployable solution packs for RAG, agents, voice, MCP and guardrails"),
     ("1", "M+", 0, "Tickets searchable", "ServiceNow suite, answers in under 7 seconds"),
     ("500", "K+", 0, "Images matched", "Trademark platform, thousands of checks a week"),
 ]
