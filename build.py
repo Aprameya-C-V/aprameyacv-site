@@ -409,9 +409,9 @@ XP = [
     ]),
     ("Jul 2025 to May 2026", "Oracle", "Cloud Solution Engineer (L1)", [
         "Built a trademark platform for a government ministry, exposed as two APIs. Similarity search embeds 500K+ trademark images with OpenCLIP into Oracle Database vector search and blends lexical and semantic matching, bringing latency from about 300 seconds to under 10 on a CPU-only machine.",
-        "Built the generation side of the platform: Flux for text-to-image and a custom ComfyUI workflow for editing on a 24 GB NVIDIA GPU, fitted with attention slicing and offloading, with Arabic support and a content moderation filter. Showcased live at GITEX.",
+        "Built the generation side of the platform: Flux for text-to-image and a custom ComfyUI workflow for editing on a 24 GB NVIDIA GPU, fitted with attention slicing and offloading, with multilingual support and a content moderation filter.",
         "Primary developer of internal AI tools, saving an estimated 1,100+ hours: an agentic security-audit pipeline used on 100+ projects, a document generator, a RAG knowledge workspace over 1,000+ documents for 100+ users with single sign-on, and an Open Landing Zone configuration generator that cut setup from 3 to 5 days to hours.",
-        "Delivered OCI infrastructure on customer engagements, including landing zones, IAM, networking, load balancing and 40+ VMs, and migrated a 24 TB workload with RackWare, the largest the team had handled.",
+        "Delivered OCI infrastructure on customer engagements, including landing zones, IAM, networking, load balancing and 40+ VMs, and migrated multi-terabyte workloads with RackWare.",
     ]),
     ("Jan 2025 to Jul 2025", "Oracle", "Project Intern", [
         "Built the Solution Document Generator on LangGraph and OKE, contributing to 50+ documents and 150+ person-hours saved.",
