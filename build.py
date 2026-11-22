@@ -35,7 +35,11 @@ ARROW_LEFT = '<svg class="ico" viewBox="0 0 16 16" width="14" height="14" aria-h
 COPY = '<svg class="ico" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><rect x="5.5" y="5.5" width="8" height="8" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M10.5 3.5v-.5a1 1 0 0 0-1-1H3.5a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>'
 
 
-def head(title, desc, base, page=""):
+PERSON_LD = """
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Aprameya C V","url":"https://aprameyacv.site","image":"https://aprameyacv.site/assets/portrait.jpg","jobTitle":"AI Engineer","address":{"@type":"PostalAddress","addressLocality":"Bengaluru","addressCountry":"IN"},"alumniOf":"JSS Science and Technology University","knowsAbout":["Agentic AI","Generative AI","Retrieval-augmented generation","LLM inference","Cloud infrastructure"],"sameAs":["https://github.com/Aprameya-C-V","https://huggingface.co/apracv","https://www.linkedin.com/in/aprameyacv/","https://scholar.google.com/citations?user=Yuit2q4AAAAJ"]}</script>"""
+
+
+def head(title, desc, base, page="", canon="/"):
     return f"""<!doctype html>
 <html lang="en">
 <head>
@@ -47,8 +51,15 @@ def head(title, desc, base, page=""):
 <meta property="og:title" content="{title}">
 <meta property="og:description" content="{desc}">
 <meta property="og:type" content="website">
-<meta property="og:url" content="{SITE}/">
-<meta name="twitter:card" content="summary">
+<link rel="canonical" href="{SITE}{canon}">
+<meta property="og:url" content="{SITE}{canon}">
+<meta property="og:site_name" content="Aprameya C V">
+<meta property="og:image" content="{SITE}/assets/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="{SITE}/assets/og.jpg">
+<meta name="author" content="Aprameya C V">{PERSON_LD if page == "home" else ""}
 <link rel="icon" href="{base}assets/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -357,6 +368,15 @@ def icon(spec):
     return svg
 
 
+# Where each group shows up as real work: (label, href)
+PROOF = {
+    "Generative AI and AI Engineering": [("HBC-RAG", "work/hbc-rag.html"), ("Pramana", "work/pramana.html"), ("CG-BI", "work/cg-bi.html")],
+    "Agentic AI": [("HBC-RAG", "work/hbc-rag.html"), ("Experience", "#experience")],
+    "AI Infrastructure": [("SpecLane", "work/speclane.html")],
+    "Cloud and DevOps": [("Experience", "#experience"), ("Demand forecasting", "work/demand-forecasting.html")],
+    "Programming": [("HBC-RAG", "work/hbc-rag.html"), ("Demand forecasting", "work/demand-forecasting.html")],
+}
+
 # (group title, group icon, [(skill, icon)])
 SKILLS = [
     ("Generative AI and AI Engineering", "lucide/sparkles", [
@@ -477,7 +497,7 @@ def home():
       </article>
 """
     stack = "".join(
-        f"""      <div class="srow reveal"><h3>{icon(gi)}<span>{h}</span></h3><ul class="chipset">{"".join(f'<li>{icon(ic)}<span>{n}</span></li>' for n, ic in items)}</ul></div>
+        f"""      <div class="srow reveal"><h3>{icon(gi)}<span>{h}</span></h3><div><ul class="chipset">{"".join(f'<li>{icon(ic)}<span>{n}</span></li>' for n, ic in items)}</ul><p class="proof mono">Shown in {" &middot; ".join(f'<a href="{href}">{label}</a>' for label, href in PROOF.get(h, []))}</p></div></div>
 """
         for h, gi, items in SKILLS
     )
@@ -609,6 +629,63 @@ def home():
     return html
 
 
+SHOTS = {
+    "pramana": [
+        ("pramana-report", "Technical report: headline numbers and summary.", "Screenshot of the Pramana technical report showing KL, Brier, confidence ECE and accuracy cards", "reports/pramana/index.html"),
+        ("pramana-results", "Results table against other fine-tuned models on Typed Decisions.", "Screenshot of the Pramana results table comparing accuracy, KL, Brier and ECE with other models", "reports/pramana/index.html"),
+    ],
+    "hbc-rag": [
+        ("hbc-rag-report", "Study report: headline results and the what-improved summary.", "Screenshot of the HBC-RAG legal contract study report with improvement bars", "reports/hbc-rag/legal.html"),
+        ("hbc-rag-legal-retrieval", "Gold snippet hit, character recall and precision, fine versus coarse retrieval.", "Bar charts comparing fine and coarse retrieval on two models", "reports/hbc-rag/legal.html"),
+        ("hbc-rag-legal-latency", "Latency distribution: coarse retrieval finishes sooner across the whole distribution.", "Cumulative latency curves for fine and coarse retrieval", "reports/hbc-rag/legal.html"),
+        ("hbc-rag-legal-tradeoff", "The trade-off: recall gained, precision spent.", "Scatter plot of character recall against character precision for both policies and models", "reports/hbc-rag/legal.html"),
+    ],
+    "speclane": [
+        ("speclane-report", "Technical report: speed and accuracy headline numbers.", "Screenshot of the SpecLane technical report with throughput and accuracy cards", "reports/speclane/index.html"),
+        ("speclane-results", "Results table: throughput and tail latency by profile.", "Screenshot of the SpecLane results table showing tokens per second by profile", "reports/speclane/index.html"),
+    ],
+    "cg-bi": [
+        ("cg-bi-report", "Study report: results by tier and the business problem.", "Screenshot of the CG-BI report with the results-by-tier table and charts", "reports/cg-bi/report.html"),
+        ("cg-bi-cascade", "Cascade frontier: quality and cost as the confidence threshold moves.", "Chart of the cascade frontier for the CG-BI routing policy", "reports/cg-bi/report.html"),
+        ("cg-bi-examples", "Annotated cases from the 75-image evaluation set.", "Annotated drone photographs of wind turbine blade defects with model findings", "reports/cg-bi/report.html"),
+    ],
+    "demand-forecasting": [
+        ("demand-overview", "Project overview page generated from the repository.", "Screenshot of the demand forecasting platform overview", "reports/demand-forecasting/index.html"),
+        ("demand-dashboard", "Monitoring dashboard: forecast error, bias and drift.", "Screenshot of the demand forecasting monitoring dashboard", "reports/demand-forecasting/dashboard/index.html"),
+    ],
+}
+
+
+def _dims(path):
+    import subprocess
+    out = subprocess.run(["sips", "-g", "pixelWidth", "-g", "pixelHeight", str(path)], capture_output=True, text=True).stdout
+    w = int(out.split("pixelWidth:")[1].split()[0]); h = int(out.split("pixelHeight:")[1].split()[0])
+    return w, h
+
+
+def gallery(slug, base):
+    items = SHOTS.get(slug, [])
+    if not items:
+        return ""
+    figs = ""
+    for i, (name, caption, alt, href) in enumerate(items):
+        f = ROOT / "assets" / "shots" / f"{name}.jpg"
+        w, h = _dims(f)
+        src = f"{base}assets/shots/{name}.jpg"
+        frame = (
+            '<div class="frame"><span class="dots"><i></i><i></i><i></i></span>'
+            f'<span class="url mono">aprameyacv.site/{href.replace("/index.html", "/")}</span></div>'
+            if i == 0 else ""
+        )
+        cls = "shot lead" if i == 0 else "shot"
+        figs += (
+            f'<figure class="{cls}">{frame}<a href="{base}{href}" aria-label="Open the full report">'
+            f'<img src="{src}" width="{w}" height="{h}" alt="{alt}" loading="{"eager" if i == 0 else "lazy"}" decoding="async"></a>'
+            f'<figcaption>{caption}</figcaption></figure>'
+        )
+    return f'<section class="pblock reveal" id="shots"><h2><span class="mono">&#9632;</span>Screenshots and figures</h2><div class="shots">{figs}</div></section>\n'
+
+
 def project_page(p):
     links = "".join(
         '<a class="rlink" href="%s"%s>%s %s</a>'
@@ -619,10 +696,10 @@ def project_page(p):
     stats = "".join(
         f'<div class="pstat"><b class="mono">{v}</b><span>{l}</span></div>' for v, l in p["stats"]
     )
-    toc = "".join(
+    toc = ('<a href="#shots">Screenshots</a>' if SHOTS.get(p["slug"]) else "") + "".join(
         f'<a href="#s{i}">{t}</a>' for i, (t, _) in enumerate(p["sections"])
     )
-    sections = ""
+    sections = gallery(p["slug"], "../")
     for i, (title, body) in enumerate(p["sections"]):
         sections += f'<section class="pblock reveal" id="s{i}"><h2><span class="mono">0{i + 1}</span>{title}</h2><div class="prose">{body}</div></section>\n'
 
@@ -635,7 +712,7 @@ def project_page(p):
     )
     tags = "".join(f'<span class="tag mono">{t}</span>' for t in p["tags"])
 
-    html = head(f"{p['title']}, Aprameya C V", p["tagline"], "../", "project")
+    html = head(f"{p['title']}, Aprameya C V", p["tagline"], "../", "project", f"/work/{p['slug']}")
     html += f"""
 <header class="phead">
   <div class="wrap">
@@ -671,7 +748,7 @@ def project_page(p):
 
 
 def not_found():
-    html = head("Not found, Aprameya C V", "That page does not exist.", "", "nf")
+    html = head("Not found, Aprameya C V", "That page does not exist.", "", "nf", "/")
     html += f"""
 <header class="hero nf">
   <div class="wrap">
@@ -691,7 +768,7 @@ def extras():
     (ROOT / "robots.txt").write_text(
         "User-agent: *\nAllow: /\n\nSitemap: " + SITE + "/sitemap.xml\n", encoding="utf-8"
     )
-    urls = ["/"] + [f"/work/{p['slug']}.html" for p in PROJECTS]
+    urls = ["/"] + [f"/work/{p['slug']}" for p in PROJECTS]
     body = "".join(f"  <url><loc>{SITE}{u}</loc></url>\n" for u in urls)
     (ROOT / "sitemap.xml").write_text(
         '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
@@ -699,9 +776,19 @@ def extras():
         + "</urlset>\n",
         encoding="utf-8",
     )
+    csp = (
+        "default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; "
+        "font-src https://fonts.gstatic.com; script-src 'self'; connect-src 'self'; frame-ancestors 'self'; "
+        "base-uri 'self'; form-action 'self'"
+    )
     (ROOT / "_headers").write_text(
         "/*\n  X-Content-Type-Options: nosniff\n  Referrer-Policy: strict-origin-when-cross-origin\n"
-        "  X-Frame-Options: SAMEORIGIN\n\n/assets/*.css\n  Cache-Control: public, max-age=0, must-revalidate\n\n/assets/*.js\n  Cache-Control: public, max-age=0, must-revalidate\n\n/assets/*.jpg\n  Cache-Control: public, max-age=604800\n",
+        "  X-Frame-Options: SAMEORIGIN\n  Permissions-Policy: camera=(), microphone=(), geolocation=()\n\n"
+        f"/\n  Content-Security-Policy: {csp}\n\n/work/*\n  Content-Security-Policy: {csp}\n\n"
+        f"/404.html\n  Content-Security-Policy: {csp}\n\n"
+        "/assets/*.css\n  Cache-Control: public, max-age=0, must-revalidate\n\n"
+        "/assets/*.js\n  Cache-Control: public, max-age=0, must-revalidate\n\n"
+        "/assets/*.jpg\n  Cache-Control: public, max-age=604800\n",
         encoding="utf-8",
     )
 

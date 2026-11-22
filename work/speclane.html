@@ -9,13 +9,20 @@
 <meta property="og:title" content="SpecLane, Aprameya C V">
 <meta property="og:description" content="Serving small models under agent traffic">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://aprameyacv.site/">
-<meta name="twitter:card" content="summary">
+<link rel="canonical" href="https://aprameyacv.site/work/speclane">
+<meta property="og:url" content="https://aprameyacv.site/work/speclane">
+<meta property="og:site_name" content="Aprameya C V">
+<meta property="og:image" content="https://aprameyacv.site/assets/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://aprameyacv.site/assets/og.jpg">
+<meta name="author" content="Aprameya C V">
 <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../assets/site.css?v=dc99f9b5">
+<link rel="stylesheet" href="../assets/site.css?v=ec50ef48">
 </head>
 <body data-page="project">
 <a class="skip" href="#main">Skip to content</a>
@@ -50,11 +57,12 @@
   <aside class="prail">
     <div class="prail-in">
       <div class="pstats"><div class="pstat"><b class="mono">78 &rarr; 175</b><span>tokens/s at concurrency 1</span></div><div class="pstat"><b class="mono">800 &rarr; 1199</b><span>tokens/s at concurrency 16</span></div><div class="pstat"><b class="mono">1.09 &rarr; 0.94 s</b><span>p99 time to first token</span></div><div class="pstat"><b class="mono">0.940 &rarr; 0.935</b><span>GSM8K, unchanged</span></div></div>
-      <nav class="toc" aria-label="On this page"><span class="mono">On this page</span><a href="#s0">What it is</a><a href="#s1">How it works</a><a href="#s2">What it measured</a><a href="#s3">A failure worth keeping</a></nav>
+      <nav class="toc" aria-label="On this page"><span class="mono">On this page</span><a href="#shots">Screenshots</a><a href="#s0">What it is</a><a href="#s1">How it works</a><a href="#s2">What it measured</a><a href="#s3">A failure worth keeping</a></nav>
       <div class="rlinks"><a class="rlink" href="https://github.com/Aprameya-C-V/speclane" target="_blank" rel="noreferrer">Repository <svg class="ico" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M5 4h7v7M12 4 4 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a><a class="rlink" href="../reports/speclane/index.html">Full report <svg class="ico" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M5 4h7v7M12 4 4 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
     </div>
   </aside>
   <article class="pbody">
+<section class="pblock reveal" id="shots"><h2><span class="mono">&#9632;</span>Screenshots and figures</h2><div class="shots"><figure class="shot lead"><div class="frame"><span class="dots"><i></i><i></i><i></i></span><span class="url mono">aprameyacv.site/reports/speclane/</span></div><a href="../reports/speclane/index.html" aria-label="Open the full report"><img src="../assets/shots/speclane-report.jpg" width="1440" height="1400" alt="Screenshot of the SpecLane technical report with throughput and accuracy cards" loading="eager" decoding="async"></a><figcaption>Technical report: speed and accuracy headline numbers.</figcaption></figure><figure class="shot"><a href="../reports/speclane/index.html" aria-label="Open the full report"><img src="../assets/shots/speclane-results.jpg" width="1440" height="1100" alt="Screenshot of the SpecLane results table showing tokens per second by profile" loading="lazy" decoding="async"></a><figcaption>Results table: throughput and tail latency by profile.</figcaption></figure></div></section>
 <section class="pblock reveal" id="s0"><h2><span class="mono">01</span>What it is</h2><div class="prose"><p>A serving configuration for two open models, Qwen3.8-27B-FP8 on one H100 and Qwen3.5-9B on one L40S, built around agent-shaped traffic: long shared system prompts and multi-turn sessions. It defines a vanilla baseline, a recommended profile, and one change at a time on top of it, with every number generated from the saved run files.</p></div></section>
 <section class="pblock reveal" id="s1"><h2><span class="mono">02</span>How it works</h2><div class="prose"><ul>
 <li><strong>A baseline you can reproduce.</strong> Engine defaults plus only the flags needed to start, fixed 16,384-token context.</li>
