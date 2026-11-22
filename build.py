@@ -311,8 +311,8 @@ PROJECTS = [
 
 LEDGER = [
     ("1,100", "+ h", 0, "Hours saved", "Internal AI tools, estimated"),
-    ("50", "\u201360+ h", 0, "Saved per engagement", "Deployable solution packs for RAG, agents, voice, MCP and guardrails"),
-    ("44", "", 0, "Citations", "Across 3 published papers, per Google Scholar"),
+    ("50", "\u201360+ h", 0, "Saved per engagement", "Person-hours saved by deploying a pack instead of building from scratch"),
+    ("6", "", 0, "Reusable assets", "Solution packs: RAG, agents, voice, MCP, guardrails and agent memory"),
     ("8", "", 0, "Technical articles", "Published on LinkedIn: agents, LLM deployment, reasoning audits"),
 ]
 
