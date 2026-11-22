@@ -353,26 +353,24 @@ def icon(spec):
 
 # (group title, group icon, [(skill, icon)])
 SKILLS = [
-    ("Agents and retrieval", "lucide/bot", [
-        ("LangGraph", "simple-icons/langchain"), ("LangChain", "simple-icons/langchain"), ("OpenAI SDK", "simple-icons/openai"),
-        ("ADK", "lucide/bot"), ("MCP", "lucide/plug"), ("Hybrid RAG", "lucide/search"),
-        ("pgvector", "simple-icons/postgresql"), ("Guardrails", "lucide/shield-check"), ("Agent memory", "lucide/brain"),
+    ("AI and machine learning", "lucide/brain", [
+        ("Agentic AI", "lucide/bot"), ("Generative AI", "lucide/sparkles"), ("RAG and retrieval", "lucide/search"),
+        ("Fine-tuning", "lucide/sliders-horizontal"), ("LLM evaluation", "lucide/chart-no-axes-combined"), ("Multimodal and voice AI", "lucide/mic"),
     ]),
-    ("Inference and training", "lucide/cpu", [
-        ("vLLM", "lucide/zap"), ("llama.cpp", "lucide/cpu"), ("Speculative decoding", "lucide/fast-forward"),
-        ("CUDA and NVIDIA GPUs", "simple-icons/nvidia"), ("LoRA fine-tuning", "lucide/sliders-horizontal"), ("Hugging Face", "simple-icons/huggingface"),
+    ("Model serving", "lucide/cpu", [
+        ("LLM inference optimization", "lucide/zap"), ("GPU computing", "simple-icons/nvidia"),
+        ("Model deployment", "lucide/rocket"), ("Performance benchmarking", "lucide/gauge"),
     ]),
     ("Cloud", "lucide/cloud", [
-        ("OCI", "simple-icons/oracle"), ("AWS", "simple-icons/amazonaws"), ("Google Cloud", "simple-icons/googlecloud"),
+        ("Oracle Cloud (OCI)", "simple-icons/oracle"), ("AWS", "simple-icons/amazonaws"), ("Google Cloud", "simple-icons/googlecloud"),
     ]),
-    ("Infrastructure", "lucide/server", [
-        ("Terraform", "simple-icons/terraform"), ("Kubernetes", "simple-icons/kubernetes"), ("Helm", "simple-icons/helm"),
-        ("Docker", "simple-icons/docker"), ("Prometheus", "simple-icons/prometheus"), ("Linux", "simple-icons/linux"),
-        ("Networking", "lucide/network"), ("Storage", "lucide/hard-drive"), ("VM migration", "lucide/arrow-right-left"), ("Disaster recovery", "lucide/life-buoy"),
+    ("Infrastructure and DevOps", "lucide/server", [
+        ("Kubernetes", "simple-icons/kubernetes"), ("Docker", "simple-icons/docker"), ("Terraform", "simple-icons/terraform"),
+        ("Linux", "simple-icons/linux"), ("Cloud networking", "lucide/network"), ("Storage", "lucide/hard-drive"),
+        ("Migration and recovery", "lucide/life-buoy"), ("CI/CD", "simple-icons/githubactions"),
     ]),
-    ("Languages and tooling", "lucide/code-xml", [
-        ("Python", "simple-icons/python"), ("TypeScript", "simple-icons/typescript"), ("SQL", "lucide/database"),
-        ("FastAPI", "simple-icons/fastapi"), ("CI/CD", "simple-icons/githubactions"),
+    ("Programming", "lucide/code-xml", [
+        ("Python", "simple-icons/python"), ("TypeScript", "simple-icons/typescript"), ("SQL", "lucide/database"), ("APIs and backend", "lucide/webhook"),
     ]),
 ]
 
@@ -485,7 +483,7 @@ def home():
 <header class="hero">
   <div class="wrap hero-grid">
     <div class="hero-copy">
-      <h1 class="name">Aprameya<br><span>C V</span></h1>
+      <h1 class="name">Aprameya <span>C V</span></h1>
       <p class="role">AI engineer building agentic and generative AI systems, from model to production.</p>
       <p class="lede">I work across applied AI end to end: agent design, retrieval, fine-tuning and model serving, and the cloud infrastructure that runs them. I like problems with a measurable answer, so every project here comes with its numbers and its limits.</p>
       <div class="cta-row">
