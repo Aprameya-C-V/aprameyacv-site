@@ -299,3 +299,9 @@ p { margin: 0 0 1em; }
   .reveal { opacity: 1; transform: none; }
   .lbars i { transform: scaleX(var(--s)); }
 }
+
+.lvals .to.big { font-size: clamp(1.7rem, 2.6vw, 2.2rem); letter-spacing: -0.04em; line-height: 1; }
+.lvals .to.big::before { content: ""; margin: 0; }
+.ledger .lrow { align-items: center; }
+.band-eyebrow { padding-top: 26px; margin-bottom: 0; }
+.band .bcell { padding-top: 22px; }

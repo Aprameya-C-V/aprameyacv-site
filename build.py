@@ -57,9 +57,9 @@ def head(title, desc, base, page=""):
     <a class="mark" href="{base}index.html"><span class="mark-dot"></span>Aprameya C V</a>
     <div class="links">
       <a href="{base}index.html#about">About</a>
+      <a href="{base}index.html#experience">Experience</a>
       <a href="{base}index.html#work">Work</a>
       <a href="{base}index.html#method">Method</a>
-      <a href="{base}index.html#experience">Experience</a>
       <a href="{base}index.html#stack">Stack</a>
       <a href="{base}index.html#contact">Contact</a>
     </div>
@@ -294,10 +294,10 @@ PROJECTS = [
 
 
 LEDGER = [
-    ("SpecLane", "Serving throughput, tokens/s", "78", "175", 0.45, 1.0),
-    ("HBC-RAG", "Right clause found, %", "47", "58", 0.47, 0.58),
-    ("CG-BI", "Critical-defect recall, cheap model to cascade, %", "50", "92", 0.50, 0.92),
-    ("Pramana", "Confidence gap to real accuracy, points", "16.8", "3.8", 1.0, 0.23),
+    ("1,100", "+ h", 0, "Hours saved", "Internal AI tools, estimated"),
+    ("80", "+", 0, "People enabled", "Codex adoption; they built 40 to 50 reusable assets"),
+    ("1", "M+", 0, "Tickets searchable", "ServiceNow suite, answers in under 7 seconds"),
+    ("500", "K+", 0, "Images matched", "Trademark platform, thousands of checks a week"),
 ]
 
 BAND = [
@@ -342,12 +342,10 @@ XP = [
 
 def ledger_rows():
     out = ""
-    for i, (name, label, a, b, sa, sb) in enumerate(LEDGER):
-        flat = " flat" if a == b else ""
+    for i, (n, suf, dec, name, label) in enumerate(LEDGER):
         out += f"""        <li class="lrow reveal" style="--i:{i}">
           <div class="lhead"><span class="lname">{name}</span><span class="llabel">{label}</span></div>
-          <div class="lvals mono"><span class="from">{a}</span><span class="to{flat}">{b}</span></div>
-          <div class="lbars" aria-hidden="true"><i class="b0" style="--s:{sa}"></i><i class="b1" style="--s:{sb}"></i></div>
+          <div class="lvals mono"><span class="to big" data-count="{n.replace(',', '')}" data-dec="{dec}" data-suffix="{suf}" data-group="1">0{suf}</span></div>
         </li>
 """
     return out
@@ -423,11 +421,11 @@ def home():
         <div><dt class="mono">Open to</dt><dd>Applied AI, forward-deployed</dd></div>
       </dl>
     </div>
-    <aside class="ledger" aria-label="Latest measurements">
-      <div class="ledger-head"><span class="mono">Measured, not described</span><span class="mono ledger-key"><i class="k0"></i>before<i class="k1"></i>after</span></div>
+    <aside class="ledger" aria-label="Career at a glance">
+      <div class="ledger-head"><span class="mono">Career at a glance</span><span class="mono ledger-key">Oracle, 2025 to now</span></div>
       <ul>
 {ledger_rows()}      </ul>
-      <p class="ledger-foot mono">Numbers come from the project reports linked below.</p>
+      <p class="ledger-foot mono">Project benchmarks are further down, under Work.</p>
     </aside>
   </div>
   <a class="scrollcue mono" href="#work" aria-label="Scroll to work">Scroll {ARROW_DOWN}</a>
@@ -445,9 +443,12 @@ def home():
   </div>
 </section>
 
-<section class="band" aria-label="Headline results">
-  <div class="wrap band-grid">
-{band}  </div>
+<section id="experience" class="sec">
+  <div class="wrap split">
+    <div class="split-l"><p class="eyebrow mono">01 / Experience</p><h2>Oracle</h2><p class="muted">Three roles in under two years, from intern to technical scoping lead.</p></div>
+    <div class="xlist">
+{xp}    </div>
+  </div>
 </section>
 
 <section id="work" class="sec">
@@ -463,6 +464,12 @@ def home():
   </div>
 </section>
 
+<section class="band" aria-label="Project results">
+  <div class="wrap"><p class="eyebrow mono band-eyebrow">Project results</p></div>
+  <div class="wrap band-grid">
+{band}  </div>
+</section>
+
 <section id="method" class="sec">
   <div class="wrap split">
     <div class="split-l"><p class="eyebrow mono">03 / Method</p><h2>How I measure</h2><p class="muted">The same four habits run through every project on this site.</p></div>
@@ -471,17 +478,9 @@ def home():
   </div>
 </section>
 
-<section id="experience" class="sec">
-  <div class="wrap split">
-    <div class="split-l"><p class="eyebrow mono">04 / Experience</p><h2>Oracle</h2><p class="muted">Three roles in under two years, from intern to technical scoping lead.</p></div>
-    <div class="xlist">
-{xp}    </div>
-  </div>
-</section>
-
 <section id="stack" class="sec">
   <div class="wrap split">
-    <div class="split-l"><p class="eyebrow mono">05 / Stack</p><h2>What I work with</h2><p class="muted">Grouped by the layer it sits in, not by logo.</p></div>
+    <div class="split-l"><p class="eyebrow mono">04 / Stack</p><h2>What I work with</h2><p class="muted">Grouped by the layer it sits in, not by logo.</p></div>
     <div class="slist">
 {stack}    </div>
   </div>
@@ -489,7 +488,7 @@ def home():
 
 <section id="education" class="sec">
   <div class="wrap split">
-    <div class="split-l"><p class="eyebrow mono">06 / Education</p><h2>Research habit</h2></div>
+    <div class="split-l"><p class="eyebrow mono">05 / Education</p><h2>Research habit</h2></div>
     <div class="edu reveal">
       <h3>JSS Science and Technology University<span> / B.E., Electronics and Communication</span></h3>
       <p class="mono edu-meta">Dec 2021 to Jun 2025 &middot; CGPA 8.93 &middot; Gold Medal</p>
@@ -500,7 +499,7 @@ def home():
 
 <section id="contact" class="sec contact">
   <div class="wrap">
-    <p class="eyebrow mono">07 / Contact</p>
+    <p class="eyebrow mono">06 / Contact</p>
     <h2 class="contact-h">Building something that needs to work?</h2>
     <p class="lede">I am open to applied AI and forward-deployed engineering roles. Email is the fastest way to reach me.</p>
     <div class="mailrow">

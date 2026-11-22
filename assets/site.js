@@ -2,17 +2,18 @@
   const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   // Reveal on scroll, with count-up for [data-count].
+  const fmt = (v, dec, el) => el.dataset.group ? Math.round(v).toLocaleString("en-US") : v.toFixed(dec);
   const count = (el) => {
     const to = parseFloat(el.dataset.count);
     const dec = parseInt(el.dataset.dec || "0", 10);
     const suf = el.dataset.suffix || "";
-    if (reduce) { el.textContent = to.toFixed(dec) + suf; return; }
+    if (reduce) { el.textContent = fmt(to, dec, el) + suf; return; }
     let t0 = null;
     const step = (t) => {
       if (t0 === null) t0 = t;
       const p = Math.min((t - t0) / 1100, 1);
       const e = 1 - Math.pow(1 - p, 3);
-      el.textContent = (to * e).toFixed(dec) + suf;
+      el.textContent = fmt(to * e, dec, el) + suf;
       if (p < 1) requestAnimationFrame(step);
     };
     requestAnimationFrame(step);
