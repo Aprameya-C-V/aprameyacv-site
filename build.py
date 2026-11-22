@@ -360,42 +360,23 @@ def icon(spec):
 # (group title, group icon, [(skill, icon)])
 SKILLS = [
     ("Generative AI and AI Engineering", "lucide/sparkles", [
-        ("RAG", "lucide/search"), ("Hybrid semantic and lexical search", "lucide/search-code"), ("Reciprocal rank fusion", "lucide/git-merge"),
-        ("Text-to-SQL", "lucide/database"), ("LLM document parsing", "lucide/file-text"), ("Prompt and context engineering", "lucide/pen-line"),
-        ("LLM evaluation and benchmarking", "lucide/chart-no-axes-combined"), ("Fine-tuning (LoRA)", "lucide/sliders-horizontal"), ("Model calibration", "lucide/scale"),
-        ("Speech-to-speech voice AI", "lucide/mic"), ("Multilingual and Arabic NLP", "lucide/languages"),
-        ("Diffusion models (Flux, ComfyUI)", "lucide/image"), ("Image embeddings (OpenCLIP)", "lucide/scan-search"),
-        ("Oracle AI Vector Search", "simple-icons/oracle"), ("Hugging Face", "simple-icons/huggingface"), ("PyTorch", "simple-icons/pytorch"),
-        ("scikit-learn", "simple-icons/scikitlearn"), ("OCI Generative AI", "simple-icons/oracle"),
+        ("RAG and hybrid search", "lucide/search"), ("LLM evaluation", "lucide/chart-no-axes-combined"), ("Fine-tuning (LoRA)", "lucide/sliders-horizontal"),
+        ("Multimodal and voice AI", "lucide/mic"), ("PyTorch", "simple-icons/pytorch"), ("Hugging Face", "simple-icons/huggingface"),
     ]),
     ("Agentic AI", "lucide/bot", [
-        ("LangGraph", "simple-icons/langchain"), ("LangChain", "simple-icons/langchain"), ("Deep Agents", "simple-icons/langchain"),
-        ("OpenAI SDK", "simple-icons/openai"), ("ADK", "lucide/bot"), ("Google ADK", "simple-icons/google"), ("MCP", "lucide/plug"),
-        ("OCI Enterprise AI", "simple-icons/oracle"), ("Oracle AI Database Private Agent Factory", "simple-icons/oracle"),
-        ("Multi-agent systems", "lucide/network"), ("Reflector pattern", "lucide/refresh-ccw"), ("Agent orchestration", "lucide/workflow"),
-        ("Agent memory", "lucide/brain"), ("Guardrails and prompt-injection defense", "lucide/shield-check"), ("Human-in-the-loop controls", "lucide/user-check"),
-        ("Workflow automation", "lucide/repeat"), ("ServiceNow integration", "simple-icons/servicenow"), ("Codex", "simple-icons/openai"), ("OpenWebUI", "lucide/layout-dashboard"),
+        ("LangGraph", "simple-icons/langchain"), ("LangChain", "simple-icons/langchain"), ("OpenAI SDK", "simple-icons/openai"),
+        ("MCP", "lucide/plug"), ("ADK", "lucide/bot"),
     ]),
     ("AI Infrastructure", "lucide/cpu", [
-        ("LLM inference optimization", "lucide/zap"), ("vLLM", "lucide/zap"), ("llama.cpp", "lucide/cpu"), ("Speculative decoding (MTP)", "lucide/fast-forward"),
-        ("FP8 KV cache and quantization", "lucide/minimize-2"), ("GPU memory optimization", "lucide/memory-stick"), ("CUDA", "simple-icons/nvidia"),
-        ("NVIDIA H100, A100, A10, L40S", "simple-icons/nvidia"), ("OCI Dedicated AI Clusters", "simple-icons/oracle"), ("OCI Data Science", "simple-icons/oracle"),
-        ("Model serving (OpenAI-compatible)", "lucide/rocket"), ("Podman and RamaLama", "simple-icons/podman"), ("Modal", "lucide/cloud-lightning"),
-        ("Performance benchmarking", "lucide/gauge"), ("k6 load testing", "simple-icons/k6"), ("Prometheus and Grafana", "simple-icons/prometheus"),
+        ("vLLM", "lucide/zap"), ("CUDA and NVIDIA GPUs", "simple-icons/nvidia"), ("Speculative decoding", "lucide/fast-forward"),
+        ("Model serving", "lucide/rocket"),
     ]),
     ("Cloud and DevOps", "lucide/cloud", [
-        ("Oracle Cloud (OCI)", "simple-icons/oracle"), ("AWS: EC2, ECS, Lambda, S3", "simple-icons/amazonaws"), ("Google Cloud: Vertex AI, Cloud Run", "simple-icons/googlecloud"),
-        ("Landing zones and IAM", "lucide/key-round"), ("VCN and cloud networking", "lucide/waypoints"), ("Load balancing", "lucide/split"), ("Palo Alto firewall integration", "lucide/shield"),
-        ("File and block storage", "lucide/hard-drive"), ("VM migration (RackWare)", "lucide/arrow-right-left"), ("Disaster recovery", "lucide/life-buoy"),
-        ("OKE and Container Instances", "simple-icons/kubernetes"), ("Kubernetes and K3s", "simple-icons/kubernetes"), ("Helm", "simple-icons/helm"),
-        ("Docker", "simple-icons/docker"), ("Terraform and CD3", "simple-icons/terraform"), ("Oracle Linux", "simple-icons/linux"),
-        ("GitHub Actions CI/CD", "simple-icons/githubactions"), ("Cloudflare Pages", "simple-icons/cloudflare"),
+        ("Oracle Cloud (OCI)", "simple-icons/oracle"), ("AWS", "simple-icons/amazonaws"), ("Google Cloud", "simple-icons/googlecloud"),
+        ("Kubernetes", "simple-icons/kubernetes"), ("Docker", "simple-icons/docker"), ("Terraform", "simple-icons/terraform"),
     ]),
     ("Programming", "lucide/code-xml", [
-        ("Python", "simple-icons/python"), ("TypeScript", "simple-icons/typescript"), ("Node.js", "simple-icons/nodedotjs"), ("React", "simple-icons/react"),
-        ("SQL", "lucide/database"), ("FastAPI", "simple-icons/fastapi"), ("REST APIs and webhooks", "lucide/webhook"), ("Pydantic", "simple-icons/pydantic"),
-        ("Oracle Database 23ai", "simple-icons/oracle"), ("PostgreSQL", "simple-icons/postgresql"), ("DuckDB", "simple-icons/duckdb"), ("ClickHouse", "simple-icons/clickhouse"),
-        ("MLflow", "simple-icons/mlflow"), ("Apache Iceberg", "simple-icons/apacheiceberg"), ("Git", "simple-icons/git"),
+        ("Python", "simple-icons/python"), ("TypeScript", "simple-icons/typescript"), ("SQL", "lucide/database"), ("FastAPI", "simple-icons/fastapi"),
     ]),
 ]
 
@@ -545,7 +526,7 @@ def home():
 
 <section id="skills" class="sec">
   <div class="wrap">
-    <div class="sec-head"><div><p class="eyebrow mono">01 / Skills</p><h2>What I work with</h2></div><p class="muted skills-note">The tools and platforms I have used on real projects, grouped by the layer each sits in.</p></div>
+    <div class="sec-head"><div><p class="eyebrow mono">01 / Skills</p><h2>What I work with</h2></div><p class="muted skills-note">The core of what I build with, grouped by the layer each sits in.</p></div>
     <div class="slist">
 {stack}    </div>
   </div>
