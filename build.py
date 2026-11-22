@@ -39,7 +39,7 @@ PERSON_LD = """
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Aprameya C V","url":"https://aprameyacv.com","image":"https://aprameyacv.com/assets/portrait.jpg","jobTitle":"AI Engineer","address":{"@type":"PostalAddress","addressLocality":"Bengaluru","addressCountry":"IN"},"alumniOf":"JSS Science and Technology University","knowsAbout":["Agentic AI","Generative AI","Retrieval-augmented generation","LLM inference","Cloud infrastructure"],"sameAs":["https://github.com/Aprameya-C-V","https://huggingface.co/apracv","https://www.linkedin.com/in/aprameyacv/","https://scholar.google.com/citations?user=Yuit2q4AAAAJ"]}</script>"""
 
 
-def head(title, desc, base, page="", canon="/"):
+def head(title, desc, base, page="", canon="/", ld=""):
     return f"""<!doctype html>
 <html lang="en">
 <head>
@@ -59,7 +59,7 @@ def head(title, desc, base, page="", canon="/"):
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="{SITE}/assets/og.jpg">
-<meta name="author" content="Aprameya C V">{PERSON_LD if page == "home" else ""}
+<meta name="author" content="Aprameya C V">{PERSON_LD if page == "home" else ""}{ld}
 <link rel="icon" href="{base}assets/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -503,8 +503,8 @@ def home():
     )
 
     html = head(
-        "Aprameya C V, AI engineer",
-        "AI engineer building agentic and generative AI systems, from model to production.",
+        "Aprameya C V | AI Engineer, Bengaluru",
+        "Aprameya C V is an AI engineer in Bengaluru building agentic AI, RAG and LLM inference systems. Projects, writing and papers.",
         "", "home",
     )
     html += f"""
@@ -723,7 +723,21 @@ def project_page(p):
     )
     tags = "".join(f'<span class="tag mono">{t}</span>' for t in p["tags"])
 
-    html = head(f"{p['title']}, Aprameya C V", p["tagline"], "../", "project", f"/work/{p['slug']}")
+    import json as _json
+    desc = p["sub"] if len(p["sub"]) <= 158 else p["sub"][:155].rsplit(" ", 1)[0] + "..."
+    repo = next((h for l, h, e in p["links"] if h.startswith("http") and "github.com" in h), "")
+    ld_obj = [
+        {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "Aprameya C V", "item": SITE + "/"},
+            {"@type": "ListItem", "position": 2, "name": "Work", "item": SITE + "/#work"},
+            {"@type": "ListItem", "position": 3, "name": p["title"], "item": f"{SITE}/work/{p['slug']}"}]},
+        {"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": f"{p['title']}: {p['tagline']}",
+         "description": desc, "url": f"{SITE}/work/{p['slug']}", "codeRepository": repo,
+         "author": {"@type": "Person", "name": "Aprameya C V", "url": SITE + "/"},
+         "programmingLanguage": "Python"},
+    ]
+    ld = '\n<script type="application/ld+json">' + _json.dumps(ld_obj, separators=(",", ":")) + "</script>"
+    html = head(f"{p['title']}: {p['tagline']} | Aprameya C V", desc, "../", "project", f"/work/{p['slug']}", ld)
     html += f"""
 <header class="phead">
   <div class="wrap">
@@ -780,7 +794,9 @@ def extras():
         "User-agent: *\nAllow: /\n\nSitemap: " + SITE + "/sitemap.xml\n", encoding="utf-8"
     )
     urls = ["/"] + [f"/work/{p['slug']}" for p in PROJECTS]
-    body = "".join(f"  <url><loc>{SITE}{u}</loc></url>\n" for u in urls)
+    import datetime as _dt
+    today = _dt.date.today().isoformat()
+    body = "".join(f"  <url><loc>{SITE}{u}</loc><lastmod>{today}</lastmod></url>\n" for u in urls)
     (ROOT / "sitemap.xml").write_text(
         '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
         + body
