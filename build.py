@@ -414,7 +414,8 @@ XP = [
         "Delivered OCI infrastructure on customer engagements, including landing zones, IAM, networking, load balancing and 40+ VMs, and migrated a 24 TB workload with RackWare, the largest the team had handled.",
     ]),
     ("Jan 2025 to Jul 2025", "Oracle", "Project Intern", [
-        "Built the Solution Document Generator on LangGraph and OKE, contributing to 50+ documents and 100+ hours saved.",
+        "Built the Solution Document Generator on LangGraph and OKE, contributing to 50+ documents and 150+ person-hours saved.",
+        "Built a security review agent used to review 50 to 60 production go-live projects, saving 100+ person-hours.",
     ]),
 ]
 
