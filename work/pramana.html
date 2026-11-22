@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pramana — Aprameya C V</title>
+<meta name="description" content="Open-source decision models with calibrated confidence">
+<link rel="canonical" href="https://aprameyacv.site/">
+<meta name="theme-color" content="#f3f1eb">
+<meta property="og:title" content="Pramana — Aprameya C V">
+<meta property="og:description" content="Open-source decision models with calibrated confidence">
+<meta property="og:type" content="website">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<nav class="nav" aria-label="Primary">
+  <a class="mark" href="../index.html">Aprameya C V</a>
+  <a class="link" href="../index.html#work">Work</a>
+  <a class="link hide-sm" href="../index.html#about">About</a>
+  <a class="link" href="../index.html#contact">Contact</a>
+  <a class="pill" href="../resume.pdf" target="_blank" rel="noreferrer">Resume <span class="arrow">&#8599;</span></a>
+</nav>
+<main id="main">
+
+<header class="proj-head">
+  <div class="wrap">
+    <p class="kicker">Selected work &middot; 01</p>
+    <h1>Pramana: Open-source decision models with calibrated confidence</h1>
+    <p class="sub">Small open models that answer a structured question with a probability for every option, and say how much to trust that answer.</p>
+    <div class="proj-meta">
+      <span class="tag">Python</span><span class="tag">LoRA</span><span class="tag">Hugging Face</span><span class="tag">A100</span>
+      <a class="tag" href="https://github.com/Aprameya-C-V/pramana" target="_blank" rel="noreferrer">Repository</a><a class="tag" href="https://huggingface.co/apracv" target="_blank" rel="noreferrer">Model cards</a><a class="tag" href="../reports/pramana/index.html">Full report</a>
+    </div>
+    <div class="stats"><div class="stat"><b>0.800</b><span>accuracy, 2,000 decisions</span></div><div class="stat"><b>0.038</b><span>confidence calibration error</span></div><div class="stat"><b>1 in 3</b><span>decisions settled by the 0.8B</span></div><div class="stat"><b>0.076</b><span>KL divergence, best fine-tuned entry</span></div></div>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="block prose reveal"><h2>What it is</h2><p>Pramana takes one piece of unstructured state and a typed question, and returns a probability over every option rather than a single label. Each answer carries two outputs from the same logits: a calibrated probability, and a separate confidence score that tracks whether the top answer is actually right.</p>
+<p>Two models ship: Pramana-2B and Pramana-0.8B, both trained from Qwen bases and published on Hugging Face with their calibration files and predictions.</p></div><div class="block prose reveal"><h2>How it works</h2><ul>
+<li><strong>Soft gold training.</strong> Fine-tuned with LoRA against soft labels and a Brier term, so the probabilities come out calibrated without a post-hoc temperature. The fitted temperature lands between 1.00 and 1.05.</li>
+<li><strong>Decoupled calibration.</strong> One set of logits, two temperatures: one fitted to the soft gold for KL and Brier, one fitted to the hard label for expected calibration error and deferral.</li>
+<li><strong>A 0.8B to 2B cascade.</strong> The small model answers whenever its top probability clears 0.68, chosen on holdout; the rest go to the 2B. One decision in three never reaches the larger model and accuracy holds.</li>
+</ul></div><div class="block prose reveal"><h2>What it measured</h2><table>
+<thead><tr><th>Model</th><th class="num">Params</th><th class="num">Accuracy</th><th class="num">KL</th><th class="num">Brier</th><th class="num">Confidence ECE</th></tr></thead>
+<tbody>
+<tr><td><strong>Pramana-2B</strong></td><td class="num">2.3B</td><td class="num">0.8005</td><td class="num">0.0755</td><td class="num">0.0415</td><td class="num">0.0379</td></tr>
+<tr><td><strong>Pramana-0.8B</strong></td><td class="num">0.8B</td><td class="num">0.7970</td><td class="num">0.0819</td><td class="num">0.0446</td><td class="num">0.0249</td></tr>
+<tr><td>Board, 3-4B entries</td><td class="num">3-4B</td><td class="num">0.808-0.8205</td><td class="num">0.077-0.301</td><td class="num">0.042-0.132</td><td class="num">-</td></tr>
+</tbody>
+</table>
+<p class="small" style="margin-top:12px">Typed Decisions benchmark: 400 test cases, 2,000 decisions, four workflows. Pramana is trained on the train split, so it is compared with other fine-tuned entries, not zero-shot rows.</p></div><div class="block prose reveal"><h2>What it does not claim</h2><p>The 3-4B board entries still edge out Pramana on raw accuracy. The claim here is calibration and cost, not a state-of-the-art score: the lowest KL and Brier of any fine-tuned entry listed, with a cascade that keeps accuracy while leaving the larger model idle for a third of decisions.</p></div>
+  <div class="block reveal">
+    <a class="report-cta" href="../reports/pramana/index.html">Read the full report <span class="dot">&#8599;</span></a>
+    <p class="small" style="margin-top:18px"><a href="../index.html#work" style="text-decoration:underline;text-underline-offset:3px">&larr; All work</a></p>
+  </div>
+</div>
+</main>
+<footer>
+  <div class="wrap foot">
+    <span>&copy; <span data-year>2026</span> Aprameya C V &middot; Bengaluru, India</span>
+    <span>Hand-written HTML &middot; no framework</span>
+  </div>
+</footer>
+<script src="../assets/site.js" defer></script>
+</body>
+</html>

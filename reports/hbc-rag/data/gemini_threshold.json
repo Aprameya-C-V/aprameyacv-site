@@ -1,0 +1,40 @@
+{
+  "model": "gemini-3.5-flash-lite",
+  "rows": [
+    {
+      "delta_tokens_requested": 200,
+      "prompt_tokens": 5678,
+      "cached_tokens": 2032,
+      "cache_rate": 0.35787249031349067,
+      "latency_hint": 1399
+    },
+    {
+      "delta_tokens_requested": 800,
+      "prompt_tokens": 6255,
+      "cached_tokens": 4067,
+      "cache_rate": 0.6501998401278977,
+      "latency_hint": 5599
+    },
+    {
+      "delta_tokens_requested": 1500,
+      "prompt_tokens": 6946,
+      "cached_tokens": 4070,
+      "cache_rate": 0.5859487474805644,
+      "latency_hint": 10499
+    },
+    {
+      "delta_tokens_requested": 2100,
+      "prompt_tokens": 7541,
+      "cached_tokens": 4072,
+      "cache_rate": 0.5399814348229678,
+      "latency_hint": 14699
+    },
+    {
+      "delta_tokens_requested": 3000,
+      "prompt_tokens": 8449,
+      "cached_tokens": 4074,
+      "cache_rate": 0.48218724109362054,
+      "latency_hint": 20999
+    }
+  ]
+}

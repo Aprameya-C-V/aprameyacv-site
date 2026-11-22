@@ -1,0 +1,291 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Monitoring · Demand Forecasting Platform</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --page:#f6f7f9; --card:#fff; --ink:#0d1520; --body:#33414f; --muted:#6b7a89;
+    --line:#e2e6eb; --line-strong:#cfd6de;
+    --accent:#1f4fd8; --accent-soft:#eef2ff; --accent-2:#0f9d8a;
+    --ok:#0f7a4d; --ok-soft:#e8f6ee; --warn:#a8600a; --warn-soft:#fdf3e3; --bad:#c0362c; --bad-soft:#fdeceb;
+    --mono:"JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+    --shadow:0 1px 2px rgba(13,21,32,.04), 0 8px 24px -16px rgba(13,21,32,.18);
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--page);color:var(--ink);font:15px/1.55 Inter,system-ui,-apple-system,sans-serif;-webkit-font-smoothing:antialiased}
+  a{color:var(--accent);text-decoration:none}
+  a:hover{text-decoration:underline}
+  .shell{max-width:1180px;margin:0 auto;padding:0 24px}
+  .topbar{position:sticky;top:0;z-index:20;background:rgba(246,247,249,.86);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  .topbar .shell{display:flex;align-items:center;justify-content:space-between;height:60px}
+  .brand{display:flex;align-items:center;gap:9px;font-weight:650;letter-spacing:-.01em}
+  .mark{width:22px;height:22px;border-radius:6px;background:linear-gradient(135deg,var(--accent),#5b8def);display:grid;place-items:center;color:#fff;font-size:11px;font-family:var(--mono)}
+  nav{display:flex;align-items:center;gap:20px;font-size:13.5px}
+  nav a{color:var(--body)}
+  nav a:hover{color:var(--ink);text-decoration:none}
+  .page-head{display:flex;flex-wrap:wrap;gap:18px;align-items:flex-end;justify-content:space-between;padding:34px 0 22px}
+  h1{font-size:28px;letter-spacing:-.02em;margin:0 0 6px;font-weight:680}
+  .sub{color:var(--muted);font-size:14px}
+  .badges{display:flex;gap:8px;flex-wrap:wrap}
+  .badge{display:inline-flex;align-items:center;gap:7px;border:1px solid var(--line-strong);background:var(--card);border-radius:20px;padding:6px 12px;font-size:12px;font-family:var(--mono);color:var(--body)}
+  .dot{width:7px;height:7px;border-radius:50%;background:var(--muted)}
+  .dot.ok{background:var(--ok);box-shadow:0 0 0 3px rgba(15,122,77,.14)}
+  .dot.bad{background:var(--bad);box-shadow:0 0 0 3px rgba(192,54,44,.14)}
+  .badge.pass{background:var(--ok-soft);border-color:#bfe3ce;color:var(--ok)}
+  .badge.fail{background:var(--bad-soft);border-color:#f3c9c5;color:var(--bad)}
+  .kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+  @media(max-width:900px){.kpis{grid-template-columns:repeat(2,1fr)}}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:13px;box-shadow:var(--shadow)}
+  .kpi{padding:16px 18px}
+  .kpi .k{font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);font-weight:600}
+  .kpi .v{font-size:31px;font-weight:700;letter-spacing:-.025em;margin-top:8px;font-variant-numeric:tabular-nums;line-height:1}
+  .kpi .n{font-size:12.5px;color:var(--muted);margin-top:8px}
+  .grid{display:grid;gap:12px;margin-top:12px}
+  .two{grid-template-columns:1.6fr 1fr;align-items:start}
+  .two-even{grid-template-columns:1fr 1fr;align-items:start}
+  .three{grid-template-columns:1fr 1fr 1fr;align-items:start}
+  @media(max-width:1100px){.three{grid-template-columns:1fr 1fr}}
+  @media(max-width:980px){.two,.two-even,.three{grid-template-columns:1fr}}
+  .card-pad{padding:18px 20px}
+  .card h2{font-size:11.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);margin:0 0 4px;font-weight:650}
+  .card .hint{font-size:12.5px;color:var(--muted);margin:0 0 14px}
+  .legend{display:flex;gap:16px;font-size:12px;color:var(--muted);margin-top:10px;flex-wrap:wrap}
+  .legend i{display:inline-block;width:16px;height:3px;border-radius:2px;margin-right:6px;vertical-align:middle}
+  .legend .a{background:#9aa8b6}
+  .legend .p{background:var(--accent)}
+  svg{display:block;width:100%;height:auto}
+  .bars{display:grid;gap:5px;margin-top:6px}
+  .bar{display:grid;grid-template-columns:42px 1fr 46px;gap:9px;align-items:center;font-family:var(--mono);font-size:11.5px;color:var(--muted)}
+  .track{height:8px;background:#eef1f5;border-radius:5px;overflow:hidden}
+  .fill{height:100%;border-radius:5px;background:var(--accent)}
+  .fill.warn{background:#e2a23c}
+  .fill.bad{background:var(--bad)}
+  .val{text-align:right;color:var(--ink)}
+  .table{width:100%;border-collapse:collapse;font-size:13.5px}
+  .table th{text-align:left;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:600;padding:9px 10px;border-bottom:1px solid var(--line)}
+  .table td{padding:9px 10px;border-bottom:1px solid var(--line);color:var(--body)}
+  .table tr:last-child td{border-bottom:none}
+  .table td.num{font-family:var(--mono);text-align:right;color:var(--ink)}
+  .pill{display:inline-block;padding:2px 8px;border-radius:20px;font-size:11px;font-family:var(--mono);font-weight:500}
+  .pill.stable{background:var(--ok-soft);color:var(--ok)}
+  .pill.warning{background:var(--warn-soft);color:var(--warn)}
+  .pill.drift{background:var(--bad-soft);color:var(--bad)}
+  .alerts{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+  .alerts li{border:1px solid var(--line);border-left:3px solid var(--bad);border-radius:8px;padding:10px 12px;font-size:13.5px;color:var(--body);background:#fff}
+  .clean{border:1px solid #c9e6d5;background:var(--ok-soft);border-radius:9px;padding:12px 14px;font-size:13.5px;color:var(--ok);display:flex;gap:9px;align-items:flex-start}
+  .kv{display:flex;justify-content:space-between;gap:14px;padding:8px 0;border-bottom:1px solid var(--line);font-size:13.5px}
+  .kv:last-child{border-bottom:none}
+  .kv span:first-child{color:var(--muted)}
+  .kv span:last-child{font-family:var(--mono);font-size:12.5px;text-align:right}
+  footer{border-top:1px solid var(--line);margin-top:26px;padding:22px 0 56px;color:var(--muted);font-size:13px;display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between}
+  code{font-family:var(--mono);font-size:12.5px;background:#eef1f5;border-radius:5px;padding:1px 5px}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="shell">
+    <div class="brand"><span class="mark">df</span> Demand Forecasting</div>
+    <nav>
+      <a href="../index.html">Overview</a>
+      <a href="https://github.com/Aprameya-C-V/demand-forecasting-platform/blob/main/docs/RUNBOOK.md">Runbook</a>
+      <a href="https://github.com/Aprameya-C-V/demand-forecasting-platform">Source</a>
+    </nav>
+  </div>
+</div>
+
+<div class="shell">
+  <div class="page-head">
+    <div>
+      <h1>Model monitoring</h1>
+      <div class="sub">Replay of realised demand against the production model. Refreshed by <code>monitor.yml</code>.</div>
+    </div>
+    <div class="badges">
+      <span class="badge" id="status"><span class="dot" id="status-dot"></span><span id="status-text">loading</span></span>
+      <span class="badge" id="version">model ·</span>
+      <span class="badge" id="updated">updated ·</span>
+    </div>
+  </div>
+
+  <div class="kpis">
+    <div class="card kpi"><div class="k">WAPE</div><div class="v" id="wape">·</div><div class="n" id="wape-note">gate at 38%</div></div>
+    <div class="card kpi"><div class="k">MAE</div><div class="v" id="mae">·</div><div class="n" id="mae-note">trips per 30 min slot</div></div>
+    <div class="card kpi"><div class="k">Bias</div><div class="v" id="bias">·</div><div class="n">gate at ±10%</div></div>
+    <div class="card kpi"><div class="k">Coverage p10–p90</div><div class="v" id="coverage">·</div><div class="n">nominal 80%</div></div>
+  </div>
+
+  <div class="grid" style="grid-template-columns:1fr">
+    <div class="card card-pad">
+      <h2>Forecast against realised demand</h2>
+      <p class="hint">Hourly trips, all 263 zones, last 72 hours of the replay window. The dashed line is the production model, the solid line is what happened.</p>
+      <svg id="chart" viewBox="0 0 1180 300" preserveAspectRatio="none" aria-label="Forecast versus actual"></svg>
+      <div class="legend"><span><i class="a"></i>actual</span><span><i class="p"></i>forecast</span><span id="chart-scale"></span></div>
+    </div>
+  </div>
+
+  <div class="grid three">
+    <div class="card card-pad">
+      <h2>Error by hour of day</h2>
+      <p class="hint">WAPE per hour, held out window. Threshold 38%.</p>
+      <div class="bars" id="hourly"></div>
+    </div>
+    <div class="card card-pad">
+      <h2>Feature drift</h2>
+      <p class="hint">Population stability index against the training reference. Above 0.20 is drift.</p>
+      <table class="table">
+        <thead><tr><th>Feature</th><th style="text-align:right">PSI</th><th style="text-align:right">Status</th></tr></thead>
+        <tbody id="drift"></tbody>
+      </table>
+    </div>
+    <div class="card card-pad">
+      <h2>Busiest zones</h2>
+      <p class="hint">Total trips and WAPE across the replay window.</p>
+      <table class="table">
+        <thead><tr><th>Zone</th><th style="text-align:right">Trips</th><th style="text-align:right">WAPE</th></tr></thead>
+        <tbody id="zones"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="grid two-even">
+    <div class="card card-pad">
+      <h2>Gates</h2>
+      <p class="hint">A failing gate fails the workflow and opens a GitHub issue.</p>
+      <ul class="alerts" id="alerts"></ul>
+    </div>
+    <div class="card card-pad">
+      <h2>Deployed model</h2>
+      <p class="hint">The version and metrics the promotion gate used.</p>
+      <div class="kv"><span>Version</span><span id="m-version">·</span></div>
+      <div class="kv"><span>Alias</span><span id="m-alias">·</span></div>
+      <div class="kv"><span>Trained</span><span id="m-trained">·</span></div>
+      <div class="kv"><span>Data window</span><span id="m-window">·</span></div>
+      <div class="kv"><span>Test rows</span><span id="m-rows">·</span></div>
+      <div class="kv"><span>RMSE</span><span id="m-rmse">·</span></div>
+    </div>
+  </div>
+
+  <footer>
+    <span id="source">source ·</span>
+    <span><a href="../index.html">Overview</a> · <code>forecast monitor</code></span>
+  </footer>
+</div>
+
+<script>
+const el = (id) => document.getElementById(id);
+const pct = (v, d = 1) => (v === null || v === undefined ? "n/a" : (v * 100).toFixed(d) + "%");
+const num = (v, d = 2) => (v === null || v === undefined ? "n/a" : Number(v).toFixed(d));
+
+fetch("data.json", { cache: "no-store" })
+  .then((r) => r.json())
+  .then(render)
+  .catch(() => {
+    el("status-text").textContent = "no data.json";
+    el("status-dot").classList.add("bad");
+  });
+
+function render(data) {
+  const report = data.report || {};
+  const metrics = report.metrics || {};
+  const drift = report.drift || {};
+  const model = data.model || {};
+  const alerts = report.alerts || [];
+
+  const passed = Boolean(report.passed);
+  el("status").classList.add(passed ? "pass" : "fail");
+  el("status-dot").classList.add(passed ? "ok" : "bad");
+  el("status-text").textContent = passed ? "all gates passing" : alerts.length + " gate failing";
+  el("version").textContent = "model · " + (model.version || "-");
+  el("updated").textContent = "updated · " + (data.generated_at || "-").replace("T", " ").slice(0, 16);
+
+  el("wape").textContent = pct(metrics.wape);
+  el("mae").textContent = num(metrics.mae);
+  el("bias").textContent = (metrics.bias >= 0 ? "+" : "") + pct(metrics.bias);
+  el("coverage").textContent = pct(metrics.coverage_p10_p90);
+  el("wape-note").textContent = "gate at 38% · " + (metrics.rows || 0).toLocaleString() + " rows";
+
+  drawChart(data.series || []);
+
+  const hourly = metrics.by_hour || {};
+  const entries = Object.entries(hourly).sort((a, b) => Number(a[0]) - Number(b[0]));
+  const max = Math.max(...entries.map(([, v]) => v), 0.5);
+  el("hourly").innerHTML = entries.map(([h, v]) => {
+    const width = Math.max(2, Math.round((v / max) * 100));
+    const cls = v >= 0.38 ? "bad" : v >= 0.3 ? "warn" : "";
+    return `<div class="bar"><span>${String(h).padStart(2, "0")}:00</span>
+      <div class="track"><div class="fill ${cls}" style="width:${width}%"></div></div>
+      <span class="val">${(v * 100).toFixed(1)}%</span></div>`;
+  }).join("");
+
+  el("drift").innerHTML = (drift.features || []).map((f) => `
+    <tr><td>${f.feature}</td><td class="num">${f.psi.toFixed(4)}</td>
+    <td class="num"><span class="pill ${f.status}">${f.status}</span></td></tr>`).join("");
+
+  el("zones").innerHTML = (data.zones || []).map((z) => `
+    <tr><td>Zone ${z.zone_id}</td><td class="num">${Math.round(z.trips).toLocaleString()}</td>
+    <td class="num">${(z.wape * 100).toFixed(1)}%</td></tr>`).join("");
+
+  el("alerts").innerHTML = alerts.length
+    ? alerts.map((a) => `<li>${a}</li>`).join("")
+    : `<div class="clean"><span>✓</span><span>No gate breached. WAPE, bias and PSI are inside their thresholds for this window.</span></div>`;
+
+  el("m-version").textContent = model.version || "-";
+  el("m-alias").textContent = model.alias || "-";
+  el("m-trained").textContent = (model.trained_at || "-").replace("T", " ").slice(0, 19);
+  const w = model.data_window || {};
+  el("m-window").textContent = (w.train_start || "-").slice(0, 10) + " → " + (w.test_end || "-").slice(0, 10);
+  el("m-rows").textContent = (metrics.rows || 0).toLocaleString();
+  el("m-rmse").textContent = num(metrics.rmse);
+  el("source").textContent = "source · " + (data.source || "-") + " · generated " + (data.generated_at || "").replace("T", " ").slice(0, 19);
+}
+
+function drawChart(series) {
+  const svg = el("chart");
+  if (!series.length) { svg.innerHTML = ""; return; }
+  const W = 1180, H = 300, L = 58, R = 16, T = 18, B = 32;
+  const actual = series.map((d) => d.actual);
+  const predicted = series.map((d) => d.predicted);
+  const maxY = Math.max(...actual, ...predicted) * 1.08;
+  const x = (i) => L + (i / Math.max(series.length - 1, 1)) * (W - L - R);
+  const y = (v) => T + (1 - v / maxY) * (H - T - B);
+  const path = (values) => values.map((v, i) => `${i ? "L" : "M"} ${x(i).toFixed(1)} ${y(v).toFixed(1)}`).join(" ");
+  const area = `${path(actual)} L ${x(series.length - 1).toFixed(1)} ${H - B} L ${L} ${H - B} Z`;
+
+  const ticks = 4;
+  let grid = "";
+  for (let t = 0; t <= ticks; t++) {
+    const value = (maxY / ticks) * t;
+    const gy = y(value);
+    grid += `<line x1="${L}" y1="${gy}" x2="${W - R}" y2="${gy}" stroke="#eef1f5" stroke-width="1"/>
+             <text x="${L - 9}" y="${gy + 4}" text-anchor="end" font-family="JetBrains Mono, monospace" font-size="10" fill="#8a98a6">${Math.round(value)}</text>`;
+  }
+
+  const labels = [0, Math.floor(series.length / 2), series.length - 1]
+    .map((i) => `<text x="${x(i)}" y="${H - 9}" text-anchor="${i === 0 ? "start" : i === series.length - 1 ? "end" : "middle"}"
+      font-family="JetBrains Mono, monospace" font-size="10" fill="#8a98a6">${series[i].hour.slice(5, 16)}</text>`)
+    .join("");
+
+  svg.innerHTML = `
+    <defs><linearGradient id="fade" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1f4fd8" stop-opacity="0.12"/>
+      <stop offset="100%" stop-color="#1f4fd8" stop-opacity="0"/>
+    </linearGradient></defs>
+    ${grid}
+    <path d="${area}" fill="url(#fade)"/>
+    <path d="${path(actual)}" fill="none" stroke="#9aa8b6" stroke-width="1.6"/>
+    <path d="${path(predicted)}" fill="none" stroke="#1f4fd8" stroke-width="1.9" stroke-dasharray="5 3"/>
+    ${labels}`;
+
+  const totalActual = actual.reduce((a, b) => a + b, 0);
+  const totalPred = predicted.reduce((a, b) => a + b, 0);
+  el("chart-scale").textContent =
+    `${series.length} hours · forecast ${Math.round(totalPred).toLocaleString()} vs actual ${Math.round(totalActual).toLocaleString()} trips`;
+}
+</script>
+</body>
+</html>

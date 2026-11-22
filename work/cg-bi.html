@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CG-BI — Aprameya C V</title>
+<meta name="description" content="Confidence-gated triage for blade inspection">
+<link rel="canonical" href="https://aprameyacv.site/">
+<meta name="theme-color" content="#f3f1eb">
+<meta property="og:title" content="CG-BI — Aprameya C V">
+<meta property="og:description" content="Confidence-gated triage for blade inspection">
+<meta property="og:type" content="website">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<nav class="nav" aria-label="Primary">
+  <a class="mark" href="../index.html">Aprameya C V</a>
+  <a class="link" href="../index.html#work">Work</a>
+  <a class="link hide-sm" href="../index.html#about">About</a>
+  <a class="link" href="../index.html#contact">Contact</a>
+  <a class="pill" href="../resume.pdf" target="_blank" rel="noreferrer">Resume <span class="arrow">&#8599;</span></a>
+</nav>
+<main id="main">
+
+<header class="proj-head">
+  <div class="wrap">
+    <p class="kicker">Selected work &middot; 04</p>
+    <h1>CG-BI: Confidence-gated triage for blade inspection</h1>
+    <p class="sub">Routing, not tier choice, is the lever: a two-tier cascade beats both of its own models on quality and lands between them on cost.</p>
+    <div class="proj-meta">
+      <span class="tag">Multimodal</span><span class="tag">Python</span><span class="tag">cost control</span>
+      <a class="tag" href="https://github.com/Aprameya-C-V/cg-bi" target="_blank" rel="noreferrer">Repository</a><a class="tag" href="../reports/cg-bi/index.html">Full report</a>
+    </div>
+    <div class="stats"><div class="stat"><b>92.3%</b><span>critical-defect recall</span></div><div class="stat"><b>47%</b><span>of the strong tier's cost</span></div><div class="stat"><b>25.3%</b><span>exact match, best of any tier</span></div><div class="stat"><b>0.424</b><span>class F1</span></div></div>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="block prose reveal"><h2>What it is</h2><p>A drone captures hundreds of blade images per turbine, and an engineer still writes a finding for each one: defect type, severity, location, action. This measures whether a multimodal model can draft that finding, and what a two-tier routing policy buys over picking a single model.</p></div><div class="block prose reveal"><h2>How it works</h2><ul>
+<li><strong>75 real drone images</strong> across a fixed six-class taxonomy, one call per image unless escalated.</li>
+<li><strong>A confidence gate.</strong> A cheap multimodal model labels every image; anything below 0.9 confidence, 36% of the set, goes to a stronger model.</li>
+<li><strong>Costed per thousand images</strong>, with p50 latency, so a quality win that nobody can afford shows up as one.</li>
+</ul></div><div class="block prose reveal"><h2>What it measured</h2><table>
+<thead><tr><th>Tier</th><th class="num">Exact set</th><th class="num">Class F1</th><th class="num">Critical recall</th><th class="num">Cost / 1,000</th></tr></thead>
+<tbody>
+<tr><td>Cheap model alone</td><td class="num">17.3%</td><td class="num">0.323</td><td class="num">50.0%</td><td class="num">$0.43</td></tr>
+<tr><td>Strong model alone</td><td class="num">14.7%</td><td class="num">0.417</td><td class="num">96.2%</td><td class="num">$3.64</td></tr>
+<tr><td><strong>Routed cascade</strong></td><td class="num"><strong>25.3%</strong></td><td class="num"><strong>0.424</strong></td><td class="num"><strong>92.3%</strong></td><td class="num"><strong>$1.73</strong></td></tr>
+</tbody>
+</table>
+<p style="margin-top:14px">The cascade beats both single tiers on exact match and F1, holds 92% critical-defect recall, and costs 47% of the strong tier alone. The strong tier is accurate but expensive; the cheap tier alone misses half the critical defects.</p></div><div class="block prose reveal"><h2>What it does not claim</h2><p>One seed, 75 images, and no healthy-blade class, so this is not a claim that inspection can be automated. The cascade drafts a finding for an engineer to approve or correct.</p></div>
+  <div class="block reveal">
+    <a class="report-cta" href="../reports/cg-bi/index.html">Read the full report <span class="dot">&#8599;</span></a>
+    <p class="small" style="margin-top:18px"><a href="../index.html#work" style="text-decoration:underline;text-underline-offset:3px">&larr; All work</a></p>
+  </div>
+</div>
+</main>
+<footer>
+  <div class="wrap foot">
+    <span>&copy; <span data-year>2026</span> Aprameya C V &middot; Bengaluru, India</span>
+    <span>Hand-written HTML &middot; no framework</span>
+  </div>
+</footer>
+<script src="../assets/site.js" defer></script>
+</body>
+</html>

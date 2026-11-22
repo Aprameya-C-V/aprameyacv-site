@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SpecLane — Aprameya C V</title>
+<meta name="description" content="Serving small models under agent traffic">
+<link rel="canonical" href="https://aprameyacv.site/">
+<meta name="theme-color" content="#f3f1eb">
+<meta property="og:title" content="SpecLane — Aprameya C V">
+<meta property="og:description" content="Serving small models under agent traffic">
+<meta property="og:type" content="website">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<nav class="nav" aria-label="Primary">
+  <a class="mark" href="../index.html">Aprameya C V</a>
+  <a class="link" href="../index.html#work">Work</a>
+  <a class="link hide-sm" href="../index.html#about">About</a>
+  <a class="link" href="../index.html#contact">Contact</a>
+  <a class="pill" href="../resume.pdf" target="_blank" rel="noreferrer">Resume <span class="arrow">&#8599;</span></a>
+</nav>
+<main id="main">
+
+<header class="proj-head">
+  <div class="wrap">
+    <p class="kicker">Selected work &middot; 03</p>
+    <h1>SpecLane: Serving small models under agent traffic</h1>
+    <p class="sub">Existing vLLM flags, an honest baseline, and a measurement of which one actually matters when the traffic looks like an agent loop.</p>
+    <div class="proj-meta">
+      <span class="tag">vLLM</span><span class="tag">CUDA</span><span class="tag">H100</span><span class="tag">L40S</span>
+      <a class="tag" href="https://github.com/Aprameya-C-V/speclane" target="_blank" rel="noreferrer">Repository</a><a class="tag" href="../reports/speclane/index.html">Full report</a>
+    </div>
+    <div class="stats"><div class="stat"><b>78 &rarr; 175</b><span>tokens/s at concurrency 1</span></div><div class="stat"><b>800 &rarr; 1199</b><span>tokens/s at concurrency 16</span></div><div class="stat"><b>1.09 &rarr; 0.94 s</b><span>p99 time to first token</span></div><div class="stat"><b>0.940 &rarr; 0.935</b><span>GSM8K, unchanged</span></div></div>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="block prose reveal"><h2>What it is</h2><p>A serving configuration for two open models, Qwen3.8-27B-FP8 on one H100 and Qwen3.5-9B on one L40S, built around agent-shaped traffic: long shared system prompts and multi-turn sessions. It defines a vanilla baseline, a recommended profile, and one change at a time on top of it, with every number generated from the saved run files.</p></div><div class="block prose reveal"><h2>How it works</h2><ul>
+<li><strong>A baseline you can reproduce.</strong> Engine defaults plus only the flags needed to start, fixed 16,384-token context.</li>
+<li><strong>Two workloads.</strong> <span class="mono">shared_prefix</span> and <span class="mono">agent_sessions</span>, swept at concurrency 1 and 16 through a closed-loop load generator that records TTFT, TPOT and throughput.</li>
+<li><strong>A quality guard.</strong> 200 fixed GSM8K questions, temperature 0, exact match, so a throughput win cannot hide an accuracy loss.</li>
+</ul></div><div class="block prose reveal"><h2>What it measured</h2><table>
+<thead><tr><th>Profile</th><th class="num">c = 1</th><th class="num">c = 16</th><th class="num">p99 TTFT</th></tr></thead>
+<tbody>
+<tr><td>27B, baseline</td><td class="num">78</td><td class="num">800</td><td class="num">1.09 s</td></tr>
+<tr><td>27B, <strong>multi-token prediction</strong></td><td class="num"><strong>175 (+124%)</strong></td><td class="num"><strong>1199 (+50%)</strong></td><td class="num"><strong>0.94 s</strong></td></tr>
+<tr><td>27B, FP8 KV cache only</td><td class="num">76 (&minus;2%)</td><td class="num">684 (&minus;14%)</td><td class="num">1.46 s</td></tr>
+<tr><td>9B, baseline</td><td class="num">43</td><td class="num">475</td><td class="num">0.95 s</td></tr>
+<tr><td>9B, <strong>multi-token prediction</strong></td><td class="num"><strong>75 (+77%)</strong></td><td class="num"><strong>753 (+59%)</strong></td><td class="num"><strong>0.74 s</strong></td></tr>
+</tbody>
+</table>
+<p style="margin-top:14px">The models' built-in multi-token-prediction head is the lever. The FP8 KV cache, which is usually recommended, reduced throughput and raised tail latency at this scale. Quality moved by one and two questions out of 200, inside noise.</p></div><div class="block prose reveal"><h2>A failure worth keeping</h2><p>Vanilla vLLM cannot start the 27B on an H100: the default <span class="mono">max_num_seqs</span> of 1024 exceeds the 745 recurrent-state cache blocks that fit beside the weights. Setting it to 512 resolves it and became part of the baseline. An earlier agent-harness pilot that scored zero was traced to a missing tool-calling flag, not to the model, and is written up as a withdrawn result.</p></div>
+  <div class="block reveal">
+    <a class="report-cta" href="../reports/speclane/index.html">Read the full report <span class="dot">&#8599;</span></a>
+    <p class="small" style="margin-top:18px"><a href="../index.html#work" style="text-decoration:underline;text-underline-offset:3px">&larr; All work</a></p>
+  </div>
+</div>
+</main>
+<footer>
+  <div class="wrap foot">
+    <span>&copy; <span data-year>2026</span> Aprameya C V &middot; Bengaluru, India</span>
+    <span>Hand-written HTML &middot; no framework</span>
+  </div>
+</footer>
+<script src="../assets/site.js" defer></script>
+</body>
+</html>

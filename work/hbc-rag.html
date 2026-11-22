@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HBC-RAG — Aprameya C V</title>
+<meta name="description" content="Agentic retrieval for legal contract questions">
+<link rel="canonical" href="https://aprameyacv.site/">
+<meta name="theme-color" content="#f3f1eb">
+<meta property="og:title" content="HBC-RAG — Aprameya C V">
+<meta property="og:description" content="Agentic retrieval for legal contract questions">
+<meta property="og:type" content="website">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<nav class="nav" aria-label="Primary">
+  <a class="mark" href="../index.html">Aprameya C V</a>
+  <a class="link" href="../index.html#work">Work</a>
+  <a class="link hide-sm" href="../index.html#about">About</a>
+  <a class="link" href="../index.html#contact">Contact</a>
+  <a class="pill" href="../resume.pdf" target="_blank" rel="noreferrer">Resume <span class="arrow">&#8599;</span></a>
+</nav>
+<main id="main">
+
+<header class="proj-head">
+  <div class="wrap">
+    <p class="kicker">Selected work &middot; 02</p>
+    <h1>HBC-RAG: Agentic retrieval for legal contract questions</h1>
+    <p class="sub">Does fetching more passages per step make an agent find better evidence? On legal contracts, yes, and it is also faster.</p>
+    <div class="proj-meta">
+      <span class="tag">Python</span><span class="tag">Postgres</span><span class="tag">pgvector</span><span class="tag">agents</span>
+      <a class="tag" href="https://github.com/Aprameya-C-V/hbc-rag" target="_blank" rel="noreferrer">Repository</a><a class="tag" href="../reports/hbc-rag/index.html">Full report</a>
+    </div>
+    <div class="stats"><div class="stat"><b>47 &rarr; 58%</b><span>clauses found</span></div><div class="stat"><b>8.9 &rarr; 4.2 s</b><span>median latency</span></div><div class="stat"><b>+12 pts</b><span>character recall</span></div><div class="stat"><b>&minus;26%</b><span>cost per question</span></div></div>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="block prose reveal"><h2>What it is</h2><p>An agent that answers questions over legal contracts by planning a search, retrieving evidence, and verifying its answer against what it retrieved. A hop cap stops it looping. The study question is narrow: holding the model, prompt and corpus fixed, does retrieving four passages per step instead of one change quality, cost or latency?</p></div><div class="block prose reveal"><h2>How it works</h2><ul>
+<li><strong>Hybrid retrieval.</strong> pgvector HNSW for dense search plus Postgres full-text search, fused by reciprocal rank fusion, in a Neon Postgres database.</li>
+<li><strong>One protocol, two policies.</strong> Fine fetches one passage per hop, coarse fetches four. Everything else is identical, so the difference is attributable to hop size.</li>
+<li><strong>Scored against human labels.</strong> 468 contracts and privacy policies from LegalBench-RAG, split into 13,962 passages, with 140 questions scored by character span against the benchmark's labelled evidence, plus paired bootstrap intervals.</li>
+</ul></div><div class="block prose reveal"><h2>What it measured</h2><table>
+<thead><tr><th>DeepSeek, 140 questions</th><th class="num">Clause hit</th><th class="num">Char recall</th><th class="num">Char precision</th><th class="num">Median</th><th class="num">Cost</th></tr></thead>
+<tbody>
+<tr><td>One passage per hop</td><td class="num">0.469</td><td class="num">0.423</td><td class="num">0.120</td><td class="num">8.9 s</td><td class="num">$0.063</td></tr>
+<tr><td><strong>Four passages per hop</strong></td><td class="num"><strong>0.575</strong></td><td class="num"><strong>0.547</strong></td><td class="num">0.065</td><td class="num"><strong>4.2 s</strong></td><td class="num"><strong>$0.047</strong></td></tr>
+</tbody>
+</table>
+<p style="margin-top:14px">Clause hit rises 10.6 points (95% CI +4.6 to +16.6) and character recall 12.4 points, both excluding zero. Precision falls, which is the expected cost of returning more text, and is reported rather than hidden. A second model family reproduces the recall gain; its clause-hit gain is not distinguishable from zero.</p></div><div class="block prose reveal"><h2>What it does not claim</h2><p>The evidence in LegalBench-RAG sits inside a single document, so this measures retrieval granularity within one contract, not multi-document reasoning. The benchmark has no gold answers, so no answer-accuracy claim is made. One seed per model; MAUD merger agreements were excluded to fit a free database tier.</p></div>
+  <div class="block reveal">
+    <a class="report-cta" href="../reports/hbc-rag/index.html">Read the full report <span class="dot">&#8599;</span></a>
+    <p class="small" style="margin-top:18px"><a href="../index.html#work" style="text-decoration:underline;text-underline-offset:3px">&larr; All work</a></p>
+  </div>
+</div>
+</main>
+<footer>
+  <div class="wrap foot">
+    <span>&copy; <span data-year>2026</span> Aprameya C V &middot; Bengaluru, India</span>
+    <span>Hand-written HTML &middot; no framework</span>
+  </div>
+</footer>
+<script src="../assets/site.js" defer></script>
+</body>
+</html>

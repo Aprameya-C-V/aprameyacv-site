@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CG-BI</title>
+<style>
+:root{--paper:#f3f1eb;--ink:#14140f;--muted:#6b675c;--rule:#d8d3c6;--accent:#1e4b3d}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Helvetica Neue","Segoe UI",system-ui,sans-serif;font-size:16px;line-height:1.65}
+.bar{height:6px;background:var(--accent)}
+main{max-width:980px;margin:0 auto;padding:56px 24px 96px}
+.eyebrow{font-family:ui-monospace,"SF Mono",Menlo,monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin:0 0 12px}
+h1{font-size:42px;letter-spacing:-.03em;margin:0 0 10px;font-weight:600}
+h2{font-size:22px;margin:52px 0 12px;font-weight:600;letter-spacing:-.01em}
+h3{font-size:13px;margin:26px 0 8px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;font-weight:500}
+p{margin:10px 0}
+.lede{font-size:18px;color:var(--muted);max-width:72ch}
+table{width:100%;border-collapse:collapse;margin:14px 0;font-size:14px}
+th{text-align:left;font-weight:500;color:var(--muted);border-bottom:1px solid var(--rule);padding:8px 10px;font-family:ui-monospace,Menlo,monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase}
+td{border-bottom:1px solid var(--rule);padding:9px 10px;font-variant-numeric:tabular-nums}
+.note{color:var(--muted);font-size:14px}
+figure{margin:18px 0 26px} img{max-width:100%;border:1px solid var(--rule);border-radius:6px;display:block}
+figcaption{font-family:ui-monospace,Menlo,monospace;font-size:11px;color:var(--muted);margin-top:6px}
+.calc{border:1px solid var(--rule);border-radius:6px;padding:20px;background:#fbfaf6;margin:18px 0}
+.calc label{display:flex;justify-content:space-between;gap:12px;font-size:14px;margin:8px 0}
+.calc input{width:120px;padding:6px 8px;border:1px solid var(--rule);border-radius:4px;background:var(--paper);font:inherit;font-size:14px;text-align:right}
+.out{margin-top:14px;padding-top:14px;border-top:1px solid var(--rule);font-size:15px}
+.out b{color:var(--accent)}
+ul{margin:10px 0 10px 18px;padding:0} li{margin:6px 0}
+code{font-family:ui-monospace,Menlo,monospace;font-size:13px;background:#e9e4d8;padding:1px 5px;border-radius:3px}
+</style></head><body><div class="bar"></div><main>
+<p class="eyebrow">Industry study · Renewable energy O&amp;M · November 2026</p>
+<h1>CG-BI</h1>
+<p class="lede">Confidence-gated cascade triage for multimodal wind turbine blade inspection. Drone photos in, a named defect, severity, location and technician note out, with a cheap tier on every image and a strong tier only where confidence is low. Measured on 75 real inspection images across three model tiers.</p>
+
+<h2>The business problem</h2>
+<p>Blade inspection is a documentation bottleneck. A drone captures hundreds of images per turbine and an engineer still writes a finding for each one: type, severity, location, action. The taxonomy is fixed across the fleet, so inconsistent wording and slow write-ups cost hours and break trend analysis.</p>
+<p>The copilot drafts the finding in about two seconds. The engineer approves or corrects it. Because tiers differ by six-fold in cost, the routing decision matters as much as the model choice.</p>
+
+<h2>Results by tier</h2>
+<table><thead><tr><th>model</th><th>images</th><th>exact set</th><th>class F1</th><th>critical recall</th><th>cost / 1,000</th><th>p50</th><th>p95</th></tr></thead><tbody>
+<tr><td>Gemini 3.5 Flash Lite</td><td>75</td><td>17.3%</td><td>0.323</td><td>50.0%</td><td>$0.43</td><td>1.33s</td><td>20.5s</td></tr>
+<tr><td>Gemini 4 Argon via gateway</td><td>75</td><td>14.7%</td><td>0.417</td><td>96.2%</td><td>$3.64</td><td>5.71s</td><td>7.3s</td></tr>
+<tr><td>DeepSeek V4.1 Flash</td><td>75</td><td>9.3%</td><td>0.169</td><td>7.7%</td><td>$0.40</td><td>6.59s</td><td>46.5s</td></tr>
+<tr><td>Routed cascade (Lite then Argon)</td><td>75</td><td>25.3%</td><td>0.424</td><td>92.3%</td><td>$1.73</td><td>4.01s</td><td>n/a</td></tr>
+</tbody></table>
+<p class="note">Critical recall counts crack and thunderstrike together. Cost uses list prices, not subscription allowances. p95 includes gateway retries.</p>
+<figure><img src="figures/model-compare.png" alt="model comparison"><figcaption>Quality, critical recall and cost across tiers</figcaption></figure>
+<figure><img src="figures/per-class-recall.png" alt="per class recall"><figcaption>Per-class recall. The escalated tier carries the fine-crack classes; the bulk tier carries surface damage.</figcaption></figure>
+
+<h2>The tiering finding</h2>
+<ul>
+<li><b>Bulk tier, Gemini 3.5 Flash Lite.</b> 17.3% exact set match, F1 0.32, 50.0% critical recall at $0.43 per 1,000 images and 1.3 seconds. Good enough to draft, not to clear.</li>
+<li><b>Escalated tier, Gemini 4 Argon.</b> Critical recall rises to 96.2% with F1 0.42 at $3.64 per 1,000 and 5.7 seconds. Worth it for critical classes, not for every image.</li>
+<li><b>DeepSeek V4.1 Flash is not viable here.</b> 7.7% critical recall at roughly the bulk-tier price. Cheap image input does not buy visual grounding.</li>
+</ul>
+
+<h2>Examples</h2>
+<figure><img src="figures/examples.png" alt="example findings"><figcaption>Four real cases: a clean bulk-tier answer, a critical miss that escalation catches, a strong-tier critical answer, and a taxonomy error neither tier fixes.</figcaption></figure>
+<p class="note">Each panel shows the annotated class set, the bulk tier's answer and the strong tier's answer. The second panel is the case the cascade exists for: the bulk tier returned nothing, and the escalated call found the crack.</p>
+
+<h2>Routed cascade</h2>
+<p>The useful policy is not a single tier. Run the cheap tier on every image, then escalate only the images whose own confidence is below 0.9 to the strong tier. One cheap call always, a strong call on roughly a third of images.</p>
+<table><thead><tr><th>confidence gate</th><th>escalated</th><th>exact set</th><th>class F1</th><th>critical recall</th><th>cost / 1,000</th></tr></thead><tbody>
+<tr><td>0.50</td><td>30.7%</td><td>24.0%</td><td>0.406</td><td>88.5%</td><td>$1.54</td></tr><tr><td>0.60</td><td>30.7%</td><td>24.0%</td><td>0.406</td><td>88.5%</td><td>$1.54</td></tr><tr><td>0.70</td><td>30.7%</td><td>24.0%</td><td>0.406</td><td>88.5%</td><td>$1.54</td></tr><tr><td>0.80</td><td>30.7%</td><td>24.0%</td><td>0.406</td><td>88.5%</td><td>$1.54</td></tr><tr><td>0.90</td><td>36.0%</td><td>25.3%</td><td>0.424</td><td>92.3%</td><td>$1.73</td></tr><tr><td>0.95</td><td>36.0%</td><td>25.3%</td><td>0.424</td><td>92.3%</td><td>$1.73</td></tr>
+</tbody></table>
+<figure><img src="figures/cascade.png" alt="routed cascade"><figcaption>Cost against critical recall. The routed cascade sits above the line between the two single tiers.</figcaption></figure>
+<p class="note">At a 0.9 gate the cascade reaches 92.3% critical recall and F1 0.42 for $1.73 per 1,000, against $3.64 for the strong tier alone. That is the business case: most of the strong tier's recall at under half its cost.</p>
+
+<h2>Video sweep</h2>
+<p>Gemini accepts video directly, so the same workflow runs on a short drone sweep. An eight-second clip built from eight frames produced a per-second condition log: 3 of 5 critical frames flagged, exact class set on 12.5% of frames, 689 prompt tokens.</p>
+<table><thead><tr><th>second</th><th>annotated</th><th>copilot</th></tr></thead><tbody><tr><td>0</td><td>crack</td><td>surface_injure</td></tr><tr><td>1</td><td>crack</td><td>surface_injure</td></tr><tr><td>2</td><td>surface_injure, thunderstrike</td><td>thunderstrike</td></tr><tr><td>3</td><td>thunderstrike</td><td>thunderstrike</td></tr><tr><td>4</td><td>surface_injure, thunderstrike</td><td>thunderstrike</td></tr><tr><td>5</td><td>hide_craze, surface_injure</td><td>surface_injure</td></tr><tr><td>6</td><td>corrosion</td><td>craze, surface_injure</td></tr><tr><td>7</td><td>corrosion</td><td>hide_craze</td></tr></tbody></table>
+<figure><img src="figures/video-strip.png" alt="video strip"><figcaption>Frames from the sweep with the annotated classes and the model's per-second reading</figcaption></figure>
+<p class="note">Eight frames is a demonstration, not a benchmark. It shows the video path works and tracks defects across a sweep.</p>
+
+<h2>Business case</h2>
+<p>Model numbers are measured. Labor is an input you can change.</p>
+<div class="calc">
+<label>Inspection images per month <input id="img" type="number" value="2000"></label>
+<label>Manual minutes per finding <input id="manual" type="number" value="4"></label>
+<label>Copilot review seconds per image <input id="review" type="number" value="45"></label>
+<label>Loaded engineer cost per hour (USD) <input id="rate" type="number" value="18"></label>
+<label>Share of images escalated to the high tier (%) <input id="esc" type="number" value="20"></label>
+<div class="out" id="out"></div>
+</div>
+<p class="note">Model cost is the bulk tier on every image plus the strong tier on the escalated share. Review time assumes the engineer checks a draft rather than writing one.</p>
+
+<h2>What is strong, what is weak</h2>
+<p><b>Strong.</b> Real drone imagery (CC BY 4.0), fixed taxonomy, three tiers measured on the same 75 images, a routed cost model, a confidence gate, a working video path, and a business case whose inputs are visible.</p>
+<p><b>Weak.</b> No healthy images in the source data, so no specificity or false-clear claim. 75 images and one seed. Craze versus hide_craze is ambiguous even for annotators. p95 includes retries. The copilot drafts; it does not approve.</p>
+
+<h2>Reproduce</h2>
+<pre class="note">uv run python scripts/run_eval.py --model both --per-class 13
+uv run python scripts/build_video.py
+uv run python scripts/cascade.py
+uv run python scripts/examples.py
+uv run python scripts/report.py</pre>
+<p class="note">Data: Wind Turbine Blade Defect dataset, DOI 10.6084/m9.figshare.30210175, CC BY 4.0.</p>
+</main>
+<script>
+function calc(){
+  const img=+document.getElementById('img').value||0;
+  const manual=+document.getElementById('manual').value||0;
+  const review=+document.getElementById('review').value||0;
+  const rate=+document.getElementById('rate').value||0;
+  const esc=(+document.getElementById('esc').value||0)/100;
+  const manualH=img*manual/60, coopH=img*review/3600;
+  const saved=manualH-coopH, money=saved*rate;
+  const model=(img/1000)*(0.4263+esc*3.6429);
+  document.getElementById('out').innerHTML =
+    `<b>${saved.toFixed(0)} engineer-hours saved per month</b> (${manualH.toFixed(0)}h manual vs ${coopH.toFixed(0)}h reviewing drafts), worth about ${money.toFixed(0)} at the loaded rate. Model cost about ${model.toFixed(2)} per month.`;
+}
+['img','manual','review','rate','esc'].forEach(id=>document.getElementById(id).addEventListener('input',calc));calc();
+</script></body></html>

@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Demand forecasting — Aprameya C V</title>
+<meta name="description" content="Forecasts that stay honest after deployment">
+<link rel="canonical" href="https://aprameyacv.site/">
+<meta name="theme-color" content="#f3f1eb">
+<meta property="og:title" content="Demand forecasting — Aprameya C V">
+<meta property="og:description" content="Forecasts that stay honest after deployment">
+<meta property="og:type" content="website">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<nav class="nav" aria-label="Primary">
+  <a class="mark" href="../index.html">Aprameya C V</a>
+  <a class="link" href="../index.html#work">Work</a>
+  <a class="link hide-sm" href="../index.html#about">About</a>
+  <a class="link" href="../index.html#contact">Contact</a>
+  <a class="pill" href="../resume.pdf" target="_blank" rel="noreferrer">Resume <span class="arrow">&#8599;</span></a>
+</nav>
+<main id="main">
+
+<header class="proj-head">
+  <div class="wrap">
+    <p class="kicker">Selected work &middot; 05</p>
+    <h1>Demand forecasting: Forecasts that stay honest after deployment</h1>
+    <p class="sub">An MLOps reference implementation: contracts validate the input, a gate decides what reaches production, and a drift monitor opens the retraining issue.</p>
+    <div class="proj-meta">
+      <span class="tag">Python</span><span class="tag">LightGBM</span><span class="tag">FastAPI</span><span class="tag">GitHub Actions</span>
+      <a class="tag" href="https://github.com/Aprameya-C-V/demand-forecasting-platform" target="_blank" rel="noreferrer">Repository</a><a class="tag" href="../reports/demand-forecasting/index.html">Full report</a>
+    </div>
+    <div class="stats"><div class="stat"><b>0.218</b><span>WAPE, held-out</span></div><div class="stat"><b>0.794</b><span>interval coverage, nominal 0.80</span></div><div class="stat"><b>4.3 ms</b><span>p99 serve latency</span></div><div class="stat"><b>570 req/s</b><span>one process, four clients</span></div></div>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="block prose reveal"><h2>What it is</h2><p>A demand forecasting platform for NYC taxi data where the interesting part is everything after the model: input contracts, a champion and challenger gate, an API that reports on itself, and a monitor that files a ticket when the model starts to slip. Everything runs on free tiers, with no always-on infrastructure.</p></div><div class="block prose reveal"><h2>How it works</h2><ul>
+<li><strong>Five stages, one repository.</strong> Panel contract, time-split training, registry gate, served forecast API, drift monitor. Each runs as a command locally and as a workflow in CI.</li>
+<li><strong>A gate with a margin.</strong> A challenger replaces the champion only if it wins by more than 2% WAPE.</li>
+<li><strong>Monitoring closes the loop.</strong> A WAPE, bias or PSI breach opens a retraining issue, so monitoring is part of the pipeline rather than a report at the end.</li>
+</ul></div><div class="block prose reveal"><h2>What it measured</h2><table>
+<thead><tr><th>Metric</th><th class="num">Value</th><th>Reading</th></tr></thead>
+<tbody>
+<tr><td>WAPE</td><td class="num">0.218</td><td>total absolute error over total demand</td></tr>
+<tr><td>Coverage, p10 to p90</td><td class="num">0.794</td><td>nominal 0.80, band is calibrated</td></tr>
+<tr><td>Bias</td><td class="num">&minus;2.5%</td><td>inside the &plusmn;10% gate</td></tr>
+<tr><td>p99 serve latency</td><td class="num">4.3 ms</td><td>one client, 48-slot forecast</td></tr>
+<tr><td>Throughput</td><td class="num">570 req/s</td><td>four concurrent clients, one process</td></tr>
+</tbody>
+</table></div><div class="block prose reveal"><h2>What it does not claim</h2><p>One run per configuration, no tuning on the test window, and errors below the 5% noise floor are not claimed. It is a reference implementation on public data, not a production deployment.</p></div>
+  <div class="block reveal">
+    <a class="report-cta" href="../reports/demand-forecasting/index.html">Read the full report <span class="dot">&#8599;</span></a>
+    <p class="small" style="margin-top:18px"><a href="../index.html#work" style="text-decoration:underline;text-underline-offset:3px">&larr; All work</a></p>
+  </div>
+</div>
+</main>
+<footer>
+  <div class="wrap foot">
+    <span>&copy; <span data-year>2026</span> Aprameya C V &middot; Bengaluru, India</span>
+    <span>Hand-written HTML &middot; no framework</span>
+  </div>
+</footer>
+<script src="../assets/site.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,85 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hop-Bounded Agentic RAG for Legal Contract Question Answering</title><style>:root{--paper:#f3f1eb;--ink:#14140f;--muted:#6b675c;--rule:#d8d3c6;--accent:#1e4b3d}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Helvetica Neue",system-ui,sans-serif;font-size:16px;line-height:1.65}
+.bar{height:6px;background:var(--accent)}main{max-width:980px;margin:0 auto;padding:56px 24px 96px}
+.eyebrow{font-family:ui-monospace,Menlo,monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin:0 0 12px}
+h1{font-size:44px;letter-spacing:-.03em;margin:0 0 10px;font-weight:600;line-height:1.1}h2{font-size:22px;margin:52px 0 12px;font-weight:600}
+h3{font-size:13px;margin:26px 0 8px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;font-weight:500}
+p{margin:10px 0}.lede{font-size:18px;color:var(--muted);max-width:68ch}.note{color:var(--muted);font-size:14px}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px;margin:26px 0}
+.stat{border:1px solid var(--rule);border-radius:8px;padding:16px}.stat b{display:block;font-size:30px;letter-spacing:-.02em;color:var(--accent)}
+.stat span{font-family:ui-monospace,Menlo,monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+table{width:100%;border-collapse:collapse;margin:14px 0;font-size:14px}th{text-align:left;font-weight:500;color:var(--muted);border-bottom:1px solid var(--rule);padding:8px 10px;font-family:ui-monospace,Menlo,monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase}
+td{border-bottom:1px solid var(--rule);padding:9px 10px;font-variant-numeric:tabular-nums}
+figure{margin:18px 0 26px}img{max-width:100%;border:1px solid var(--rule);border-radius:6px;display:block}
+figcaption{font-family:ui-monospace,Menlo,monospace;font-size:11px;color:var(--muted);margin-top:6px;letter-spacing:.06em;text-transform:uppercase}
+ul{margin:10px 0 10px 18px;padding:0}li{margin:6px 0}code{font-family:ui-monospace,Menlo,monospace;font-size:13px;background:#e9e4d8;padding:1px 5px;border-radius:3px}
+a{color:var(--accent)}.rule{height:1px;background:var(--rule);margin:40px 0}
+@media(max-width:640px){h1{font-size:32px}main{padding:36px 16px 64px}table{font-size:12px}}
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease}.reveal.in{opacity:1;transform:none}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px}.grid2 figure{margin:0}
+.imp{border:1px solid var(--accent);border-radius:10px;padding:22px 22px 8px;background:#edeadf;margin:24px 0}
+.imp h2{margin:0 0 6px;font-size:20px}.imp .sub{color:var(--muted);font-size:14px;margin:0 0 14px}
+.bars{display:grid;gap:12px;margin:14px 0 6px}.brow{display:grid;grid-template-columns:150px 1fr 74px;gap:12px;align-items:center;font-size:14px}
+.btrack{position:relative;height:26px;background:#e4dfd1;border-radius:6px;overflow:hidden}
+.bfill{position:absolute;left:0;top:0;height:100%;width:0;border-radius:6px;transition:width 1.2s cubic-bezier(.2,.7,.2,1)}
+.bfill.fine{background:#bdb6a2;height:50%}.bfill.coarse{background:var(--accent);top:50%;height:50%}
+.delta{font-family:ui-monospace,Menlo,monospace;font-size:13px;text-align:right}.up{color:#1e6b3d}.down{color:#9a3a2a}
+.legend{display:flex;gap:16px;font-family:ui-monospace,Menlo,monospace;font-size:11px;color:var(--muted);margin:2px 0 8px;letter-spacing:.06em;text-transform:uppercase}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:6px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 18px}.chip{border:1px solid var(--rule);border-radius:999px;padding:4px 12px;font-size:13px;background:#f8f6ef}
+.stat{transition:transform .25s ease,box-shadow .25s ease}.stat:hover{transform:translateY(-3px);box-shadow:0 8px 20px rgba(20,20,15,.08)}
+img{transition:transform .3s ease}figure:hover img{transform:scale(1.01)}
+@media(max-width:700px){.grid2{grid-template-columns:1fr}.brow{grid-template-columns:110px 1fr 64px}}
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}.bfill{transition:none}.stat,img{transition:none}}</style></head><body><div class="bar"></div><main>
+<p class="eyebrow">HBC-RAG · retrieval granularity study · legal contracts · November 2026</p>
+<h1>Hop-Bounded Agentic RAG for Legal Contract Question Answering</h1>
+<p class="lede">How many passages should an agentic RAG system retrieve per step when the answer is a clause buried in a contract? Measured on 140 questions from LegalBench-RAG over 468 contracts and policies, scored by character span against human-labelled evidence.</p>
+<div class='stats'><div class='stat reveal'><b data-count='58' data-suffix='%'>0</b><span>gold snippet hit, coarse (fine 47%)</span></div><div class='stat reveal'><b data-count='55' data-suffix='%'>0</b><span>character recall, coarse (fine 42%)</span></div><div class='stat reveal'><b data-count='4.2' data-suffix='s' data-dec='1'>0</b><span>median latency, coarse (fine 8.9s)</span></div><div class='stat reveal'><b data-count='26' data-suffix='%'>0</b><span>lower cost per run</span></div></div>
+<section class="imp reveal"><h2>What improved</h2>
+<p class="sub">Four passages per step instead of one, DeepSeek V4.1 Flash, 140 questions. Intervals are paired bootstrap, 95%.</p>
+<div class='legend'><span><i style='background:#bdb6a2'></i>fine, 1 per hop</span><span><i style='background:#1e4b3d'></i>coarse, 4 per hop</span></div><div class='bars'><div class='brow'><span>Gold snippet hit</span><div class='btrack'><div class='bfill fine' data-w='46.9'></div><div class='bfill coarse' data-w='57.5'></div></div><span class='delta up'>+0.11</span></div><div class='brow'><span>Character recall</span><div class='btrack'><div class='bfill fine' data-w='42.3'></div><div class='bfill coarse' data-w='54.7'></div></div><span class='delta up'>+0.12</span></div><div class='brow'><span>Character precision</span><div class='btrack'><div class='bfill fine' data-w='12.0'></div><div class='bfill coarse' data-w='6.5'></div></div><span class='delta down'>-0.05</span></div></div>
+<div class="chips"><span class="chip"><b>+11 pts</b> gold snippet hit (CI +5 to +17)</span>
+<span class="chip"><b>+12 pts</b> character recall (CI +6 to +19)</span>
+<span class="chip"><b>53%</b> lower median latency</span><span class="chip"><b>39%</b> lower p95 latency</span>
+<span class="chip"><b>47%</b> fewer hops</span><span class="chip"><b>26%</b> lower cost</span></div>
+<p class="note"><b>What got worse:</b> character precision, 0.120 to 0.065. Coarse retrieval pulls in more text that is not gold, so it suits a pipeline where a reader or reranker trims context.</p></section>
+<h2 class="reveal">Method</h2><ul class="reveal">
+<li><b>Data:</b> LegalBench-RAG (CUAD contracts, ContractNLI NDAs, PrivacyQA policies). 468 documents split into 13,962 passages of about 1,000 characters; MAUD merger agreements left out to fit the free database tier. Each question carries human-labelled gold character spans.</li>
+<li><b>Retrieval:</b> local bge-small embeddings, pgvector HNSW and Postgres full-text search fused with reciprocal rank fusion, on Neon Postgres.</li>
+<li><b>Agent:</b> LLM planner that retrieves, reads and quotes the clause or issues a more specific query, with a hop cap. <code>fine</code> retrieves one passage per hop (up to four hops); <code>coarse</code> retrieves four per hop (up to two). Same prompt, model and temperature 0.</li>
+<li><b>Scoring:</b> gold snippet hit, character recall and character precision from the benchmark's own definitions, plus hops, latency and billed cost. Paired bootstrap, 10,000 resamples. No LLM judge.</li></ul>
+<h2 class="reveal">Results</h2>
+<figure class="reveal"><img src="figures/legal-retrieval.png" alt="Retrieval quality by policy and model"><figcaption>Fine vs coarse retrieval, by model</figcaption></figure>
+<div class="reveal"><h3>DeepSeek V4.1 Flash, 140 questions</h3><table><tr><th>policy</th><th>snippet hit</th><th>char recall</th><th>char precision</th><th>hops</th><th>p50</th><th>p95</th><th>cost</th></tr><tr><td>fine, 1 passage per hop</td><td>0.469</td><td>0.423</td><td>0.120</td><td>2.84</td><td>8.93s</td><td>50.1s</td><td>$0.0630</td></tr><tr><td>coarse, 4 passages per hop</td><td>0.575</td><td>0.547</td><td>0.065</td><td>1.51</td><td>4.17s</td><td>30.8s</td><td>$0.0467</td></tr></table><p class='note'>Coarse minus fine: snippet hit +0.106 (95% CI +0.046 to +0.166); character recall +0.124 (95% CI +0.060 to +0.186); character precision -0.055 (95% CI -0.082 to -0.031).</p><h3>MiMo V2.6 Flash, 100 questions</h3><table><tr><th>policy</th><th>snippet hit</th><th>char recall</th><th>char precision</th><th>hops</th><th>p50</th><th>p95</th><th>cost</th></tr><tr><td>fine, 1 passage per hop</td><td>0.509</td><td>0.441</td><td>0.129</td><td>2.90</td><td>15.72s</td><td>34.2s</td><td>$0.0608</td></tr><tr><td>coarse, 4 passages per hop</td><td>0.562</td><td>0.535</td><td>0.064</td><td>1.59</td><td>8.58s</td><td>16.6s</td><td>$0.0501</td></tr></table><p class='note'>Coarse minus fine: snippet hit +0.053 (95% CI -0.015 to +0.123); character recall +0.094 (95% CI +0.023 to +0.166); character precision -0.065 (95% CI -0.100 to -0.034).</p></div>
+<h2 class="reveal">Why it works, and what it costs</h2>
+<div class="grid2 reveal">
+<figure><img src="figures/legal-latency.png" alt="Latency distribution"><figcaption>Coarse finishes sooner across the whole distribution</figcaption></figure>
+<figure><img src="figures/legal-hops.png" alt="Hops distribution"><figcaption>Coarse usually answers in one or two hops</figcaption></figure>
+<figure><img src="figures/legal-tradeoff.png" alt="Recall precision trade-off"><figcaption>Recall gained, precision spent</figcaption></figure>
+<figure><img src="figures/legal-sources.png" alt="Hit by source"><figcaption>The gain holds on all three sources</figcaption></figure></div>
+<h3>By source (DeepSeek)</h3><table><tr><th>source</th><th>questions</th><th>hit, fine</th><th>hit, coarse</th><th>precision, fine</th><th>precision, coarse</th></tr><tr><td>CUAD contracts</td><td>60</td><td>0.399</td><td>0.523</td><td>0.087</td><td>0.048</td></tr><tr><td>ContractNLI NDAs</td><td>50</td><td>0.527</td><td>0.597</td><td>0.124</td><td>0.058</td></tr><tr><td>PrivacyQA policies</td><td>30</td><td>0.514</td><td>0.645</td><td>0.177</td><td>0.111</td></tr></table>
+<h3>Where coarse wins on one question</h3><p><b>Consider the Non-Disclosure Agreement between Stony Hill and Buyer; Does the document specify whether the Receiving Party is required to destroy or return Confidential Information upon the termination of the Agreement?</b><br><span class='note'>fine hit 0.00 in 1 hops, coarse hit 1.00 in 2 hop(s)</span></p><p><b>Consider Seeed&#x27;s Non-Disclosure Agreement; Does the document state that Confidential Information shall only include technical information?</b><br><span class='note'>fine hit 0.00 in 1 hops, coarse hit 0.50 in 1 hop(s)</span></p><p><b>Consider Kenway&#x27;s Non-Disclosure Agreement; Does the document indicate that the Agreement does not grant the Receiving Party any rights to the Confidential Information?</b><br><span class='note'>fine hit 0.00 in 4 hops, coarse hit 1.00 in 1 hop(s)</span></p>
+<h2 class="reveal">What this does and does not show</h2><ul class="reveal">
+<li>Evidence in LegalBench-RAG sits inside one document, so this is retrieval granularity inside a contract, not multi-document multi-hop reasoning.</li>
+<li>The benchmark has no gold answers, only gold evidence, so the study scores retrieval and does not claim answer accuracy.</li>
+<li><b>Recall is bought with precision.</b> Coarse retrieval returns more text that is not gold, so character precision roughly halves on both models. It suits a pipeline where a reader or reranker trims context, not one that returns passages straight to a user.</li>
+<li><b>The two models agree on direction, not on size.</b> On MiMo the gain in gold snippet hit is not statistically distinguishable from zero; the gain in character recall is. One MiMo coarse request failed and counts as a miss.</li>
+<li>One seed, 140 questions on DeepSeek and 100 on MiMo, a subset of the corpus, and MAUD excluded. Differences inside the intervals are noise.</li></ul>
+<p class="note">Related: the same system on HotpotQA and MuSiQue, with the cache study, is in the <a href="report.html">benchmark report</a>.</p>
+</main>
+<script>
+(function(){
+  var reduce=window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches;
+  function count(el){var to=parseFloat(el.dataset.count),dec=parseInt(el.dataset.dec||0),suf=el.dataset.suffix||"";
+    if(reduce){el.textContent=to.toFixed(dec)+suf;return}
+    var t0=null;function step(t){if(!t0)t0=t;var p=Math.min((t-t0)/1100,1),e=1-Math.pow(1-p,3);
+      el.textContent=(to*e).toFixed(dec)+suf;if(p<1)requestAnimationFrame(step)}requestAnimationFrame(step)}
+  function fillBars(root){root.querySelectorAll(".bfill").forEach(function(b){b.style.width=b.dataset.w+"%"})}
+  var io="IntersectionObserver" in window?new IntersectionObserver(function(es){es.forEach(function(e){
+    if(!e.isIntersecting)return;var el=e.target;el.classList.add("in");
+    el.querySelectorAll("[data-count]").forEach(count);if(el.dataset.count)count(el);fillBars(el);io.unobserve(el)})},{threshold:.15}):null;
+  document.querySelectorAll(".reveal").forEach(function(el){if(io)io.observe(el);else{el.classList.add("in");
+    el.querySelectorAll("[data-count]").forEach(count);fillBars(el)}});
+})();
+</script></body></html>
