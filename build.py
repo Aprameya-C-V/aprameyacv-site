@@ -63,10 +63,10 @@ def head(title, desc, base, page=""):
     <a class="mark" href="{base}index.html"><span class="mark-dot"></span>Aprameya C V</a>
     <div class="links">
       <a href="{base}index.html#about">About</a>
+      <a href="{base}index.html#skills">Skills</a>
       <a href="{base}index.html#experience">Experience</a>
       <a href="{base}index.html#work">Work</a>
       <a href="{base}index.html#writing">Writing</a>
-      <a href="{base}index.html#stack">Stack</a>
       <a href="{base}index.html#contact">Contact</a>
     </div>
     <a class="pill" href="{base}resume.pdf" target="_blank" rel="noreferrer">Resume {ARROW}</a>
@@ -334,12 +334,46 @@ WRITING = [
     ("Article", "Building the Multi-Perspective Synthesis System with OCI Generative AI and Grok-4: Recursive Refinement and Parallel Chaining", "", "", LIN + "/pulse/building-multi-perspective-synthesis-system-oci-generative-c-v-qolec"),
 ]
 
-STACK = [
-    ("Agents and retrieval", "ADK, LangGraph, LangChain, Deep Agents, OpenAI SDK, MCP, hybrid retrieval, pgvector, guardrails, agent memory"),
-    ("Inference and training", "vLLM, llama.cpp, speculative decoding, FP8 KV cache, CUDA, NVIDIA GPUs, LoRA fine-tuning, Hugging Face"),
-    ("Cloud", "OCI (Enterprise AI, Dedicated AI Clusters, Container Instances, OKE), AWS (EC2, ECS, Lambda), Google Cloud (Vertex AI, Model Garden)"),
-    ("Infrastructure", "Landing zones, networking, storage, IAM, VM migration, disaster recovery, Terraform, Kubernetes, Helm, K3s, Prometheus"),
-    ("Languages and tooling", "Python, TypeScript, SQL, FastAPI, Linux, Docker, CI/CD"),
+ICON_DIR = ROOT / "icons"
+
+
+def icon(spec):
+    """Inline SVG for an Iconify id like 'simple-icons/python' or 'lucide/bot'. Cached in icons/."""
+    ICON_DIR.mkdir(exist_ok=True)
+    f = ICON_DIR / (spec.replace("/", "__") + ".svg")
+    if not f.exists():
+        import urllib.request
+        req = urllib.request.Request(f"https://api.iconify.design/{spec}.svg", headers={"User-Agent": "Mozilla/5.0 (site build)"})
+        with urllib.request.urlopen(req, timeout=20) as r:
+            f.write_bytes(r.read())
+    svg = f.read_text()
+    svg = svg.replace("<svg ", '<svg class="sk-ico" width="16" height="16" aria-hidden="true" focusable="false" ', 1)
+    return svg
+
+
+# (group title, group icon, [(skill, icon)])
+SKILLS = [
+    ("Agents and retrieval", "lucide/bot", [
+        ("LangGraph", "simple-icons/langchain"), ("LangChain", "simple-icons/langchain"), ("OpenAI SDK", "simple-icons/openai"),
+        ("ADK", "lucide/bot"), ("MCP", "lucide/plug"), ("Hybrid RAG", "lucide/search"),
+        ("pgvector", "simple-icons/postgresql"), ("Guardrails", "lucide/shield-check"), ("Agent memory", "lucide/brain"),
+    ]),
+    ("Inference and training", "lucide/cpu", [
+        ("vLLM", "lucide/zap"), ("llama.cpp", "lucide/cpu"), ("Speculative decoding", "lucide/fast-forward"),
+        ("CUDA and NVIDIA GPUs", "simple-icons/nvidia"), ("LoRA fine-tuning", "lucide/sliders-horizontal"), ("Hugging Face", "simple-icons/huggingface"),
+    ]),
+    ("Cloud", "lucide/cloud", [
+        ("OCI", "simple-icons/oracle"), ("AWS", "simple-icons/amazonaws"), ("Google Cloud", "simple-icons/googlecloud"),
+    ]),
+    ("Infrastructure", "lucide/server", [
+        ("Terraform", "simple-icons/terraform"), ("Kubernetes", "simple-icons/kubernetes"), ("Helm", "simple-icons/helm"),
+        ("Docker", "simple-icons/docker"), ("Prometheus", "simple-icons/prometheus"), ("Linux", "simple-icons/linux"),
+        ("Networking", "lucide/network"), ("Storage", "lucide/hard-drive"), ("VM migration", "lucide/arrow-right-left"), ("Disaster recovery", "lucide/life-buoy"),
+    ]),
+    ("Languages and tooling", "lucide/code-xml", [
+        ("Python", "simple-icons/python"), ("TypeScript", "simple-icons/typescript"), ("SQL", "lucide/database"),
+        ("FastAPI", "simple-icons/fastapi"), ("CI/CD", "simple-icons/githubactions"),
+    ]),
 ]
 
 XP = [
@@ -437,9 +471,9 @@ def home():
       </article>
 """
     stack = "".join(
-        f"""      <div class="srow reveal"><h3>{h}</h3><p class="mono">{b}</p></div>
+        f"""      <div class="srow reveal"><h3>{icon(gi)}<span>{h}</span></h3><ul class="chipset">{"".join(f'<li>{icon(ic)}<span>{n}</span></li>' for n, ic in items)}</ul></div>
 """
-        for h, b in STACK
+        for h, gi, items in SKILLS
     )
 
     html = head(
@@ -484,9 +518,17 @@ def home():
   </div>
 </section>
 
+<section id="skills" class="sec">
+  <div class="wrap split">
+    <div class="split-l"><p class="eyebrow mono">01 / Skills</p><h2>What I work with</h2><p class="muted">Grouped by the layer each tool sits in.</p></div>
+    <div class="slist">
+{stack}    </div>
+  </div>
+</section>
+
 <section id="experience" class="sec">
   <div class="wrap split">
-    <div class="split-l"><p class="eyebrow mono">01 / Experience</p><h2>Oracle</h2><p class="muted">Three roles in under two years, from intern to technical scoping lead.</p></div>
+    <div class="split-l"><p class="eyebrow mono">02 / Experience</p><h2>Oracle</h2><p class="muted">Three roles in under two years, from intern to technical scoping lead.</p></div>
     <div>
 {career_strip()}
     <div class="xlist">
@@ -498,7 +540,7 @@ def home():
 <section id="work" class="sec">
   <div class="wrap">
     <div class="sec-head">
-      <div><p class="eyebrow mono">02 / Work</p><h2>Selected work</h2></div>
+      <div><p class="eyebrow mono">03 / Work</p><h2>Selected work</h2></div>
       <div class="chips" role="group" aria-label="Filter projects">{chips}</div>
     </div>
     <div class="wlist" id="wlist">
@@ -516,19 +558,12 @@ def home():
 
 <section id="writing" class="sec">
   <div class="wrap split">
-    <div class="split-l"><p class="eyebrow mono">03 / Writing</p><h2>Writing</h2><p class="muted">Technical posts and articles on LinkedIn, newest first.</p><p class="note"><a href="{LI}" target="_blank" rel="noreferrer">All posts on LinkedIn</a></p></div>
+    <div class="split-l"><p class="eyebrow mono">04 / Writing</p><h2>Writing</h2><p class="muted">Technical posts and articles on LinkedIn, newest first.</p><p class="note"><a href="{LI}" target="_blank" rel="noreferrer">All posts on LinkedIn</a></p></div>
     <div class="wrlist">
 {writing_rows()}    </div>
   </div>
 </section>
 
-<section id="stack" class="sec">
-  <div class="wrap split">
-    <div class="split-l"><p class="eyebrow mono">04 / Stack</p><h2>What I work with</h2><p class="muted">Grouped by the layer it sits in, not by logo.</p></div>
-    <div class="slist">
-{stack}    </div>
-  </div>
-</section>
 
 <section id="education" class="sec">
   <div class="wrap split">
