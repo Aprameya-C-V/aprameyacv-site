@@ -375,3 +375,7 @@ p { margin: 0 0 1em; }
 .paper i { display: block; font-style: normal; font-size: 13px; color: var(--muted); margin-top: 3px; }
 .paper .ico { color: var(--faint); }
 .paper:hover .ico { color: var(--accent); }
+
+.skills-note { max-width: 42ch; margin: 0; }
+#skills .srow { grid-template-columns: 240px minmax(0, 1fr); padding: 24px 0; }
+@media (max-width: 760px) { #skills .srow { grid-template-columns: 1fr; gap: 14px; } }
