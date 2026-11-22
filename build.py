@@ -56,6 +56,7 @@ def head(title, desc, base, page=""):
   <nav class="bar-in" aria-label="Primary">
     <a class="mark" href="{base}index.html"><span class="mark-dot"></span>Aprameya C V</a>
     <div class="links">
+      <a href="{base}index.html#about">About</a>
       <a href="{base}index.html#work">Work</a>
       <a href="{base}index.html#method">Method</a>
       <a href="{base}index.html#experience">Experience</a>
@@ -408,9 +409,10 @@ def home():
 <header class="hero">
   <div class="wrap hero-grid">
     <div class="hero-copy">
-      <p class="eyebrow mono"><span class="live"></span>AI engineer, Bengaluru</p>
-      <h1>AI systems, built to be measured.</h1>
-      <p class="lede">I am Aprameya, an AI engineer at Oracle. I take agentic and generative AI from a customer's first conversation to production: retrieval, agent design, GPU serving, and the infrastructure underneath. Every project here ships with its own benchmark and its own list of what it does not prove.</p>
+      <p class="eyebrow mono"><span class="live"></span>AI engineer &middot; Oracle &middot; Bengaluru, India</p>
+      <h1 class="name">Aprameya<br><span>C V</span></h1>
+      <p class="role">I build agentic and generative AI systems, and measure what they actually do.</p>
+      <p class="lede">I take AI from a customer's first conversation to production at Oracle: retrieval, agent design, GPU serving, and the infrastructure underneath. Every project on this site ships with its own benchmark and its own list of what it does not prove.</p>
       <div class="cta-row">
         <a class="btn" href="#work" data-magnet>See the work {ARROW_DOWN}</a>
         <a class="btn ghost" href="resume.pdf" target="_blank" rel="noreferrer" data-magnet>Resume {ARROW}</a>
@@ -431,6 +433,18 @@ def home():
   <a class="scrollcue mono" href="#work" aria-label="Scroll to work">Scroll {ARROW_DOWN}</a>
 </header>
 
+<section id="about" class="sec">
+  <div class="wrap split">
+    <div class="split-l"><p class="eyebrow mono">About</p><h2>Who I am</h2><p class="muted">An engineer who likes questions with a measurable answer.</p></div>
+    <div class="about reveal">
+      <p class="about-lead">I am an AI engineer at Oracle in Bengaluru. I joined as a project intern in January 2025, moved into a full-time engineering role that summer, and now work as a technical scoping lead for customers across EMEA.</p>
+      <p>Most of my day is the gap between a prototype and something a customer can rely on: scoping the problem in the first conversation, building the agents, retrieval and serving layers, and deploying them on OCI. I have built systems for government and tax-authority clients, including multilingual assistants and image-matching APIs that run on a CPU-only machine.</p>
+      <p>Outside client work I run small, controlled studies on the same questions: how many passages an agent should retrieve, which serving flag actually helps, when a cheap model should hand off to a strong one. Each is published here with its numbers and its limits.</p>
+      <p>I studied electronics at JSS Science and Technology University, where I published on SLAM and hold a design patent. That is where the habit comes from: state the question, fix the variables, report the interval.</p>
+    </div>
+  </div>
+</section>
+
 <section class="band" aria-label="Headline results">
   <div class="wrap band-grid">
 {band}  </div>
@@ -439,7 +453,7 @@ def home():
 <section id="work" class="sec">
   <div class="wrap">
     <div class="sec-head">
-      <div><p class="eyebrow mono">01 / Work</p><h2>Selected work</h2></div>
+      <div><p class="eyebrow mono">02 / Work</p><h2>Selected work</h2></div>
       <div class="chips" role="group" aria-label="Filter projects">{chips}</div>
     </div>
     <div class="wlist" id="wlist">
@@ -451,7 +465,7 @@ def home():
 
 <section id="method" class="sec">
   <div class="wrap split">
-    <div class="split-l"><p class="eyebrow mono">02 / Method</p><h2>How I measure</h2><p class="muted">The same four habits run through every project on this site.</p></div>
+    <div class="split-l"><p class="eyebrow mono">03 / Method</p><h2>How I measure</h2><p class="muted">The same four habits run through every project on this site.</p></div>
     <div class="mgrid">
 {method}    </div>
   </div>
@@ -459,7 +473,7 @@ def home():
 
 <section id="experience" class="sec">
   <div class="wrap split">
-    <div class="split-l"><p class="eyebrow mono">03 / Experience</p><h2>Oracle</h2><p class="muted">Three roles in under two years, from intern to technical scoping lead.</p></div>
+    <div class="split-l"><p class="eyebrow mono">04 / Experience</p><h2>Oracle</h2><p class="muted">Three roles in under two years, from intern to technical scoping lead.</p></div>
     <div class="xlist">
 {xp}    </div>
   </div>
@@ -467,7 +481,7 @@ def home():
 
 <section id="stack" class="sec">
   <div class="wrap split">
-    <div class="split-l"><p class="eyebrow mono">04 / Stack</p><h2>What I work with</h2><p class="muted">Grouped by the layer it sits in, not by logo.</p></div>
+    <div class="split-l"><p class="eyebrow mono">05 / Stack</p><h2>What I work with</h2><p class="muted">Grouped by the layer it sits in, not by logo.</p></div>
     <div class="slist">
 {stack}    </div>
   </div>
@@ -475,7 +489,7 @@ def home():
 
 <section id="education" class="sec">
   <div class="wrap split">
-    <div class="split-l"><p class="eyebrow mono">05 / Education</p><h2>Research habit</h2></div>
+    <div class="split-l"><p class="eyebrow mono">06 / Education</p><h2>Research habit</h2></div>
     <div class="edu reveal">
       <h3>JSS Science and Technology University<span> / B.E., Electronics and Communication</span></h3>
       <p class="mono edu-meta">Dec 2021 to Jun 2025 &middot; CGPA 8.93 &middot; Gold Medal</p>
@@ -486,7 +500,7 @@ def home():
 
 <section id="contact" class="sec contact">
   <div class="wrap">
-    <p class="eyebrow mono">06 / Contact</p>
+    <p class="eyebrow mono">07 / Contact</p>
     <h2 class="contact-h">Building something that needs to work?</h2>
     <p class="lede">I am open to applied AI and forward-deployed engineering roles. Email is the fastest way to reach me.</p>
     <div class="mailrow">
