@@ -444,7 +444,7 @@ def home():
 
     html = head(
         "Aprameya C V, AI engineer",
-        "AI engineer at Oracle building agentic and generative AI systems, and measuring what they actually do.",
+        "AI engineer building agentic and generative AI systems, from model to production.",
         "", "home",
     )
     html += f"""
@@ -452,15 +452,15 @@ def home():
   <div class="wrap hero-grid">
     <div class="hero-copy">
       <h1 class="name">Aprameya<br><span>C V</span></h1>
-      <p class="role">I build agentic and generative AI systems, and measure what they actually do.</p>
-      <p class="lede">I take AI from a customer's first conversation to production at Oracle: retrieval, agent design, GPU serving, and the infrastructure underneath. Every project on this site ships with its own benchmark and its own list of what it does not prove.</p>
+      <p class="role">AI engineer building agentic and generative AI systems, from model to production.</p>
+      <p class="lede">I work across applied AI end to end: agent design, retrieval, fine-tuning and model serving, and the cloud infrastructure that runs them. I like problems with a measurable answer, so every project here comes with its numbers and its limits.</p>
       <div class="cta-row">
         <a class="btn" href="#work" data-magnet>See the work {ARROW_DOWN}</a>
         <a class="btn ghost" href="resume.pdf" target="_blank" rel="noreferrer" data-magnet>Resume {ARROW}</a>
       </div>
       <dl class="facts">
-        <div><dt class="mono">Role</dt><dd>Cloud Engineering, AI</dd></div>
-        <div><dt class="mono">At</dt><dd>Oracle, EMEA customers</dd></div>
+        <div><dt class="mono">Role</dt><dd>AI engineer</dd></div>
+        <div><dt class="mono">Focus</dt><dd>Agents, retrieval, inference</dd></div>
         <div><dt class="mono">Open to</dt><dd>Applied AI, forward-deployed</dd></div>
       </dl>
     </div>
@@ -476,7 +476,7 @@ def home():
   <div class="wrap split">
     <div class="split-l"><p class="eyebrow mono">About</p><h2>Who I am</h2><p class="muted">An engineer who likes questions with a measurable answer.</p></div>
     <div class="about reveal">
-      <p class="about-lead">I am an AI engineer at Oracle in Bengaluru. I joined as a project intern in January 2025, moved into a full-time engineering role that summer, and now work as a technical scoping lead for customers across EMEA.</p>
+      <p class="about-lead">I am an AI engineer based in Bengaluru. I started as an engineering intern in January 2025, moved into a full-time role that summer, and now lead technical scoping for customer AI engagements across EMEA.</p>
       <p>Most of my day is the gap between a prototype and something a customer can rely on: scoping the problem in the first conversation, building the agents, retrieval and serving layers, and deploying them on OCI. I have built systems for government and tax-authority clients, including multilingual assistants and image-matching APIs that run on a CPU-only machine.</p>
       <p>Outside client work I run small, controlled studies on the same questions: how many passages an agent should retrieve, which serving flag actually helps, when a cheap model should hand off to a strong one. Each is published here with its numbers and its limits.</p>
       <p>I studied electronics at JSS Science and Technology University, where I published on SLAM and hold a design patent. That is where the habit comes from: state the question, fix the variables, report the interval.</p>
