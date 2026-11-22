@@ -355,23 +355,29 @@ def icon(spec):
 SKILLS = [
     ("Generative AI and AI Engineering", "lucide/sparkles", [
         ("LLM applications", "lucide/message-square-text"), ("RAG and retrieval", "lucide/search"), ("Fine-tuning", "lucide/sliders-horizontal"),
-        ("LLM evaluation", "lucide/chart-no-axes-combined"), ("Multimodal and voice AI", "lucide/mic"), ("Prompt and context engineering", "lucide/pen-line"), ("Hugging Face", "simple-icons/huggingface"), ("pgvector and vector search", "simple-icons/postgresql"),
+        ("LLM evaluation", "lucide/chart-no-axes-combined"), ("Multimodal and voice AI", "lucide/mic"), ("Prompt and context engineering", "lucide/pen-line"),
+        ("Diffusion models (Flux, ComfyUI)", "lucide/image"), ("Image embeddings (OpenCLIP)", "lucide/scan-search"),
+        ("Vector search (Oracle Database)", "simple-icons/oracle"), ("Hugging Face", "simple-icons/huggingface"), ("PyTorch", "simple-icons/pytorch"),
     ]),
     ("Agentic AI", "lucide/bot", [
-        ("LangGraph", "simple-icons/langchain"), ("LangChain", "simple-icons/langchain"), ("OpenAI SDK", "simple-icons/openai"), ("ADK", "lucide/bot"), ("MCP", "lucide/plug"), ("Multi-agent systems", "lucide/network"), ("Agent orchestration", "lucide/workflow"), ("Agent memory", "lucide/brain"), ("Guardrails and safety", "lucide/shield-check"), ("Workflow automation", "lucide/repeat"),
+        ("LangGraph", "simple-icons/langchain"), ("LangChain", "simple-icons/langchain"), ("OpenAI SDK", "simple-icons/openai"), ("ADK", "lucide/bot"), ("MCP", "lucide/plug"),
+        ("Multi-agent systems", "lucide/network"), ("Agent orchestration", "lucide/workflow"),
+        ("Agent memory", "lucide/brain"), ("Guardrails and safety", "lucide/shield-check"), ("Workflow automation", "lucide/repeat"),
     ]),
     ("AI Infrastructure", "lucide/cpu", [
-        ("LLM inference optimization", "lucide/zap"), ("vLLM", "lucide/zap"), ("GPU computing", "simple-icons/nvidia"), ("Model serving and deployment", "lucide/rocket"),
-        ("Performance benchmarking", "lucide/gauge"),
+        ("LLM inference optimization", "lucide/zap"), ("vLLM", "lucide/zap"), ("GPU computing (CUDA)", "simple-icons/nvidia"),
+        ("GPU memory optimization", "lucide/memory-stick"), ("Model serving and deployment", "lucide/rocket"), ("Performance benchmarking", "lucide/gauge"),
     ]),
     ("Cloud and DevOps", "lucide/cloud", [
         ("Oracle Cloud (OCI)", "simple-icons/oracle"), ("AWS", "simple-icons/amazonaws"), ("Google Cloud", "simple-icons/googlecloud"),
+        ("Landing zones and IAM", "lucide/key-round"), ("Cloud networking and load balancing", "lucide/waypoints"), ("Storage", "lucide/hard-drive"),
+        ("VM migration", "lucide/arrow-right-left"), ("Disaster recovery", "lucide/life-buoy"),
         ("Kubernetes", "simple-icons/kubernetes"), ("Docker", "simple-icons/docker"), ("Terraform", "simple-icons/terraform"),
-        ("Linux", "simple-icons/linux"), ("Cloud networking", "lucide/waypoints"), ("Storage", "lucide/hard-drive"),
-        ("Migration and recovery", "lucide/life-buoy"), ("CI/CD", "simple-icons/githubactions"),
+        ("Linux", "simple-icons/linux"), ("CI/CD", "simple-icons/githubactions"),
     ]),
     ("Programming", "lucide/code-xml", [
-        ("Python", "simple-icons/python"), ("TypeScript", "simple-icons/typescript"), ("SQL", "lucide/database"), ("FastAPI", "simple-icons/fastapi"), ("APIs and backend", "lucide/webhook"),
+        ("Python", "simple-icons/python"), ("TypeScript", "simple-icons/typescript"), ("Node.js", "simple-icons/nodedotjs"), ("SQL", "lucide/database"),
+        ("FastAPI", "simple-icons/fastapi"), ("REST APIs and webhooks", "lucide/webhook"),
     ]),
 ]
 
@@ -384,8 +390,10 @@ XP = [
         "Built deployable solution packs for RAG, agents, voice, MCP, guardrails and agent memory, and drove Codex adoption for 80+ people who built 40 to 50 reusable assets.",
     ]),
     ("Jul 2025 to May 2026", "Oracle", "Cloud Solution Engineer (L1)", [
-        "Built a trademark platform for a government ministry, exposed as two APIs: similarity over 500K+ images with multilingual text and compliance rules on a CPU-only machine, and open-source image generation and editing on NVIDIA CUDA GPUs through a custom ComfyUI module.",
-        "Primary developer of internal AI tools used across teams, from a document generator to a security-review agent, saving an estimated 1,100+ hours.",
+        "Built a trademark platform for a government ministry, exposed as two APIs. Similarity search embeds 500K+ trademark images with OpenCLIP into Oracle Database vector search and blends lexical and semantic matching, bringing latency from about 300 seconds to under 10 on a CPU-only machine.",
+        "Built the generation side of the platform: Flux for text-to-image and a custom ComfyUI workflow for editing on a 24 GB NVIDIA GPU, fitted with attention slicing and offloading, with Arabic support and a content moderation filter. Showcased live at GITEX.",
+        "Primary developer of internal AI tools, saving an estimated 1,100+ hours: an agentic security-audit pipeline used on 100+ projects, a document generator, a RAG knowledge workspace over 1,000+ documents for 100+ users with single sign-on, and an Open Landing Zone configuration generator that cut setup from 3 to 5 days to hours.",
+        "Delivered OCI infrastructure on customer engagements, including landing zones, IAM, networking, load balancing and 40+ VMs, and migrated a 24 TB workload with RackWare, the largest the team had handled.",
     ]),
     ("Jan 2025 to Jul 2025", "Oracle", "Project Intern", [
         "Built the Solution Document Generator on LangGraph and OKE, contributing to 50+ documents and 100+ hours saved.",
@@ -512,7 +520,7 @@ def home():
       <p class="about-lead">I am an AI engineer based in Bengaluru. I started as an engineering intern in January 2025, moved into a full-time role that summer, and now lead technical scoping for customer AI engagements across EMEA.</p>
       <p>Most of my day is the gap between a prototype and something a customer can rely on: scoping the problem in the first conversation, building the agents, retrieval and serving layers, and deploying them on OCI. I have built systems for government and tax-authority clients, including multilingual assistants and image-matching APIs that run on a CPU-only machine.</p>
       <p>Outside client work I run small, controlled studies on the same questions: how many passages an agent should retrieve, which serving flag actually helps, when a cheap model should hand off to a strong one. Each is published here with its numbers and its limits.</p>
-      <p>I studied electronics at JSS Science and Technology University, where I published on SLAM and hold a design patent. That is where the habit comes from: state the question, fix the variables, report the interval.</p>
+      <p>I studied electronics at JSS Science and Technology University, where I published papers on seismic signal analysis, IoT intrusion detection and satellite link design, and hold a design patent. That is where the habit comes from: state the question, fix the variables, report the interval.</p>
     </div>
   </div>
 </section>
@@ -566,11 +574,16 @@ def home():
 
 <section id="education" class="sec">
   <div class="wrap split">
-    <div class="split-l"><p class="eyebrow mono">05 / Education</p><h2>Research habit</h2></div>
+    <div class="split-l"><p class="eyebrow mono">05 / Education</p><h2>Education and papers</h2><p class="muted">Electronics engineering, with research in machine learning and communications.</p></div>
     <div class="edu reveal">
       <h3>JSS Science and Technology University<span> / B.E., Electronics and Communication</span></h3>
-      <p class="mono edu-meta">Dec 2021 to Jun 2025 &middot; CGPA 8.93 &middot; Gold Medal</p>
-      <p>Published on SLAM and VSLAM in Springer and IEEE venues and hold a design patent. I kept the research habit: state the question, fix the variables, report the interval.</p>
+      <p class="mono edu-meta">Dec 2021 to Jun 2025 &middot; CGPA 8.93 &middot; Gold Medal &middot; Design patent</p>
+      <div class="paperlist">
+        <a class="paper" href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=Yuit2q4AAAAJ&citation_for_view=Yuit2q4AAAAJ:9yKSN-GCB0IC" target="_blank" rel="noreferrer"><span class="mono">2026</span><span><b>Adaptive Intrusion Detection System (IDS) for IoT-Based Networks Using Ensemble Machine Learning Models</b><i>6G Communications Networking and Signal Processing, proceedings</i></span>{ARROW}</a>
+        <a class="paper" href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=Yuit2q4AAAAJ&citation_for_view=Yuit2q4AAAAJ:d1gkVwhDpl0C" target="_blank" rel="noreferrer"><span class="mono">2025</span><span><b>Communication Link Design and Budget Analysis for JSS Nanosatellite Project</b><i>2025 IEEE Space, Aerospace and Defence Conference (SPACE)</i></span>{ARROW}</a>
+        <a class="paper" href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=Yuit2q4AAAAJ&citation_for_view=Yuit2q4AAAAJ:u-x6o8ySG0sC" target="_blank" rel="noreferrer"><span class="mono">2023</span><span><b>Seismic Signal Processing and Aftershock Analysis Using Machine Learning</b><i>2023 International Conference on Recent Advances in Science and Engineering Technology &middot; cited 43 times</i></span>{ARROW}</a>
+      </div>
+      <p class="note"><a href="https://scholar.google.com/citations?user=Yuit2q4AAAAJ&hl=en" target="_blank" rel="noreferrer">All papers on Google Scholar</a></p>
     </div>
   </div>
 </section>
