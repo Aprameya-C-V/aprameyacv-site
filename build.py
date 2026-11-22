@@ -93,7 +93,6 @@ def foot(base):
   <div class="wrap foot-in">
     <span>&copy; <span data-year>2026</span> Aprameya C V</span>
     <span class="mono">Bengaluru, India</span>
-    <span class="mono">Static HTML, Cloudflare Pages</span>
   </div>
 </footer>
 <div class="toast" role="status" aria-live="polite">Email copied</div>
@@ -691,7 +690,7 @@ def gallery(slug, base):
             f'<div class="vwrap"><video controls muted loop playsinline preload="metadata" poster="{base}assets/video/{slug}.jpg" '
             f'aria-label="Screen demo of the {slug} project: the source code, a real terminal run and the live report">'
             f'<source src="{base}assets/video/{slug}.mp4" type="video/mp4"></video></div>'
-            '<figcaption>Raw demo: the real source file, a command run on this machine, and the live page. Rendered with HyperFrames from the repository.</figcaption></figure>'
+            '<figcaption>A walkthrough of the project: the source code, a terminal run and the live page.</figcaption></figure>'
         )
         figs = vid + figs.replace('class="shot lead"', 'class="shot"', 1).replace('<div class="frame"><span class="dots"><i></i><i></i><i></i></span><span class="url mono">', '<div class="frame"><span class="dots"><i></i><i></i><i></i></span><span class="url mono">', 1)
     return f'<section class="pblock reveal" id="shots"><h2><span class="mono">&#9632;</span>Demo, screenshots and figures</h2><div class="shots">{figs}</div></section>\n'
