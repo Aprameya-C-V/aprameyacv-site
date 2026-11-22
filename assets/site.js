@@ -102,6 +102,26 @@
     vids.forEach((v) => vo.observe(v));
   }
 
+  // Theme toggle: saves the choice, falls back to the system setting.
+  const root = document.documentElement;
+  const toggle = document.querySelector(".theme-toggle");
+  const paint = () => {
+    const dark = root.getAttribute("data-theme") === "dark";
+    if (toggle) {
+      toggle.setAttribute("aria-pressed", String(dark));
+      toggle.setAttribute("aria-label", dark ? "Switch to light mode" : "Switch to dark mode");
+    }
+    const m = document.querySelector('meta[name="theme-color"]');
+    if (m) m.setAttribute("content", dark ? "#11130f" : "#f3f1eb");
+  };
+  paint();
+  if (toggle) toggle.addEventListener("click", () => {
+    const next = root.getAttribute("data-theme") === "dark" ? "light" : "dark";
+    root.setAttribute("data-theme", next);
+    try { localStorage.setItem("theme", next); } catch (_) {}
+    paint();
+  });
+
   const year = document.querySelector("[data-year]");
   if (year) year.textContent = new Date().getFullYear();
 })();
