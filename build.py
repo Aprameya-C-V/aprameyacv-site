@@ -4,9 +4,15 @@
 Pages are generated so the head, nav and footer stay identical everywhere.
 Run: python3 build.py
 """
+import hashlib
 from pathlib import Path
 
 ROOT = Path(__file__).parent
+
+
+def _ver(name):
+    p = ROOT / "assets" / name
+    return hashlib.sha1(p.read_bytes()).hexdigest()[:8] if p.exists() else "0"
 
 SITE = "https://aprameyacv.site"
 EMAIL = "aprameyacv01@gmail.com"
@@ -47,7 +53,7 @@ def head(title, desc, base, page=""):
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="{base}assets/site.css">
+<link rel="stylesheet" href="{base}assets/site.css?v={_ver("site.css")}">
 </head>
 <body{f' data-page="{page}"' if page else ''}>
 <a class="skip" href="#main">Skip to content</a>
@@ -80,7 +86,7 @@ def foot(base):
   </div>
 </footer>
 <div class="toast" role="status" aria-live="polite">Email copied</div>
-<script src="{base}assets/site.js" defer></script>
+<script src="{base}assets/site.js?v={_ver("site.js")}" defer></script>
 </body>
 </html>
 """
@@ -620,7 +626,7 @@ def extras():
     )
     (ROOT / "_headers").write_text(
         "/*\n  X-Content-Type-Options: nosniff\n  Referrer-Policy: strict-origin-when-cross-origin\n"
-        "  X-Frame-Options: SAMEORIGIN\n\n/assets/*\n  Cache-Control: public, max-age=604800\n",
+        "  X-Frame-Options: SAMEORIGIN\n\n/assets/*.css\n  Cache-Control: public, max-age=0, must-revalidate\n\n/assets/*.js\n  Cache-Control: public, max-age=0, must-revalidate\n\n/assets/*.jpg\n  Cache-Control: public, max-age=604800\n",
         encoding="utf-8",
     )
 
