@@ -556,7 +556,7 @@ def home():
 
 <section id="experience" class="sec">
   <div class="wrap split">
-    <div class="split-l"><p class="eyebrow mono">02 / Experience</p><h2>Oracle</h2><p class="muted">Three roles in under two years, from intern to technical scoping lead.</p></div>
+    <div class="split-l"><p class="eyebrow mono">02 / Experience</p><h2>Oracle</h2><p class="muted">One of the technical scoping leads and lead implementers for AI engagements across EMEA.</p></div>
     <div>
 {career_strip()}
     <div class="xlist">
