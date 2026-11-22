@@ -312,8 +312,8 @@ PROJECTS = [
 LEDGER = [
     ("1,100", "+ h", 0, "Hours saved", "Internal AI tools, estimated"),
     ("50", "\u201360+ h", 0, "Saved per engagement", "Deployable solution packs for RAG, agents, voice, MCP and guardrails"),
-    ("1", "M+", 0, "Tickets searchable", "ServiceNow suite, answers in under 7 seconds"),
-    ("500", "K+", 0, "Images matched", "Trademark platform, thousands of checks a week"),
+    ("44", "", 0, "Citations", "Across 3 published papers, per Google Scholar"),
+    ("8", "", 0, "Technical articles", "Published on LinkedIn: agents, LLM deployment, reasoning audits"),
 ]
 
 BAND = [
