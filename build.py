@@ -353,20 +353,22 @@ def icon(spec):
 
 # (group title, group icon, [(skill, icon)])
 SKILLS = [
-    ("AI and machine learning", "lucide/brain", [
-        ("Agentic AI", "lucide/bot"), ("Generative AI", "lucide/sparkles"), ("RAG and retrieval", "lucide/search"),
-        ("Fine-tuning", "lucide/sliders-horizontal"), ("LLM evaluation", "lucide/chart-no-axes-combined"), ("Multimodal and voice AI", "lucide/mic"),
+    ("Generative AI and AI Engineering", "lucide/sparkles", [
+        ("LLM applications", "lucide/message-square-text"), ("RAG and retrieval", "lucide/search"), ("Fine-tuning", "lucide/sliders-horizontal"),
+        ("LLM evaluation", "lucide/chart-no-axes-combined"), ("Multimodal and voice AI", "lucide/mic"), ("Prompt and context engineering", "lucide/pen-line"),
     ]),
-    ("Model serving", "lucide/cpu", [
-        ("LLM inference optimization", "lucide/zap"), ("GPU computing", "simple-icons/nvidia"),
-        ("Model deployment", "lucide/rocket"), ("Performance benchmarking", "lucide/gauge"),
+    ("Agentic AI", "lucide/bot", [
+        ("Multi-agent systems", "lucide/network"), ("Agent orchestration", "lucide/workflow"), ("Tool use and integrations", "lucide/plug"),
+        ("Agent memory", "lucide/brain"), ("Guardrails and safety", "lucide/shield-check"), ("Workflow automation", "lucide/repeat"),
     ]),
-    ("Cloud", "lucide/cloud", [
+    ("AI Infrastructure", "lucide/cpu", [
+        ("LLM inference optimization", "lucide/zap"), ("GPU computing", "simple-icons/nvidia"), ("Model serving and deployment", "lucide/rocket"),
+        ("Performance benchmarking", "lucide/gauge"),
+    ]),
+    ("Cloud and DevOps", "lucide/cloud", [
         ("Oracle Cloud (OCI)", "simple-icons/oracle"), ("AWS", "simple-icons/amazonaws"), ("Google Cloud", "simple-icons/googlecloud"),
-    ]),
-    ("Infrastructure and DevOps", "lucide/server", [
         ("Kubernetes", "simple-icons/kubernetes"), ("Docker", "simple-icons/docker"), ("Terraform", "simple-icons/terraform"),
-        ("Linux", "simple-icons/linux"), ("Cloud networking", "lucide/network"), ("Storage", "lucide/hard-drive"),
+        ("Linux", "simple-icons/linux"), ("Cloud networking", "lucide/waypoints"), ("Storage", "lucide/hard-drive"),
         ("Migration and recovery", "lucide/life-buoy"), ("CI/CD", "simple-icons/githubactions"),
     ]),
     ("Programming", "lucide/code-xml", [
