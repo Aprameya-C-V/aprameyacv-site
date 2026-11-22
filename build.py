@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Static site builder for aprameyacv.site.
+"""Static site builder for aprameyacv.com.
 
 Pages are generated so the head, nav and footer stay identical everywhere.
 Run: python3 build.py
@@ -14,7 +14,7 @@ def _ver(name):
     p = ROOT / "assets" / name
     return hashlib.sha1(p.read_bytes()).hexdigest()[:8] if p.exists() else "0"
 
-SITE = "https://aprameyacv.site"
+SITE = "https://aprameyacv.com"
 EMAIL = "aprameyacv01@gmail.com"
 GH = "https://github.com/Aprameya-C-V"
 HF = "https://huggingface.co/apracv"
@@ -36,7 +36,7 @@ COPY = '<svg class="ico" viewBox="0 0 16 16" width="14" height="14" aria-hidden=
 
 
 PERSON_LD = """
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Aprameya C V","url":"https://aprameyacv.site","image":"https://aprameyacv.site/assets/portrait.jpg","jobTitle":"AI Engineer","address":{"@type":"PostalAddress","addressLocality":"Bengaluru","addressCountry":"IN"},"alumniOf":"JSS Science and Technology University","knowsAbout":["Agentic AI","Generative AI","Retrieval-augmented generation","LLM inference","Cloud infrastructure"],"sameAs":["https://github.com/Aprameya-C-V","https://huggingface.co/apracv","https://www.linkedin.com/in/aprameyacv/","https://scholar.google.com/citations?user=Yuit2q4AAAAJ"]}</script>"""
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Aprameya C V","url":"https://aprameyacv.com","image":"https://aprameyacv.com/assets/portrait.jpg","jobTitle":"AI Engineer","address":{"@type":"PostalAddress","addressLocality":"Bengaluru","addressCountry":"IN"},"alumniOf":"JSS Science and Technology University","knowsAbout":["Agentic AI","Generative AI","Retrieval-augmented generation","LLM inference","Cloud infrastructure"],"sameAs":["https://github.com/Aprameya-C-V","https://huggingface.co/apracv","https://www.linkedin.com/in/aprameyacv/","https://scholar.google.com/citations?user=Yuit2q4AAAAJ"]}</script>"""
 
 
 def head(title, desc, base, page="", canon="/"):
@@ -673,7 +673,7 @@ def gallery(slug, base):
         src = f"{base}assets/shots/{name}.jpg"
         frame = (
             '<div class="frame"><span class="dots"><i></i><i></i><i></i></span>'
-            f'<span class="url mono">aprameyacv.site/{href.replace("/index.html", "/")}</span></div>'
+            f'<span class="url mono">aprameyacv.com/{href.replace("/index.html", "/")}</span></div>'
             if i == 0 else ""
         )
         cls = "shot lead" if i == 0 else "shot"

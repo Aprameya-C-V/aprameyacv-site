@@ -1,4 +1,4 @@
-# aprameyacv.site
+# aprameyacv.com
 
 Personal site: a single page plus one page per project, and the full technical
 reports copied in under `/reports`.

@@ -9,14 +9,14 @@
 <meta property="og:title" content="Pramana, Aprameya C V">
 <meta property="og:description" content="Open-source decision models with calibrated confidence">
 <meta property="og:type" content="website">
-<link rel="canonical" href="https://aprameyacv.site/work/pramana">
-<meta property="og:url" content="https://aprameyacv.site/work/pramana">
+<link rel="canonical" href="https://aprameyacv.com/work/pramana">
+<meta property="og:url" content="https://aprameyacv.com/work/pramana">
 <meta property="og:site_name" content="Aprameya C V">
-<meta property="og:image" content="https://aprameyacv.site/assets/og.jpg">
+<meta property="og:image" content="https://aprameyacv.com/assets/og.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://aprameyacv.site/assets/og.jpg">
+<meta name="twitter:image" content="https://aprameyacv.com/assets/og.jpg">
 <meta name="author" content="Aprameya C V">
 <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -62,7 +62,7 @@
     </div>
   </aside>
   <article class="pbody">
-<section class="pblock reveal" id="shots"><h2><span class="mono">&#9632;</span>Demo, screenshots and figures</h2><div class="shots"><figure class="shot lead vid"><div class="frame"><span class="dots"><i></i><i></i><i></i></span><span class="url mono">27 s demo &middot; source, terminal, live page</span></div><div class="vwrap"><video controls muted loop playsinline preload="metadata" poster="../assets/video/pramana.jpg" aria-label="Screen demo of the pramana project: the source code, a real terminal run and the live report"><source src="../assets/video/pramana.mp4" type="video/mp4"></video></div><figcaption>A walkthrough of the project: the source code, a terminal run and the live page.</figcaption></figure><figure class="shot"><div class="frame"><span class="dots"><i></i><i></i><i></i></span><span class="url mono">aprameyacv.site/reports/pramana/</span></div><a href="../reports/pramana/index.html" aria-label="Open the full report"><img src="../assets/shots/pramana-report.jpg" width="1440" height="1400" alt="Screenshot of the Pramana technical report showing KL, Brier, confidence ECE and accuracy cards" loading="eager" decoding="async"></a><figcaption>Technical report: headline numbers and summary.</figcaption></figure><figure class="shot"><a href="../reports/pramana/index.html" aria-label="Open the full report"><img src="../assets/shots/pramana-results.jpg" width="1440" height="1100" alt="Screenshot of the Pramana results table comparing accuracy, KL, Brier and ECE with other models" loading="lazy" decoding="async"></a><figcaption>Results table against other fine-tuned models on Typed Decisions.</figcaption></figure></div></section>
+<section class="pblock reveal" id="shots"><h2><span class="mono">&#9632;</span>Demo, screenshots and figures</h2><div class="shots"><figure class="shot lead vid"><div class="frame"><span class="dots"><i></i><i></i><i></i></span><span class="url mono">27 s demo &middot; source, terminal, live page</span></div><div class="vwrap"><video controls muted loop playsinline preload="metadata" poster="../assets/video/pramana.jpg" aria-label="Screen demo of the pramana project: the source code, a real terminal run and the live report"><source src="../assets/video/pramana.mp4" type="video/mp4"></video></div><figcaption>A walkthrough of the project: the source code, a terminal run and the live page.</figcaption></figure><figure class="shot"><div class="frame"><span class="dots"><i></i><i></i><i></i></span><span class="url mono">aprameyacv.com/reports/pramana/</span></div><a href="../reports/pramana/index.html" aria-label="Open the full report"><img src="../assets/shots/pramana-report.jpg" width="1440" height="1400" alt="Screenshot of the Pramana technical report showing KL, Brier, confidence ECE and accuracy cards" loading="eager" decoding="async"></a><figcaption>Technical report: headline numbers and summary.</figcaption></figure><figure class="shot"><a href="../reports/pramana/index.html" aria-label="Open the full report"><img src="../assets/shots/pramana-results.jpg" width="1440" height="1100" alt="Screenshot of the Pramana results table comparing accuracy, KL, Brier and ECE with other models" loading="lazy" decoding="async"></a><figcaption>Results table against other fine-tuned models on Typed Decisions.</figcaption></figure></div></section>
 <section class="pblock reveal" id="s0"><h2><span class="mono">01</span>What it is</h2><div class="prose"><p>Pramana takes one piece of unstructured state and a typed question, and returns a probability over every option rather than a single label. Each answer carries two outputs from the same logits: a calibrated probability, and a separate confidence score that tracks whether the top answer is actually right.</p>
 <p>Two models ship: Pramana-2B and Pramana-0.8B, both trained from Qwen bases and published on Hugging Face with their calibration files and predictions.</p></div></section>
 <section class="pblock reveal" id="s1"><h2><span class="mono">02</span>How it works</h2><div class="prose"><ul>
