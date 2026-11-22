@@ -3,49 +3,64 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Demand forecasting — Aprameya C V</title>
+<title>Demand forecasting, Aprameya C V</title>
 <meta name="description" content="Forecasts that stay honest after deployment">
-<link rel="canonical" href="https://aprameyacv.site/">
 <meta name="theme-color" content="#f3f1eb">
-<meta property="og:title" content="Demand forecasting — Aprameya C V">
+<meta property="og:title" content="Demand forecasting, Aprameya C V">
 <meta property="og:description" content="Forecasts that stay honest after deployment">
 <meta property="og:type" content="website">
+<meta property="og:url" content="https://aprameyacv.site/">
+<meta name="twitter:card" content="summary">
 <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../assets/site.css">
 </head>
-<body>
+<body data-page="project">
 <a class="skip" href="#main">Skip to content</a>
-<nav class="nav" aria-label="Primary">
-  <a class="mark" href="../index.html">Aprameya C V</a>
-  <a class="link" href="../index.html#work">Work</a>
-  <a class="link hide-sm" href="../index.html#about">About</a>
-  <a class="link" href="../index.html#contact">Contact</a>
-  <a class="pill" href="../resume.pdf" target="_blank" rel="noreferrer">Resume <span class="arrow">&#8599;</span></a>
-</nav>
+<div class="progress" aria-hidden="true"><i></i></div>
+<header class="bar">
+  <nav class="bar-in" aria-label="Primary">
+    <a class="mark" href="../index.html"><span class="mark-dot"></span>Aprameya C V</a>
+    <div class="links">
+      <a href="../index.html#work">Work</a>
+      <a href="../index.html#method">Method</a>
+      <a href="../index.html#experience">Experience</a>
+      <a href="../index.html#stack">Stack</a>
+      <a href="../index.html#contact">Contact</a>
+    </div>
+    <a class="pill" href="../resume.pdf" target="_blank" rel="noreferrer">Resume <svg class="ico" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M5 4h7v7M12 4 4 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+  </nav>
+</header>
 <main id="main">
 
-<header class="proj-head">
+<header class="phead">
   <div class="wrap">
-    <p class="kicker">Selected work &middot; 05</p>
-    <h1>Demand forecasting: Forecasts that stay honest after deployment</h1>
-    <p class="sub">An MLOps reference implementation: contracts validate the input, a gate decides what reaches production, and a drift monitor opens the retraining issue.</p>
-    <div class="proj-meta">
-      <span class="tag">Python</span><span class="tag">LightGBM</span><span class="tag">FastAPI</span><span class="tag">GitHub Actions</span>
-      <a class="tag" href="https://github.com/Aprameya-C-V/demand-forecasting-platform" target="_blank" rel="noreferrer">Repository</a><a class="tag" href="../reports/demand-forecasting/index.html">Full report</a>
-    </div>
-    <div class="stats"><div class="stat"><b>0.218</b><span>WAPE, held-out</span></div><div class="stat"><b>0.794</b><span>interval coverage, nominal 0.80</span></div><div class="stat"><b>4.3 ms</b><span>p99 serve latency</span></div><div class="stat"><b>570 req/s</b><span>one process, four clients</span></div></div>
+    <p class="crumb mono"><a href="../index.html#work">Work</a><span>/</span>05</p>
+    <h1>Demand forecasting</h1>
+    <p class="ptag">Forecasts that stay honest after deployment</p>
+    <p class="psub">An MLOps reference implementation: contracts validate the input, a gate decides what reaches production, and a drift monitor opens the retraining issue.</p>
+    <div class="ptags"><span class="tag mono">Python</span><span class="tag mono">LightGBM</span><span class="tag mono">FastAPI</span><span class="tag mono">GitHub Actions</span></div>
   </div>
 </header>
 
-<div class="wrap">
-  <div class="block prose reveal"><h2>What it is</h2><p>A demand forecasting platform for NYC taxi data where the interesting part is everything after the model: input contracts, a champion and challenger gate, an API that reports on itself, and a monitor that files a ticket when the model starts to slip. Everything runs on free tiers, with no always-on infrastructure.</p></div><div class="block prose reveal"><h2>How it works</h2><ul>
+<div class="wrap pgrid">
+  <aside class="prail">
+    <div class="prail-in">
+      <div class="pstats"><div class="pstat"><b class="mono">0.218</b><span>WAPE, held-out</span></div><div class="pstat"><b class="mono">0.794</b><span>interval coverage, nominal 0.80</span></div><div class="pstat"><b class="mono">4.3 ms</b><span>p99 serve latency</span></div><div class="pstat"><b class="mono">570 req/s</b><span>one process, four clients</span></div></div>
+      <nav class="toc" aria-label="On this page"><span class="mono">On this page</span><a href="#s0">What it is</a><a href="#s1">How it works</a><a href="#s2">What it measured</a><a href="#s3">What it does not claim</a></nav>
+      <div class="rlinks"><a class="rlink" href="https://github.com/Aprameya-C-V/demand-forecasting-platform" target="_blank" rel="noreferrer">Repository <svg class="ico" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M5 4h7v7M12 4 4 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a><a class="rlink" href="../reports/demand-forecasting/index.html">Full report <svg class="ico" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M5 4h7v7M12 4 4 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+    </div>
+  </aside>
+  <article class="pbody">
+<section class="pblock reveal" id="s0"><h2><span class="mono">01</span>What it is</h2><div class="prose"><p>A demand forecasting platform for NYC taxi data where the interesting part is everything after the model: input contracts, a champion and challenger gate, an API that reports on itself, and a monitor that files a ticket when the model starts to slip. Everything runs on free tiers, with no always-on infrastructure.</p></div></section>
+<section class="pblock reveal" id="s1"><h2><span class="mono">02</span>How it works</h2><div class="prose"><ul>
 <li><strong>Five stages, one repository.</strong> Panel contract, time-split training, registry gate, served forecast API, drift monitor. Each runs as a command locally and as a workflow in CI.</li>
 <li><strong>A gate with a margin.</strong> A challenger replaces the champion only if it wins by more than 2% WAPE.</li>
 <li><strong>Monitoring closes the loop.</strong> A WAPE, bias or PSI breach opens a retraining issue, so monitoring is part of the pipeline rather than a report at the end.</li>
-</ul></div><div class="block prose reveal"><h2>What it measured</h2><table>
+</ul></div></section>
+<section class="pblock reveal" id="s2"><h2><span class="mono">03</span>What it measured</h2><div class="prose"><table>
 <thead><tr><th>Metric</th><th class="num">Value</th><th>Reading</th></tr></thead>
 <tbody>
 <tr><td>WAPE</td><td class="num">0.218</td><td>total absolute error over total demand</td></tr>
@@ -54,19 +69,26 @@
 <tr><td>p99 serve latency</td><td class="num">4.3 ms</td><td>one client, 48-slot forecast</td></tr>
 <tr><td>Throughput</td><td class="num">570 req/s</td><td>four concurrent clients, one process</td></tr>
 </tbody>
-</table></div><div class="block prose reveal"><h2>What it does not claim</h2><p>One run per configuration, no tuning on the test window, and errors below the 5% noise floor are not claimed. It is a reference implementation on public data, not a production deployment.</p></div>
-  <div class="block reveal">
-    <a class="report-cta" href="../reports/demand-forecasting/index.html">Read the full report <span class="dot">&#8599;</span></a>
-    <p class="small" style="margin-top:18px"><a href="../index.html#work" style="text-decoration:underline;text-underline-offset:3px">&larr; All work</a></p>
-  </div>
+</table></div></section>
+<section class="pblock reveal" id="s3"><h2><span class="mono">04</span>What it does not claim</h2><div class="prose"><p>One run per configuration, no tuning on the test window, and errors below the 5% noise floor are not claimed. It is a reference implementation on public data, not a production deployment.</p></div></section>
+    <div class="pend reveal">
+      <a class="report-cta" href="../reports/demand-forecasting/index.html">Read the full report <svg class="ico" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M5 4h7v7M12 4 4 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      <div class="pnav">
+        <a href="../work/cg-bi.html"><svg class="ico" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M13 8H3M7.5 3.5 3 8l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span><i class="mono">Previous</i>CG-BI</span></a>
+        <a class="r" href="../work/pramana.html"><span><i class="mono">Next</i>Pramana</span><svg class="ico" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M5 4h7v7M12 4 4 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      </div>
+    </div>
+  </article>
 </div>
 </main>
-<footer>
-  <div class="wrap foot">
-    <span>&copy; <span data-year>2026</span> Aprameya C V &middot; Bengaluru, India</span>
-    <span>Hand-written HTML &middot; no framework</span>
+<footer class="foot">
+  <div class="wrap foot-in">
+    <span>&copy; <span data-year>2026</span> Aprameya C V</span>
+    <span class="mono">Bengaluru, India</span>
+    <span class="mono">Static HTML, Cloudflare Pages</span>
   </div>
 </footer>
+<div class="toast" role="status" aria-live="polite">Email copied</div>
 <script src="../assets/site.js" defer></script>
 </body>
 </html>

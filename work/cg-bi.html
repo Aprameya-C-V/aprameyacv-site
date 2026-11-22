@@ -3,49 +3,64 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>CG-BI — Aprameya C V</title>
+<title>CG-BI, Aprameya C V</title>
 <meta name="description" content="Confidence-gated triage for blade inspection">
-<link rel="canonical" href="https://aprameyacv.site/">
 <meta name="theme-color" content="#f3f1eb">
-<meta property="og:title" content="CG-BI — Aprameya C V">
+<meta property="og:title" content="CG-BI, Aprameya C V">
 <meta property="og:description" content="Confidence-gated triage for blade inspection">
 <meta property="og:type" content="website">
+<meta property="og:url" content="https://aprameyacv.site/">
+<meta name="twitter:card" content="summary">
 <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../assets/site.css">
 </head>
-<body>
+<body data-page="project">
 <a class="skip" href="#main">Skip to content</a>
-<nav class="nav" aria-label="Primary">
-  <a class="mark" href="../index.html">Aprameya C V</a>
-  <a class="link" href="../index.html#work">Work</a>
-  <a class="link hide-sm" href="../index.html#about">About</a>
-  <a class="link" href="../index.html#contact">Contact</a>
-  <a class="pill" href="../resume.pdf" target="_blank" rel="noreferrer">Resume <span class="arrow">&#8599;</span></a>
-</nav>
+<div class="progress" aria-hidden="true"><i></i></div>
+<header class="bar">
+  <nav class="bar-in" aria-label="Primary">
+    <a class="mark" href="../index.html"><span class="mark-dot"></span>Aprameya C V</a>
+    <div class="links">
+      <a href="../index.html#work">Work</a>
+      <a href="../index.html#method">Method</a>
+      <a href="../index.html#experience">Experience</a>
+      <a href="../index.html#stack">Stack</a>
+      <a href="../index.html#contact">Contact</a>
+    </div>
+    <a class="pill" href="../resume.pdf" target="_blank" rel="noreferrer">Resume <svg class="ico" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M5 4h7v7M12 4 4 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+  </nav>
+</header>
 <main id="main">
 
-<header class="proj-head">
+<header class="phead">
   <div class="wrap">
-    <p class="kicker">Selected work &middot; 04</p>
-    <h1>CG-BI: Confidence-gated triage for blade inspection</h1>
-    <p class="sub">Routing, not tier choice, is the lever: a two-tier cascade beats both of its own models on quality and lands between them on cost.</p>
-    <div class="proj-meta">
-      <span class="tag">Multimodal</span><span class="tag">Python</span><span class="tag">cost control</span>
-      <a class="tag" href="https://github.com/Aprameya-C-V/cg-bi" target="_blank" rel="noreferrer">Repository</a><a class="tag" href="../reports/cg-bi/index.html">Full report</a>
-    </div>
-    <div class="stats"><div class="stat"><b>92.3%</b><span>critical-defect recall</span></div><div class="stat"><b>47%</b><span>of the strong tier's cost</span></div><div class="stat"><b>25.3%</b><span>exact match, best of any tier</span></div><div class="stat"><b>0.424</b><span>class F1</span></div></div>
+    <p class="crumb mono"><a href="../index.html#work">Work</a><span>/</span>04</p>
+    <h1>CG-BI</h1>
+    <p class="ptag">Confidence-gated triage for blade inspection</p>
+    <p class="psub">Routing, not tier choice, is the lever: a two-tier cascade beats both of its own models on quality and lands between them on cost.</p>
+    <div class="ptags"><span class="tag mono">Multimodal</span><span class="tag mono">Python</span><span class="tag mono">cost control</span></div>
   </div>
 </header>
 
-<div class="wrap">
-  <div class="block prose reveal"><h2>What it is</h2><p>A drone captures hundreds of blade images per turbine, and an engineer still writes a finding for each one: defect type, severity, location, action. This measures whether a multimodal model can draft that finding, and what a two-tier routing policy buys over picking a single model.</p></div><div class="block prose reveal"><h2>How it works</h2><ul>
+<div class="wrap pgrid">
+  <aside class="prail">
+    <div class="prail-in">
+      <div class="pstats"><div class="pstat"><b class="mono">92.3%</b><span>critical-defect recall</span></div><div class="pstat"><b class="mono">47%</b><span>of the strong tier's cost</span></div><div class="pstat"><b class="mono">25.3%</b><span>exact match, best of any tier</span></div><div class="pstat"><b class="mono">0.424</b><span>class F1</span></div></div>
+      <nav class="toc" aria-label="On this page"><span class="mono">On this page</span><a href="#s0">What it is</a><a href="#s1">How it works</a><a href="#s2">What it measured</a><a href="#s3">What it does not claim</a></nav>
+      <div class="rlinks"><a class="rlink" href="https://github.com/Aprameya-C-V/cg-bi" target="_blank" rel="noreferrer">Repository <svg class="ico" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M5 4h7v7M12 4 4 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a><a class="rlink" href="../reports/cg-bi/index.html">Full report <svg class="ico" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M5 4h7v7M12 4 4 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+    </div>
+  </aside>
+  <article class="pbody">
+<section class="pblock reveal" id="s0"><h2><span class="mono">01</span>What it is</h2><div class="prose"><p>A drone captures hundreds of blade images per turbine, and an engineer still writes a finding for each one: defect type, severity, location, action. This measures whether a multimodal model can draft that finding, and what a two-tier routing policy buys over picking a single model.</p></div></section>
+<section class="pblock reveal" id="s1"><h2><span class="mono">02</span>How it works</h2><div class="prose"><ul>
 <li><strong>75 real drone images</strong> across a fixed six-class taxonomy, one call per image unless escalated.</li>
 <li><strong>A confidence gate.</strong> A cheap multimodal model labels every image; anything below 0.9 confidence, 36% of the set, goes to a stronger model.</li>
 <li><strong>Costed per thousand images</strong>, with p50 latency, so a quality win that nobody can afford shows up as one.</li>
-</ul></div><div class="block prose reveal"><h2>What it measured</h2><table>
+</ul></div></section>
+<section class="pblock reveal" id="s2"><h2><span class="mono">03</span>What it measured</h2><div class="prose"><table>
 <thead><tr><th>Tier</th><th class="num">Exact set</th><th class="num">Class F1</th><th class="num">Critical recall</th><th class="num">Cost / 1,000</th></tr></thead>
 <tbody>
 <tr><td>Cheap model alone</td><td class="num">17.3%</td><td class="num">0.323</td><td class="num">50.0%</td><td class="num">$0.43</td></tr>
@@ -53,19 +68,26 @@
 <tr><td><strong>Routed cascade</strong></td><td class="num"><strong>25.3%</strong></td><td class="num"><strong>0.424</strong></td><td class="num"><strong>92.3%</strong></td><td class="num"><strong>$1.73</strong></td></tr>
 </tbody>
 </table>
-<p style="margin-top:14px">The cascade beats both single tiers on exact match and F1, holds 92% critical-defect recall, and costs 47% of the strong tier alone. The strong tier is accurate but expensive; the cheap tier alone misses half the critical defects.</p></div><div class="block prose reveal"><h2>What it does not claim</h2><p>One seed, 75 images, and no healthy-blade class, so this is not a claim that inspection can be automated. The cascade drafts a finding for an engineer to approve or correct.</p></div>
-  <div class="block reveal">
-    <a class="report-cta" href="../reports/cg-bi/index.html">Read the full report <span class="dot">&#8599;</span></a>
-    <p class="small" style="margin-top:18px"><a href="../index.html#work" style="text-decoration:underline;text-underline-offset:3px">&larr; All work</a></p>
-  </div>
+<p style="margin-top:14px">The cascade beats both single tiers on exact match and F1, holds 92% critical-defect recall, and costs 47% of the strong tier alone. The strong tier is accurate but expensive; the cheap tier alone misses half the critical defects.</p></div></section>
+<section class="pblock reveal" id="s3"><h2><span class="mono">04</span>What it does not claim</h2><div class="prose"><p>One seed, 75 images, and no healthy-blade class, so this is not a claim that inspection can be automated. The cascade drafts a finding for an engineer to approve or correct.</p></div></section>
+    <div class="pend reveal">
+      <a class="report-cta" href="../reports/cg-bi/index.html">Read the full report <svg class="ico" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M5 4h7v7M12 4 4 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      <div class="pnav">
+        <a href="../work/speclane.html"><svg class="ico" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M13 8H3M7.5 3.5 3 8l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span><i class="mono">Previous</i>SpecLane</span></a>
+        <a class="r" href="../work/demand-forecasting.html"><span><i class="mono">Next</i>Demand forecasting</span><svg class="ico" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M5 4h7v7M12 4 4 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      </div>
+    </div>
+  </article>
 </div>
 </main>
-<footer>
-  <div class="wrap foot">
-    <span>&copy; <span data-year>2026</span> Aprameya C V &middot; Bengaluru, India</span>
-    <span>Hand-written HTML &middot; no framework</span>
+<footer class="foot">
+  <div class="wrap foot-in">
+    <span>&copy; <span data-year>2026</span> Aprameya C V</span>
+    <span class="mono">Bengaluru, India</span>
+    <span class="mono">Static HTML, Cloudflare Pages</span>
   </div>
 </footer>
+<div class="toast" role="status" aria-live="polite">Email copied</div>
 <script src="../assets/site.js" defer></script>
 </body>
 </html>

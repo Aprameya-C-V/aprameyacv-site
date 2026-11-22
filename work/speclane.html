@@ -3,49 +3,64 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>SpecLane — Aprameya C V</title>
+<title>SpecLane, Aprameya C V</title>
 <meta name="description" content="Serving small models under agent traffic">
-<link rel="canonical" href="https://aprameyacv.site/">
 <meta name="theme-color" content="#f3f1eb">
-<meta property="og:title" content="SpecLane — Aprameya C V">
+<meta property="og:title" content="SpecLane, Aprameya C V">
 <meta property="og:description" content="Serving small models under agent traffic">
 <meta property="og:type" content="website">
+<meta property="og:url" content="https://aprameyacv.site/">
+<meta name="twitter:card" content="summary">
 <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../assets/site.css">
 </head>
-<body>
+<body data-page="project">
 <a class="skip" href="#main">Skip to content</a>
-<nav class="nav" aria-label="Primary">
-  <a class="mark" href="../index.html">Aprameya C V</a>
-  <a class="link" href="../index.html#work">Work</a>
-  <a class="link hide-sm" href="../index.html#about">About</a>
-  <a class="link" href="../index.html#contact">Contact</a>
-  <a class="pill" href="../resume.pdf" target="_blank" rel="noreferrer">Resume <span class="arrow">&#8599;</span></a>
-</nav>
+<div class="progress" aria-hidden="true"><i></i></div>
+<header class="bar">
+  <nav class="bar-in" aria-label="Primary">
+    <a class="mark" href="../index.html"><span class="mark-dot"></span>Aprameya C V</a>
+    <div class="links">
+      <a href="../index.html#work">Work</a>
+      <a href="../index.html#method">Method</a>
+      <a href="../index.html#experience">Experience</a>
+      <a href="../index.html#stack">Stack</a>
+      <a href="../index.html#contact">Contact</a>
+    </div>
+    <a class="pill" href="../resume.pdf" target="_blank" rel="noreferrer">Resume <svg class="ico" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M5 4h7v7M12 4 4 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+  </nav>
+</header>
 <main id="main">
 
-<header class="proj-head">
+<header class="phead">
   <div class="wrap">
-    <p class="kicker">Selected work &middot; 03</p>
-    <h1>SpecLane: Serving small models under agent traffic</h1>
-    <p class="sub">Existing vLLM flags, an honest baseline, and a measurement of which one actually matters when the traffic looks like an agent loop.</p>
-    <div class="proj-meta">
-      <span class="tag">vLLM</span><span class="tag">CUDA</span><span class="tag">H100</span><span class="tag">L40S</span>
-      <a class="tag" href="https://github.com/Aprameya-C-V/speclane" target="_blank" rel="noreferrer">Repository</a><a class="tag" href="../reports/speclane/index.html">Full report</a>
-    </div>
-    <div class="stats"><div class="stat"><b>78 &rarr; 175</b><span>tokens/s at concurrency 1</span></div><div class="stat"><b>800 &rarr; 1199</b><span>tokens/s at concurrency 16</span></div><div class="stat"><b>1.09 &rarr; 0.94 s</b><span>p99 time to first token</span></div><div class="stat"><b>0.940 &rarr; 0.935</b><span>GSM8K, unchanged</span></div></div>
+    <p class="crumb mono"><a href="../index.html#work">Work</a><span>/</span>03</p>
+    <h1>SpecLane</h1>
+    <p class="ptag">Serving small models under agent traffic</p>
+    <p class="psub">Existing vLLM flags, an honest baseline, and a measurement of which one actually matters when the traffic looks like an agent loop.</p>
+    <div class="ptags"><span class="tag mono">vLLM</span><span class="tag mono">CUDA</span><span class="tag mono">H100</span><span class="tag mono">L40S</span></div>
   </div>
 </header>
 
-<div class="wrap">
-  <div class="block prose reveal"><h2>What it is</h2><p>A serving configuration for two open models, Qwen3.8-27B-FP8 on one H100 and Qwen3.5-9B on one L40S, built around agent-shaped traffic: long shared system prompts and multi-turn sessions. It defines a vanilla baseline, a recommended profile, and one change at a time on top of it, with every number generated from the saved run files.</p></div><div class="block prose reveal"><h2>How it works</h2><ul>
+<div class="wrap pgrid">
+  <aside class="prail">
+    <div class="prail-in">
+      <div class="pstats"><div class="pstat"><b class="mono">78 &rarr; 175</b><span>tokens/s at concurrency 1</span></div><div class="pstat"><b class="mono">800 &rarr; 1199</b><span>tokens/s at concurrency 16</span></div><div class="pstat"><b class="mono">1.09 &rarr; 0.94 s</b><span>p99 time to first token</span></div><div class="pstat"><b class="mono">0.940 &rarr; 0.935</b><span>GSM8K, unchanged</span></div></div>
+      <nav class="toc" aria-label="On this page"><span class="mono">On this page</span><a href="#s0">What it is</a><a href="#s1">How it works</a><a href="#s2">What it measured</a><a href="#s3">A failure worth keeping</a></nav>
+      <div class="rlinks"><a class="rlink" href="https://github.com/Aprameya-C-V/speclane" target="_blank" rel="noreferrer">Repository <svg class="ico" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M5 4h7v7M12 4 4 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a><a class="rlink" href="../reports/speclane/index.html">Full report <svg class="ico" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M5 4h7v7M12 4 4 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+    </div>
+  </aside>
+  <article class="pbody">
+<section class="pblock reveal" id="s0"><h2><span class="mono">01</span>What it is</h2><div class="prose"><p>A serving configuration for two open models, Qwen3.8-27B-FP8 on one H100 and Qwen3.5-9B on one L40S, built around agent-shaped traffic: long shared system prompts and multi-turn sessions. It defines a vanilla baseline, a recommended profile, and one change at a time on top of it, with every number generated from the saved run files.</p></div></section>
+<section class="pblock reveal" id="s1"><h2><span class="mono">02</span>How it works</h2><div class="prose"><ul>
 <li><strong>A baseline you can reproduce.</strong> Engine defaults plus only the flags needed to start, fixed 16,384-token context.</li>
 <li><strong>Two workloads.</strong> <span class="mono">shared_prefix</span> and <span class="mono">agent_sessions</span>, swept at concurrency 1 and 16 through a closed-loop load generator that records TTFT, TPOT and throughput.</li>
 <li><strong>A quality guard.</strong> 200 fixed GSM8K questions, temperature 0, exact match, so a throughput win cannot hide an accuracy loss.</li>
-</ul></div><div class="block prose reveal"><h2>What it measured</h2><table>
+</ul></div></section>
+<section class="pblock reveal" id="s2"><h2><span class="mono">03</span>What it measured</h2><div class="prose"><table>
 <thead><tr><th>Profile</th><th class="num">c = 1</th><th class="num">c = 16</th><th class="num">p99 TTFT</th></tr></thead>
 <tbody>
 <tr><td>27B, baseline</td><td class="num">78</td><td class="num">800</td><td class="num">1.09 s</td></tr>
@@ -55,19 +70,26 @@
 <tr><td>9B, <strong>multi-token prediction</strong></td><td class="num"><strong>75 (+77%)</strong></td><td class="num"><strong>753 (+59%)</strong></td><td class="num"><strong>0.74 s</strong></td></tr>
 </tbody>
 </table>
-<p style="margin-top:14px">The models' built-in multi-token-prediction head is the lever. The FP8 KV cache, which is usually recommended, reduced throughput and raised tail latency at this scale. Quality moved by one and two questions out of 200, inside noise.</p></div><div class="block prose reveal"><h2>A failure worth keeping</h2><p>Vanilla vLLM cannot start the 27B on an H100: the default <span class="mono">max_num_seqs</span> of 1024 exceeds the 745 recurrent-state cache blocks that fit beside the weights. Setting it to 512 resolves it and became part of the baseline. An earlier agent-harness pilot that scored zero was traced to a missing tool-calling flag, not to the model, and is written up as a withdrawn result.</p></div>
-  <div class="block reveal">
-    <a class="report-cta" href="../reports/speclane/index.html">Read the full report <span class="dot">&#8599;</span></a>
-    <p class="small" style="margin-top:18px"><a href="../index.html#work" style="text-decoration:underline;text-underline-offset:3px">&larr; All work</a></p>
-  </div>
+<p style="margin-top:14px">The models' built-in multi-token-prediction head is the lever. The FP8 KV cache, which is usually recommended, reduced throughput and raised tail latency at this scale. Quality moved by one and two questions out of 200, inside noise.</p></div></section>
+<section class="pblock reveal" id="s3"><h2><span class="mono">04</span>A failure worth keeping</h2><div class="prose"><p>Vanilla vLLM cannot start the 27B on an H100: the default <span class="mono">max_num_seqs</span> of 1024 exceeds the 745 recurrent-state cache blocks that fit beside the weights. Setting it to 512 resolves it and became part of the baseline. An earlier agent-harness pilot that scored zero was traced to a missing tool-calling flag, not to the model, and is written up as a withdrawn result.</p></div></section>
+    <div class="pend reveal">
+      <a class="report-cta" href="../reports/speclane/index.html">Read the full report <svg class="ico" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M5 4h7v7M12 4 4 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      <div class="pnav">
+        <a href="../work/hbc-rag.html"><svg class="ico" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M13 8H3M7.5 3.5 3 8l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span><i class="mono">Previous</i>HBC-RAG</span></a>
+        <a class="r" href="../work/cg-bi.html"><span><i class="mono">Next</i>CG-BI</span><svg class="ico" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M5 4h7v7M12 4 4 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      </div>
+    </div>
+  </article>
 </div>
 </main>
-<footer>
-  <div class="wrap foot">
-    <span>&copy; <span data-year>2026</span> Aprameya C V &middot; Bengaluru, India</span>
-    <span>Hand-written HTML &middot; no framework</span>
+<footer class="foot">
+  <div class="wrap foot-in">
+    <span>&copy; <span data-year>2026</span> Aprameya C V</span>
+    <span class="mono">Bengaluru, India</span>
+    <span class="mono">Static HTML, Cloudflare Pages</span>
   </div>
 </footer>
+<div class="toast" role="status" aria-live="polite">Email copied</div>
 <script src="../assets/site.js" defer></script>
 </body>
 </html>

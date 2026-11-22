@@ -14,8 +14,22 @@ GH = "https://github.com/Aprameya-C-V"
 HF = "https://huggingface.co/apracv"
 LI = "https://www.linkedin.com/in/aprameyacv/"
 
+# Filter group for the work index.
+CATS = {
+    "pramana": ("training", "Training"),
+    "hbc-rag": ("retrieval", "Retrieval"),
+    "speclane": ("inference", "Inference"),
+    "cg-bi": ("vision", "Vision"),
+    "demand-forecasting": ("mlops", "MLOps"),
+}
 
-def head(title, desc, base):
+ARROW = '<svg class="ico" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M5 4h7v7M12 4 4 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>'
+ARROW_DOWN = '<svg class="ico" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M8 3v10M3.5 8.5 8 13l4.5-4.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>'
+ARROW_LEFT = '<svg class="ico" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M13 8H3M7.5 3.5 3 8l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>'
+COPY = '<svg class="ico" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><rect x="5.5" y="5.5" width="8" height="8" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M10.5 3.5v-.5a1 1 0 0 0-1-1H3.5a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>'
+
+
+def head(title, desc, base, page=""):
     return f"""<!doctype html>
 <html lang="en">
 <head>
@@ -23,38 +37,48 @@ def head(title, desc, base):
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{title}</title>
 <meta name="description" content="{desc}">
-<link rel="canonical" href="{SITE}/">
 <meta name="theme-color" content="#f3f1eb">
 <meta property="og:title" content="{title}">
 <meta property="og:description" content="{desc}">
 <meta property="og:type" content="website">
+<meta property="og:url" content="{SITE}/">
+<meta name="twitter:card" content="summary">
 <link rel="icon" href="{base}assets/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="{base}assets/site.css">
 </head>
-<body>
+<body{f' data-page="{page}"' if page else ''}>
 <a class="skip" href="#main">Skip to content</a>
-<nav class="nav" aria-label="Primary">
-  <a class="mark" href="{base}index.html">Aprameya C V</a>
-  <a class="link" href="{base}index.html#work">Work</a>
-  <a class="link hide-sm" href="{base}index.html#about">About</a>
-  <a class="link" href="{base}index.html#contact">Contact</a>
-  <a class="pill" href="{base}resume.pdf" target="_blank" rel="noreferrer">Resume <span class="arrow">&#8599;</span></a>
-</nav>
+<div class="progress" aria-hidden="true"><i></i></div>
+<header class="bar">
+  <nav class="bar-in" aria-label="Primary">
+    <a class="mark" href="{base}index.html"><span class="mark-dot"></span>Aprameya C V</a>
+    <div class="links">
+      <a href="{base}index.html#work">Work</a>
+      <a href="{base}index.html#method">Method</a>
+      <a href="{base}index.html#experience">Experience</a>
+      <a href="{base}index.html#stack">Stack</a>
+      <a href="{base}index.html#contact">Contact</a>
+    </div>
+    <a class="pill" href="{base}resume.pdf" target="_blank" rel="noreferrer">Resume {ARROW}</a>
+  </nav>
+</header>
 <main id="main">
 """
 
 
 def foot(base):
     return f"""</main>
-<footer>
-  <div class="wrap foot">
-    <span>&copy; <span data-year>2026</span> Aprameya C V &middot; Bengaluru, India</span>
-    <span>Hand-written HTML &middot; no framework</span>
+<footer class="foot">
+  <div class="wrap foot-in">
+    <span>&copy; <span data-year>2026</span> Aprameya C V</span>
+    <span class="mono">Bengaluru, India</span>
+    <span class="mono">Static HTML, Cloudflare Pages</span>
   </div>
 </footer>
+<div class="toast" role="status" aria-live="polite">Email copied</div>
 <script src="{base}assets/site.js" defer></script>
 </body>
 </html>
@@ -268,143 +292,212 @@ PROJECTS = [
 ]
 
 
-def home():
-    rows = "\n".join(
-        f"""      <a class="work-row reveal" href="work/{p['slug']}.html">
-        <span class="idx">{p['idx']}</span>
-        <span>
-          <span class="t">{p['title']}</span>
-          <span class="d">{p['row']}</span>
-          <span class="stack-inline">{p['stack']}</span>
+LEDGER = [
+    ("SpecLane", "Serving throughput, tokens/s", "78", "175", 0.45, 1.0),
+    ("HBC-RAG", "Right clause found, %", "47", "58", 0.47, 0.58),
+    ("CG-BI", "Critical-defect recall, cheap model to cascade, %", "50", "92", 0.50, 0.92),
+    ("Pramana", "Confidence gap to real accuracy, points", "16.8", "3.8", 1.0, 0.23),
+]
+
+BAND = [
+    ("2.2", "x", 1, "LLM serving throughput from speculative decoding", "SpecLane"),
+    ("58", "%", 0, "right clause found, up from 47%, in half the time", "HBC-RAG"),
+    ("92", "%", 0, "critical defects caught at 47% of the strong model's cost", "CG-BI"),
+    ("3.8", " pts", 1, "average gap between stated confidence and accuracy", "Pramana"),
+]
+
+METHOD = [
+    ("Change one thing at a time", "Each study fixes the model, the prompt and the data, then varies a single setting. HBC-RAG varies passages per hop. SpecLane varies one engine flag. A difference then has one possible cause."),
+    ("Score without a judge", "Character spans, exact match and held-out quality guards, not an LLM grader. Every number regenerates from saved runs, with no API spend and no judge drift."),
+    ("Intervals, not single runs", "Comparisons carry paired bootstrap intervals. Anything inside the interval is called noise, including the cases where my own result is not significant."),
+    ("State what it does not claim", "Every project page ends with its limits: one seed, small samples, no healthy class, one document per question. A result is only useful with its boundary."),
+]
+
+STACK = [
+    ("Agents and retrieval", "ADK, LangGraph, LangChain, Deep Agents, OpenAI SDK, MCP, hybrid retrieval, pgvector, guardrails, agent memory"),
+    ("Inference and training", "vLLM, llama.cpp, speculative decoding, FP8 KV cache, CUDA, NVIDIA GPUs, LoRA fine-tuning, Hugging Face"),
+    ("Cloud", "OCI (Enterprise AI, Dedicated AI Clusters, Container Instances, OKE), AWS (EC2, ECS, Lambda), Google Cloud (Vertex AI, Model Garden)"),
+    ("Infrastructure", "Landing zones, networking, storage, IAM, VM migration, disaster recovery, Terraform, Kubernetes, Helm, K3s, Prometheus"),
+    ("Languages and tooling", "Python, TypeScript, SQL, FastAPI, Linux, Docker, CI/CD"),
+]
+
+XP = [
+    ("Jun 2026 to present", "Oracle", "Cloud Engineering, AI (L2)", [
+        "Technical scoping lead and point of contact on EMEA engagements across GPU serving, guardrails, voice AI, MCP and agentic automation.",
+        "Built a three-agent ServiceNow suite for a public-sector client: natural-language search over 1M+ tickets in under 7 seconds, hybrid search over 500K+ multilingual articles, and ticket creation in under a minute.",
+        "Built a multilingual legal and tax RAG assistant for a national tax authority, so citizens can ask questions in their own language.",
+        "Delivered OCI infrastructure end to end: landing zones, networking, storage, IAM, VM migration and disaster recovery, automated with Terraform.",
+        "Built deployable solution packs for RAG, agents, voice, MCP, guardrails and agent memory, and drove Codex adoption for 80+ people who built 40 to 50 reusable assets.",
+    ]),
+    ("Jul 2025 to May 2026", "Oracle", "Cloud Solution Engineer (L1)", [
+        "Built a trademark platform for a government ministry, exposed as two APIs: similarity over 500K+ images with multilingual text and compliance rules on a CPU-only machine, and open-source image generation and editing on NVIDIA CUDA GPUs through a custom ComfyUI module.",
+        "Primary developer of internal AI tools used across teams, from a document generator to a security-review agent, saving an estimated 1,100+ hours.",
+    ]),
+    ("Jan 2025 to Jul 2025", "Oracle", "Project Intern", [
+        "Built the Solution Document Generator on LangGraph and OKE, contributing to 50+ documents and 100+ hours saved.",
+    ]),
+]
+
+
+def ledger_rows():
+    out = ""
+    for i, (name, label, a, b, sa, sb) in enumerate(LEDGER):
+        flat = " flat" if a == b else ""
+        out += f"""        <li class="lrow reveal" style="--i:{i}">
+          <div class="lhead"><span class="lname">{name}</span><span class="llabel">{label}</span></div>
+          <div class="lvals mono"><span class="from">{a}</span><span class="to{flat}">{b}</span></div>
+          <div class="lbars" aria-hidden="true"><i class="b0" style="--s:{sa}"></i><i class="b1" style="--s:{sb}"></i></div>
+        </li>
+"""
+    return out
+
+
+def work_rows():
+    rows = ""
+    for i, p in enumerate(PROJECTS):
+        cat, catlabel = CATS[p["slug"]]
+        rows += f"""      <a class="wrow reveal" href="work/{p['slug']}.html" data-cat="{cat}" style="--i:{i}">
+        <span class="widx mono">{p['idx']}</span>
+        <span class="wmain">
+          <span class="wtitle">{p['title']}</span>
+          <span class="wdesc">{p['row']}</span>
+          <span class="wstack mono">{p['stack']}</span>
         </span>
-        <span class="metric"><b>{p['metric_short']}</b><i>{p['metric_note']}</i></span>
-        <span class="go">&#8599;</span>
-      </a>"""
-        for p in PROJECTS
+        <span class="wmetric"><b class="mono">{p['metric_short']}</b><i class="mono">{p['metric_note']}</i></span>
+        <span class="wgo">{ARROW}</span>
+      </a>
+"""
+    return rows
+
+
+def home():
+    chips = '<button class="chip is-on" data-filter="all" type="button">All</button>' + "".join(
+        f'<button class="chip" data-filter="{c}" type="button">{l}</button>' for c, l in
+        [("inference", "Inference"), ("retrieval", "Retrieval"), ("training", "Training"), ("vision", "Vision"), ("mlops", "MLOps")]
+    )
+    band = "".join(
+        f"""      <div class="bcell reveal" style="--i:{i}"><b class="mono" data-count="{n}" data-dec="{d}" data-suffix="{s}">0{s}</b><span>{t}</span><em class="mono">{src}</em></div>
+"""
+        for i, (n, s, d, t, src) in enumerate(BAND)
+    )
+    method = "".join(
+        f"""      <div class="mitem reveal" style="--i:{i}"><span class="mno mono">0{i + 1}</span><h3>{t}</h3><p>{b}</p></div>
+"""
+        for i, (t, b) in enumerate(METHOD)
+    )
+    xp = ""
+    for when, org, role, items in XP:
+        lis = "".join(f"<li>{x}</li>" for x in items)
+        xp += f"""      <article class="xrow reveal">
+        <div class="xwhen mono">{when}</div>
+        <div class="xbody"><h3>{org}<span> / {role}</span></h3><ul>{lis}</ul></div>
+      </article>
+"""
+    stack = "".join(
+        f"""      <div class="srow reveal"><h3>{h}</h3><p class="mono">{b}</p></div>
+"""
+        for h, b in STACK
     )
 
     html = head(
-        "Aprameya C V — AI engineer",
+        "Aprameya C V, AI engineer",
         "AI engineer at Oracle building agentic and generative AI systems, and measuring what they actually do.",
-        "",
+        "", "home",
     )
     html += f"""
 <header class="hero">
   <div class="wrap hero-grid">
-    <div>
-      <p class="eyebrow">Bengaluru, India</p>
-      <h1 class="display">AI systems,<br>built to be <em>measured</em>.</h1>
-      <p class="lede">I am Aprameya, an AI engineer at Oracle. I take agentic and generative AI from a customer's first conversation to production: retrieval, agent design, GPU serving, and the infrastructure underneath.</p>
-      <div class="meta">
-        <span><i></i>Cloud Engineering &middot; AI</span>
-        <span><i></i>Oracle</span>
-        <span><i></i>Five measured projects</span>
-      </div>
+    <div class="hero-copy">
+      <p class="eyebrow mono"><span class="live"></span>AI engineer, Bengaluru</p>
+      <h1>AI systems, built to be measured.</h1>
+      <p class="lede">I am Aprameya, an AI engineer at Oracle. I take agentic and generative AI from a customer's first conversation to production: retrieval, agent design, GPU serving, and the infrastructure underneath. Every project here ships with its own benchmark and its own list of what it does not prove.</p>
       <div class="cta-row">
-        <a class="btn" href="#work">See the work <span class="dot">&#8595;</span></a>
-        <a class="btn ghost" href="resume.pdf" target="_blank" rel="noreferrer">Resume <span class="dot">&#8599;</span></a>
+        <a class="btn" href="#work" data-magnet>See the work {ARROW_DOWN}</a>
+        <a class="btn ghost" href="resume.pdf" target="_blank" rel="noreferrer" data-magnet>Resume {ARROW}</a>
       </div>
+      <dl class="facts">
+        <div><dt class="mono">Role</dt><dd>Cloud Engineering, AI</dd></div>
+        <div><dt class="mono">At</dt><dd>Oracle, EMEA customers</dd></div>
+        <div><dt class="mono">Open to</dt><dd>Applied AI, forward-deployed</dd></div>
+      </dl>
     </div>
-    <aside class="card-outer reveal">
-      <div class="card-inner">
-        <h3>At a glance</h3>
-        <div class="kv"><span>Role</span><span class="v">AI engineer, Oracle</span></div>
-        <div class="kv"><span>Focus</span><span class="v">Agents &amp; inference</span></div>
-        <div class="kv"><span>Reports</span><span class="v"><b>5</b> with numbers</span></div>
-        <div class="kv"><span>Open to</span><span class="v">Applied AI, FDE</span></div>
-      </div>
+    <aside class="ledger" aria-label="Latest measurements">
+      <div class="ledger-head"><span class="mono">Measured, not described</span><span class="mono ledger-key"><i class="k0"></i>before<i class="k1"></i>after</span></div>
+      <ul>
+{ledger_rows()}      </ul>
+      <p class="ledger-foot mono">Numbers come from the project reports linked below.</p>
     </aside>
   </div>
+  <a class="scrollcue mono" href="#work" aria-label="Scroll to work">Scroll {ARROW_DOWN}</a>
 </header>
 
-<section id="work">
+<section class="band" aria-label="Headline results">
+  <div class="wrap band-grid">
+{band}  </div>
+</section>
+
+<section id="work" class="sec">
   <div class="wrap">
-    <div class="section-head">
-      <h2 class="h2">Selected work</h2>
-      <span class="count">05 / 2025&ndash;2026</span>
+    <div class="sec-head">
+      <div><p class="eyebrow mono">01 / Work</p><h2>Selected work</h2></div>
+      <div class="chips" role="group" aria-label="Filter projects">{chips}</div>
     </div>
-    <div class="work-list">
-{rows}
-    </div>
-    <p class="small" style="margin-top:22px">Also built: a five-stage <a href="{GH}/agentic-supply-chain-operations-platform" style="text-decoration:underline;text-underline-offset:3px">multi-agent supply chain platform</a> and an <a href="{GH}/autonomous-clinical-data-pipeline" style="text-decoration:underline;text-underline-offset:3px">agentic clinical data pipeline</a>.</p>
+    <div class="wlist" id="wlist">
+{work_rows()}    </div>
+    <p class="empty" hidden>No projects in this group yet.</p>
+    <p class="note">Also built: a five-stage <a href="{GH}/agentic-supply-chain-operations-platform">multi-agent supply chain platform</a>, a K3s <a href="{GH}/edge-ai-inference-engine-k3s">edge inference engine</a>, and a clinical <a href="{GH}/autonomous-clinical-data-pipeline">data pipeline</a>.</p>
   </div>
 </section>
 
-<section id="experience">
-  <div class="wrap">
-    <div class="section-head">
-      <h2 class="h2">Experience</h2>
-      <span class="count">2025 &ndash; present</span>
-    </div>
-    <div class="xp reveal">
-      <div class="when">Jun 2026 &ndash; Present</div>
-      <div>
-        <h3>Oracle</h3>
-        <div class="role">Cloud Engineering &middot; AI (L2)</div>
-        <ul>
-          <li>Technical scoping lead and point of contact on EMEA engagements across GPU serving, guardrails, voice AI, MCP and agentic automation.</li>
-          <li>Built a three-agent ServiceNow suite for a public-sector client: natural-language search over 1M+ tickets in under 7 seconds, hybrid search over 500K+ multilingual articles, ticket creation under a minute.</li>
-          <li>Built a multilingual legal and tax RAG assistant for a national tax authority, so citizens can ask questions in their own language.</li>
-          <li>Delivered OCI infrastructure end to end: landing zones, networking, storage, IAM, VM migration and disaster recovery, automated with Terraform.</li>
-        </ul>
-      </div>
-    </div>
-    <div class="xp reveal">
-      <div class="when">Jul 2025 &ndash; May 2026</div>
-      <div>
-        <h3>Oracle</h3>
-        <div class="role">Cloud Solution Engineer (L1)</div>
-        <ul>
-          <li>Built a trademark platform for a government ministry, exposed as two APIs: similarity over 500K+ images with multilingual text and compliance rules on a CPU-only machine, and open-source image generation and editing on NVIDIA CUDA GPUs through a custom ComfyUI module.</li>
-          <li>Primary developer of internal AI tools used across teams, from a document generator to a security-review agent.</li>
-        </ul>
-      </div>
-    </div>
-    <div class="xp reveal">
-      <div class="when">Jan 2025 &ndash; Jul 2025</div>
-      <div>
-        <h3>Oracle</h3>
-        <div class="role">Project Intern</div>
-        <ul>
-          <li>Built the Solution Document Generator on LangGraph and OKE, and a security-review agent for go-live projects.</li>
-        </ul>
-      </div>
-    </div>
+<section id="method" class="sec">
+  <div class="wrap split">
+    <div class="split-l"><p class="eyebrow mono">02 / Method</p><h2>How I measure</h2><p class="muted">The same four habits run through every project on this site.</p></div>
+    <div class="mgrid">
+{method}    </div>
   </div>
 </section>
 
-<section id="about">
-  <div class="wrap">
-    <div class="section-head">
-      <h2 class="h2">About</h2>
-      <span class="count">01</span>
-    </div>
-    <div class="split" style="padding-top:34px">
-      <div class="reveal">
-        <p>I work on applied AI: agentic systems, retrieval, and the serving layer under them. Most of what I ship is measured, and each project above carries its own benchmark. When something does not hold, it is reported next to the result that does.</p>
-        <p>Before Oracle I studied electronics at JSS Science and Technology University, where I published on SLAM and VSLAM and hold a design patent. I still keep the research habit: state the question, fix the variables, report the interval.</p>
-        <p><a href="{LI}" style="text-decoration:underline;text-underline-offset:3px">LinkedIn</a> &middot; <a href="{GH}" style="text-decoration:underline;text-underline-offset:3px">GitHub</a> &middot; <a href="{HF}" style="text-decoration:underline;text-underline-offset:3px">Hugging Face</a></p>
-      </div>
-      <div class="stack-grid reveal">
-        <div class="stack-item"><h4>Agents &amp; RAG</h4><p>ADK, LangGraph, LangChain, Deep Agents, OpenAI SDK, MCP; hybrid retrieval, pgvector, guardrails, agent memory</p></div>
-        <div class="stack-item"><h4>Inference &amp; training</h4><p>vLLM, llama.cpp, speculative decoding, FP8 KV cache, CUDA, LoRA fine-tuning, Hugging Face</p></div>
-        <div class="stack-item"><h4>Cloud &amp; infrastructure</h4><p>AWS, Google Cloud, OCI (Enterprise AI, Dedicated AI Clusters, OKE, landing zones, VCN, IAM, DR), Terraform</p></div>
-        <div class="stack-item"><h4>Languages &amp; DevOps</h4><p>Python, TypeScript, SQL; Linux, Docker, Kubernetes, Helm, Prometheus, CI/CD</p></div>
-      </div>
+<section id="experience" class="sec">
+  <div class="wrap split">
+    <div class="split-l"><p class="eyebrow mono">03 / Experience</p><h2>Oracle</h2><p class="muted">Three roles in under two years, from intern to technical scoping lead.</p></div>
+    <div class="xlist">
+{xp}    </div>
+  </div>
+</section>
+
+<section id="stack" class="sec">
+  <div class="wrap split">
+    <div class="split-l"><p class="eyebrow mono">04 / Stack</p><h2>What I work with</h2><p class="muted">Grouped by the layer it sits in, not by logo.</p></div>
+    <div class="slist">
+{stack}    </div>
+  </div>
+</section>
+
+<section id="education" class="sec">
+  <div class="wrap split">
+    <div class="split-l"><p class="eyebrow mono">05 / Education</p><h2>Research habit</h2></div>
+    <div class="edu reveal">
+      <h3>JSS Science and Technology University<span> / B.E., Electronics and Communication</span></h3>
+      <p class="mono edu-meta">Dec 2021 to Jun 2025 &middot; CGPA 8.93 &middot; Gold Medal</p>
+      <p>Published on SLAM and VSLAM in Springer and IEEE venues and hold a design patent. I kept the research habit: state the question, fix the variables, report the interval.</p>
     </div>
   </div>
 </section>
 
-<section id="contact" class="contact">
+<section id="contact" class="sec contact">
   <div class="wrap">
-    <p class="eyebrow">Contact</p>
-    <h2 class="display">Building something that needs to <em>work</em>?</h2>
-    <p class="lede">I am open to applied AI and forward-deployed engineering roles. The fastest way to reach me is email.</p>
-    <div class="contact-links">
-      <a href="mailto:{EMAIL}"><span class="k">Email</span> {EMAIL}</a>
-      <a href="{LI}" target="_blank" rel="noreferrer"><span class="k">LinkedIn</span> aprameyacv <span>&#8599;</span></a>
-      <a href="{GH}" target="_blank" rel="noreferrer"><span class="k">GitHub</span> Aprameya-C-V <span>&#8599;</span></a>
-      <a href="{HF}" target="_blank" rel="noreferrer"><span class="k">HF</span> apracv <span>&#8599;</span></a>
+    <p class="eyebrow mono">06 / Contact</p>
+    <h2 class="contact-h">Building something that needs to work?</h2>
+    <p class="lede">I am open to applied AI and forward-deployed engineering roles. Email is the fastest way to reach me.</p>
+    <div class="mailrow">
+      <a class="mail mono" href="mailto:{EMAIL}">{EMAIL}</a>
+      <button class="copy" type="button" data-copy="{EMAIL}" aria-label="Copy email address">{COPY}<span>Copy</span></button>
+    </div>
+    <div class="clinks">
+      <a href="{LI}" target="_blank" rel="noreferrer"><span class="mono">LinkedIn</span>aprameyacv {ARROW}</a>
+      <a href="{GH}" target="_blank" rel="noreferrer"><span class="mono">GitHub</span>Aprameya-C-V {ARROW}</a>
+      <a href="{HF}" target="_blank" rel="noreferrer"><span class="mono">Hugging Face</span>apracv {ARROW}</a>
+      <a href="resume.pdf" target="_blank" rel="noreferrer"><span class="mono">Resume</span>PDF, one page {ARROW}</a>
     </div>
   </div>
 </section>
@@ -415,51 +508,59 @@ def home():
 
 def project_page(p):
     links = "".join(
-        '<a class="tag" href="%s"%s>%s</a>'
+        '<a class="rlink" href="%s"%s>%s %s</a>'
         % (href if href.startswith("http") else "../" + href,
-           ' target="_blank" rel="noreferrer"' if ext else "",
-           label)
+           ' target="_blank" rel="noreferrer"' if ext else "", label, ARROW)
         for label, href, ext in p["links"]
     )
-    stats = "".join(f'<div class="stat"><b>{v}</b><span>{l}</span></div>' for v, l in p["stats"])
+    stats = "".join(
+        f'<div class="pstat"><b class="mono">{v}</b><span>{l}</span></div>' for v, l in p["stats"]
+    )
+    toc = "".join(
+        f'<a href="#s{i}">{t}</a>' for i, (t, _) in enumerate(p["sections"])
+    )
     sections = ""
-    blocks = p["sections"]
-    for i, (title, body) in enumerate(blocks):
-        if i == 0:
-            sections += f'<div class="block prose reveal"><h2>{title}</h2>{body}</div>'
-        elif i == 1:
-            sections += f'<div class="block prose reveal"><h2>{title}</h2>{body}</div>'
-        else:
-            sections += f'<div class="block prose reveal"><h2>{title}</h2>{body}</div>'
+    for i, (title, body) in enumerate(p["sections"]):
+        sections += f'<section class="pblock reveal" id="s{i}"><h2><span class="mono">0{i + 1}</span>{title}</h2><div class="prose">{body}</div></section>\n'
 
+    idx = [q["slug"] for q in PROJECTS].index(p["slug"])
+    prev_p = PROJECTS[(idx - 1) % len(PROJECTS)]
+    next_p = PROJECTS[(idx + 1) % len(PROJECTS)]
     report = next((h for l, h, e in p["links"] if "reports/" in h), None)
     cta = (
-        f'<a class="report-cta" href="../{report}">Read the full report <span class="dot">&#8599;</span></a>'
-        if report
-        else ""
+        f'<a class="report-cta" href="../{report}">Read the full report {ARROW}</a>' if report else ""
     )
+    tags = "".join(f'<span class="tag mono">{t}</span>' for t in p["tags"])
 
-    html = head(f"{p['title']} — Aprameya C V", p["tagline"], "../")
+    html = head(f"{p['title']}, Aprameya C V", p["tagline"], "../", "project")
     html += f"""
-<header class="proj-head">
+<header class="phead">
   <div class="wrap">
-    <p class="kicker">{p['kicker']}</p>
-    <h1>{p['title']}: {p['tagline']}</h1>
-    <p class="sub">{p['sub']}</p>
-    <div class="proj-meta">
-      {''.join(f'<span class="tag">{t}</span>' for t in p['tags'])}
-      {links}
-    </div>
-    <div class="stats">{stats}</div>
+    <p class="crumb mono"><a href="../index.html#work">Work</a><span>/</span>{p['idx']}</p>
+    <h1>{p['title']}</h1>
+    <p class="ptag">{p['tagline']}</p>
+    <p class="psub">{p['sub']}</p>
+    <div class="ptags">{tags}</div>
   </div>
 </header>
 
-<div class="wrap">
-  {sections}
-  <div class="block reveal">
-    {cta}
-    <p class="small" style="margin-top:18px"><a href="../index.html#work" style="text-decoration:underline;text-underline-offset:3px">&larr; All work</a></p>
-  </div>
+<div class="wrap pgrid">
+  <aside class="prail">
+    <div class="prail-in">
+      <div class="pstats">{stats}</div>
+      <nav class="toc" aria-label="On this page"><span class="mono">On this page</span>{toc}</nav>
+      <div class="rlinks">{links}</div>
+    </div>
+  </aside>
+  <article class="pbody">
+{sections}    <div class="pend reveal">
+      {cta}
+      <div class="pnav">
+        <a href="../work/{prev_p['slug']}.html">{ARROW_LEFT}<span><i class="mono">Previous</i>{prev_p['title']}</span></a>
+        <a class="r" href="../work/{next_p['slug']}.html"><span><i class="mono">Next</i>{next_p['title']}</span>{ARROW}</a>
+      </div>
+    </div>
+  </article>
 </div>
 """
     html += foot("../")
@@ -467,14 +568,14 @@ def project_page(p):
 
 
 def not_found():
-    html = head("Not found — Aprameya C V", "That page does not exist.", "")
-    html += """
-<header class="hero" style="padding-top:clamp(140px,22vh,220px)">
+    html = head("Not found, Aprameya C V", "That page does not exist.", "", "nf")
+    html += f"""
+<header class="hero nf">
   <div class="wrap">
-    <p class="eyebrow">404</p>
-    <h1 class="display">This page is not<br><em>here</em>.</h1>
-    <p class="lede">The link may be old, or the report may have moved. Everything lives from the home page.</p>
-    <div class="cta-row"><a class="btn" href="/">Back to the site <span class="dot">&#8599;</span></a></div>
+    <p class="eyebrow mono">404</p>
+    <h1>This page is not here.</h1>
+    <p class="lede">The link may be old, or the report may have moved. Everything is reachable from the home page.</p>
+    <div class="cta-row"><a class="btn" href="/" data-magnet>Back to the site {ARROW}</a></div>
   </div>
 </header>
 """
