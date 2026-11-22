@@ -351,6 +351,15 @@ def ledger_rows():
     return out
 
 
+
+def career_strip():
+    cells = "".join(
+        f"""<div class="cstat"><b class="mono" data-count="{n.replace(',', '')}" data-dec="{dec}" data-suffix="{suf}" data-group="1">0{suf}</b><span><em>{name}</em>{label}</span></div>"""
+        for n, suf, dec, name, label in LEDGER
+    )
+    return f'<div class="cstrip reveal">{cells}</div>'
+
+
 def work_rows():
     rows = ""
     for i, p in enumerate(PROJECTS):
@@ -421,12 +430,10 @@ def home():
         <div><dt class="mono">Open to</dt><dd>Applied AI, forward-deployed</dd></div>
       </dl>
     </div>
-    <aside class="ledger" aria-label="Career at a glance">
-      <div class="ledger-head"><span class="mono">Career at a glance</span><span class="mono ledger-key">Oracle, 2025 to now</span></div>
-      <ul>
-{ledger_rows()}      </ul>
-      <p class="ledger-foot mono">Project benchmarks are further down, under Work.</p>
-    </aside>
+    <figure class="portrait reveal">
+      <img src="assets/portrait.jpg" width="960" height="1315" alt="Portrait of Aprameya C V" fetchpriority="high">
+      <figcaption class="mono"><span class="live"></span>Aprameya C V &middot; Bengaluru, India</figcaption>
+    </figure>
   </div>
   <a class="scrollcue mono" href="#work" aria-label="Scroll to work">Scroll {ARROW_DOWN}</a>
 </header>
@@ -446,8 +453,11 @@ def home():
 <section id="experience" class="sec">
   <div class="wrap split">
     <div class="split-l"><p class="eyebrow mono">01 / Experience</p><h2>Oracle</h2><p class="muted">Three roles in under two years, from intern to technical scoping lead.</p></div>
+    <div>
+{career_strip()}
     <div class="xlist">
 {xp}    </div>
+    </div>
   </div>
 </section>
 
