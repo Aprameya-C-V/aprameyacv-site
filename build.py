@@ -514,7 +514,7 @@ def home():
   <div class="wrap hero-grid">
     <div class="hero-copy">
       <h1 class="name">Aprameya <span>C V</span></h1>
-      <p class="role">AI engineer building agentic and generative AI systems, from model to production.</p>
+      <p class="role">AI engineer building agentic and generative AI systems, from discovery to production.</p>
       <p class="lede">I work across applied AI end to end: agent design, retrieval, fine-tuning and model serving, and the cloud infrastructure that runs them. I like problems with a measurable answer, so every project here comes with its numbers and its limits.</p>
       <div class="cta-row">
         <a class="btn" href="#work" data-magnet>See the work {ARROW_DOWN}</a>

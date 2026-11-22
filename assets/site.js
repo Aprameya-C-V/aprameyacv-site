@@ -102,7 +102,7 @@
     vids.forEach((v) => vo.observe(v));
   }
 
-  // Theme toggle: saves the choice, falls back to the system setting.
+  // Theme toggle: saves the choice, defaults to light.
   const root = document.documentElement;
   const toggle = document.querySelector(".theme-toggle");
   const paint = () => {
