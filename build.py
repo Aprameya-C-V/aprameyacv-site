@@ -355,14 +355,13 @@ def icon(spec):
 SKILLS = [
     ("Generative AI and AI Engineering", "lucide/sparkles", [
         ("LLM applications", "lucide/message-square-text"), ("RAG and retrieval", "lucide/search"), ("Fine-tuning", "lucide/sliders-horizontal"),
-        ("LLM evaluation", "lucide/chart-no-axes-combined"), ("Multimodal and voice AI", "lucide/mic"), ("Prompt and context engineering", "lucide/pen-line"),
+        ("LLM evaluation", "lucide/chart-no-axes-combined"), ("Multimodal and voice AI", "lucide/mic"), ("Prompt and context engineering", "lucide/pen-line"), ("Hugging Face", "simple-icons/huggingface"), ("pgvector and vector search", "simple-icons/postgresql"),
     ]),
     ("Agentic AI", "lucide/bot", [
-        ("Multi-agent systems", "lucide/network"), ("Agent orchestration", "lucide/workflow"), ("Tool use and integrations", "lucide/plug"),
-        ("Agent memory", "lucide/brain"), ("Guardrails and safety", "lucide/shield-check"), ("Workflow automation", "lucide/repeat"),
+        ("LangGraph", "simple-icons/langchain"), ("LangChain", "simple-icons/langchain"), ("OpenAI SDK", "simple-icons/openai"), ("ADK", "lucide/bot"), ("MCP", "lucide/plug"), ("Multi-agent systems", "lucide/network"), ("Agent orchestration", "lucide/workflow"), ("Agent memory", "lucide/brain"), ("Guardrails and safety", "lucide/shield-check"), ("Workflow automation", "lucide/repeat"),
     ]),
     ("AI Infrastructure", "lucide/cpu", [
-        ("LLM inference optimization", "lucide/zap"), ("GPU computing", "simple-icons/nvidia"), ("Model serving and deployment", "lucide/rocket"),
+        ("LLM inference optimization", "lucide/zap"), ("vLLM", "lucide/zap"), ("GPU computing", "simple-icons/nvidia"), ("Model serving and deployment", "lucide/rocket"),
         ("Performance benchmarking", "lucide/gauge"),
     ]),
     ("Cloud and DevOps", "lucide/cloud", [
@@ -372,7 +371,7 @@ SKILLS = [
         ("Migration and recovery", "lucide/life-buoy"), ("CI/CD", "simple-icons/githubactions"),
     ]),
     ("Programming", "lucide/code-xml", [
-        ("Python", "simple-icons/python"), ("TypeScript", "simple-icons/typescript"), ("SQL", "lucide/database"), ("APIs and backend", "lucide/webhook"),
+        ("Python", "simple-icons/python"), ("TypeScript", "simple-icons/typescript"), ("SQL", "lucide/database"), ("FastAPI", "simple-icons/fastapi"), ("APIs and backend", "lucide/webhook"),
     ]),
 ]
 
