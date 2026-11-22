@@ -400,3 +400,8 @@ p { margin: 0 0 1em; }
 .proof a:hover { color: var(--accent); }
 
 .frame .url { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; }
+
+/* video */
+.vwrap { border: 1px solid var(--rule); border-radius: 0 0 12px 12px; border-top: 0; overflow: hidden; background: #14160f; box-shadow: 0 22px 40px -28px rgba(20, 20, 15, .35); }
+.shot.vid .frame { margin-bottom: 0; }
+.shot video { width: 100%; height: auto; display: block; aspect-ratio: 16 / 9; background: #14160f; }

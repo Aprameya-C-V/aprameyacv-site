@@ -683,7 +683,18 @@ def gallery(slug, base):
             f'<img src="{src}" width="{w}" height="{h}" alt="{alt}" loading="{"eager" if i == 0 else "lazy"}" decoding="async"></a>'
             f'<figcaption>{caption}</figcaption></figure>'
         )
-    return f'<section class="pblock reveal" id="shots"><h2><span class="mono">&#9632;</span>Screenshots and figures</h2><div class="shots">{figs}</div></section>\n'
+    vid = ""
+    if (ROOT / "assets" / "video" / f"{slug}.mp4").exists():
+        vid = (
+            '<figure class="shot lead vid"><div class="frame"><span class="dots"><i></i><i></i><i></i></span>'
+            '<span class="url mono">27 s demo &middot; source, terminal, live page</span></div>'
+            f'<div class="vwrap"><video controls muted loop playsinline preload="metadata" poster="{base}assets/video/{slug}.jpg" '
+            f'aria-label="Screen demo of the {slug} project: the source code, a real terminal run and the live report">'
+            f'<source src="{base}assets/video/{slug}.mp4" type="video/mp4"></video></div>'
+            '<figcaption>Raw demo: the real source file, a command run on this machine, and the live page. Rendered with HyperFrames from the repository.</figcaption></figure>'
+        )
+        figs = vid + figs.replace('class="shot lead"', 'class="shot"', 1).replace('<div class="frame"><span class="dots"><i></i><i></i><i></i></span><span class="url mono">', '<div class="frame"><span class="dots"><i></i><i></i><i></i></span><span class="url mono">', 1)
+    return f'<section class="pblock reveal" id="shots"><h2><span class="mono">&#9632;</span>Demo, screenshots and figures</h2><div class="shots">{figs}</div></section>\n'
 
 
 def project_page(p):
@@ -696,7 +707,7 @@ def project_page(p):
     stats = "".join(
         f'<div class="pstat"><b class="mono">{v}</b><span>{l}</span></div>' for v, l in p["stats"]
     )
-    toc = ('<a href="#shots">Screenshots</a>' if SHOTS.get(p["slug"]) else "") + "".join(
+    toc = ('<a href="#shots">Demo and screenshots</a>' if SHOTS.get(p["slug"]) else "") + "".join(
         f'<a href="#s{i}">{t}</a>' for i, (t, _) in enumerate(p["sections"])
     )
     sections = gallery(p["slug"], "../")

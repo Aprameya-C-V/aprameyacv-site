@@ -22,7 +22,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../assets/site.css?v=ec50ef48">
+<link rel="stylesheet" href="../assets/site.css?v=6bf81273">
 </head>
 <body data-page="project">
 <a class="skip" href="#main">Skip to content</a>
@@ -57,12 +57,12 @@
   <aside class="prail">
     <div class="prail-in">
       <div class="pstats"><div class="pstat"><b class="mono">0.218</b><span>WAPE, held-out</span></div><div class="pstat"><b class="mono">0.794</b><span>interval coverage, nominal 0.80</span></div><div class="pstat"><b class="mono">4.3 ms</b><span>p99 serve latency</span></div><div class="pstat"><b class="mono">570 req/s</b><span>one process, four clients</span></div></div>
-      <nav class="toc" aria-label="On this page"><span class="mono">On this page</span><a href="#shots">Screenshots</a><a href="#s0">What it is</a><a href="#s1">How it works</a><a href="#s2">What it measured</a><a href="#s3">What it does not claim</a></nav>
+      <nav class="toc" aria-label="On this page"><span class="mono">On this page</span><a href="#shots">Demo and screenshots</a><a href="#s0">What it is</a><a href="#s1">How it works</a><a href="#s2">What it measured</a><a href="#s3">What it does not claim</a></nav>
       <div class="rlinks"><a class="rlink" href="https://github.com/Aprameya-C-V/demand-forecasting-platform" target="_blank" rel="noreferrer">Repository <svg class="ico" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M5 4h7v7M12 4 4 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a><a class="rlink" href="../reports/demand-forecasting/index.html">Full report <svg class="ico" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M5 4h7v7M12 4 4 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
     </div>
   </aside>
   <article class="pbody">
-<section class="pblock reveal" id="shots"><h2><span class="mono">&#9632;</span>Screenshots and figures</h2><div class="shots"><figure class="shot lead"><div class="frame"><span class="dots"><i></i><i></i><i></i></span><span class="url mono">aprameyacv.site/reports/demand-forecasting/</span></div><a href="../reports/demand-forecasting/index.html" aria-label="Open the full report"><img src="../assets/shots/demand-overview.jpg" width="1440" height="2500" alt="Screenshot of the demand forecasting platform overview" loading="eager" decoding="async"></a><figcaption>Project overview page generated from the repository.</figcaption></figure><figure class="shot"><a href="../reports/demand-forecasting/dashboard/index.html" aria-label="Open the full report"><img src="../assets/shots/demand-dashboard.jpg" width="1440" height="1900" alt="Screenshot of the demand forecasting monitoring dashboard" loading="lazy" decoding="async"></a><figcaption>Monitoring dashboard: forecast error, bias and drift.</figcaption></figure></div></section>
+<section class="pblock reveal" id="shots"><h2><span class="mono">&#9632;</span>Demo, screenshots and figures</h2><div class="shots"><figure class="shot lead vid"><div class="frame"><span class="dots"><i></i><i></i><i></i></span><span class="url mono">27 s demo &middot; source, terminal, live page</span></div><div class="vwrap"><video controls muted loop playsinline preload="metadata" poster="../assets/video/demand-forecasting.jpg" aria-label="Screen demo of the demand-forecasting project: the source code, a real terminal run and the live report"><source src="../assets/video/demand-forecasting.mp4" type="video/mp4"></video></div><figcaption>Raw demo: the real source file, a command run on this machine, and the live page. Rendered with HyperFrames from the repository.</figcaption></figure><figure class="shot"><div class="frame"><span class="dots"><i></i><i></i><i></i></span><span class="url mono">aprameyacv.site/reports/demand-forecasting/</span></div><a href="../reports/demand-forecasting/index.html" aria-label="Open the full report"><img src="../assets/shots/demand-overview.jpg" width="1440" height="2500" alt="Screenshot of the demand forecasting platform overview" loading="eager" decoding="async"></a><figcaption>Project overview page generated from the repository.</figcaption></figure><figure class="shot"><a href="../reports/demand-forecasting/dashboard/index.html" aria-label="Open the full report"><img src="../assets/shots/demand-dashboard.jpg" width="1440" height="1900" alt="Screenshot of the demand forecasting monitoring dashboard" loading="lazy" decoding="async"></a><figcaption>Monitoring dashboard: forecast error, bias and drift.</figcaption></figure></div></section>
 <section class="pblock reveal" id="s0"><h2><span class="mono">01</span>What it is</h2><div class="prose"><p>A demand forecasting platform for NYC taxi data where the interesting part is everything after the model: input contracts, a champion and challenger gate, an API that reports on itself, and a monitor that files a ticket when the model starts to slip. Everything runs on free tiers, with no always-on infrastructure.</p></div></section>
 <section class="pblock reveal" id="s1"><h2><span class="mono">02</span>How it works</h2><div class="prose"><ul>
 <li><strong>Five stages, one repository.</strong> Panel contract, time-split training, registry gate, served forecast API, drift monitor. Each runs as a command locally and as a workflow in CI.</li>
@@ -98,6 +98,6 @@
   </div>
 </footer>
 <div class="toast" role="status" aria-live="polite">Email copied</div>
-<script src="../assets/site.js?v=a7424dc0" defer></script>
+<script src="../assets/site.js?v=bfaa5d94" defer></script>
 </body>
 </html>

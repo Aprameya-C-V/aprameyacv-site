@@ -22,7 +22,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../assets/site.css?v=ec50ef48">
+<link rel="stylesheet" href="../assets/site.css?v=6bf81273">
 </head>
 <body data-page="project">
 <a class="skip" href="#main">Skip to content</a>
@@ -57,12 +57,12 @@
   <aside class="prail">
     <div class="prail-in">
       <div class="pstats"><div class="pstat"><b class="mono">0.800</b><span>accuracy, 2,000 decisions</span></div><div class="pstat"><b class="mono">0.038</b><span>confidence calibration error</span></div><div class="pstat"><b class="mono">1 in 3</b><span>decisions settled by the 0.8B</span></div><div class="pstat"><b class="mono">0.076</b><span>KL divergence, best fine-tuned entry</span></div></div>
-      <nav class="toc" aria-label="On this page"><span class="mono">On this page</span><a href="#shots">Screenshots</a><a href="#s0">What it is</a><a href="#s1">How it works</a><a href="#s2">What it measured</a><a href="#s3">What it does not claim</a></nav>
+      <nav class="toc" aria-label="On this page"><span class="mono">On this page</span><a href="#shots">Demo and screenshots</a><a href="#s0">What it is</a><a href="#s1">How it works</a><a href="#s2">What it measured</a><a href="#s3">What it does not claim</a></nav>
       <div class="rlinks"><a class="rlink" href="https://github.com/Aprameya-C-V/pramana" target="_blank" rel="noreferrer">Repository <svg class="ico" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M5 4h7v7M12 4 4 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a><a class="rlink" href="https://huggingface.co/apracv" target="_blank" rel="noreferrer">Model cards <svg class="ico" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M5 4h7v7M12 4 4 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a><a class="rlink" href="../reports/pramana/index.html">Full report <svg class="ico" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M5 4h7v7M12 4 4 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
     </div>
   </aside>
   <article class="pbody">
-<section class="pblock reveal" id="shots"><h2><span class="mono">&#9632;</span>Screenshots and figures</h2><div class="shots"><figure class="shot lead"><div class="frame"><span class="dots"><i></i><i></i><i></i></span><span class="url mono">aprameyacv.site/reports/pramana/</span></div><a href="../reports/pramana/index.html" aria-label="Open the full report"><img src="../assets/shots/pramana-report.jpg" width="1440" height="1400" alt="Screenshot of the Pramana technical report showing KL, Brier, confidence ECE and accuracy cards" loading="eager" decoding="async"></a><figcaption>Technical report: headline numbers and summary.</figcaption></figure><figure class="shot"><a href="../reports/pramana/index.html" aria-label="Open the full report"><img src="../assets/shots/pramana-results.jpg" width="1440" height="1100" alt="Screenshot of the Pramana results table comparing accuracy, KL, Brier and ECE with other models" loading="lazy" decoding="async"></a><figcaption>Results table against other fine-tuned models on Typed Decisions.</figcaption></figure></div></section>
+<section class="pblock reveal" id="shots"><h2><span class="mono">&#9632;</span>Demo, screenshots and figures</h2><div class="shots"><figure class="shot lead vid"><div class="frame"><span class="dots"><i></i><i></i><i></i></span><span class="url mono">27 s demo &middot; source, terminal, live page</span></div><div class="vwrap"><video controls muted loop playsinline preload="metadata" poster="../assets/video/pramana.jpg" aria-label="Screen demo of the pramana project: the source code, a real terminal run and the live report"><source src="../assets/video/pramana.mp4" type="video/mp4"></video></div><figcaption>Raw demo: the real source file, a command run on this machine, and the live page. Rendered with HyperFrames from the repository.</figcaption></figure><figure class="shot"><div class="frame"><span class="dots"><i></i><i></i><i></i></span><span class="url mono">aprameyacv.site/reports/pramana/</span></div><a href="../reports/pramana/index.html" aria-label="Open the full report"><img src="../assets/shots/pramana-report.jpg" width="1440" height="1400" alt="Screenshot of the Pramana technical report showing KL, Brier, confidence ECE and accuracy cards" loading="eager" decoding="async"></a><figcaption>Technical report: headline numbers and summary.</figcaption></figure><figure class="shot"><a href="../reports/pramana/index.html" aria-label="Open the full report"><img src="../assets/shots/pramana-results.jpg" width="1440" height="1100" alt="Screenshot of the Pramana results table comparing accuracy, KL, Brier and ECE with other models" loading="lazy" decoding="async"></a><figcaption>Results table against other fine-tuned models on Typed Decisions.</figcaption></figure></div></section>
 <section class="pblock reveal" id="s0"><h2><span class="mono">01</span>What it is</h2><div class="prose"><p>Pramana takes one piece of unstructured state and a typed question, and returns a probability over every option rather than a single label. Each answer carries two outputs from the same logits: a calibrated probability, and a separate confidence score that tracks whether the top answer is actually right.</p>
 <p>Two models ship: Pramana-2B and Pramana-0.8B, both trained from Qwen bases and published on Hugging Face with their calibration files and predictions.</p></div></section>
 <section class="pblock reveal" id="s1"><h2><span class="mono">02</span>How it works</h2><div class="prose"><ul>
@@ -98,6 +98,6 @@
   </div>
 </footer>
 <div class="toast" role="status" aria-live="polite">Email copied</div>
-<script src="../assets/site.js?v=a7424dc0" defer></script>
+<script src="../assets/site.js?v=bfaa5d94" defer></script>
 </body>
 </html>

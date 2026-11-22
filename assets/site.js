@@ -95,6 +95,13 @@
     });
   }
 
+  // Play demo videos only while visible, and never when the visitor prefers reduced motion.
+  const vids = [...document.querySelectorAll(".shot video")];
+  if (vids.length && "IntersectionObserver" in window && !reduce) {
+    const vo = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { e.target.play().catch(() => {}); } else { e.target.pause(); } }), { threshold: 0.5 });
+    vids.forEach((v) => vo.observe(v));
+  }
+
   const year = document.querySelector("[data-year]");
   if (year) year.textContent = new Date().getFullYear();
 })();
