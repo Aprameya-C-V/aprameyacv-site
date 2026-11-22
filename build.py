@@ -416,7 +416,10 @@ def home():
 <header class="hero">
   <div class="wrap hero-grid">
     <div class="hero-copy">
-      <p class="eyebrow mono"><span class="live"></span>AI engineer &middot; Oracle &middot; Bengaluru, India</p>
+      <div class="idrow">
+        <img class="avatar" src="assets/portrait.jpg" width="240" height="240" alt="Portrait of Aprameya C V" fetchpriority="high">
+        <p class="eyebrow mono"><span class="live"></span>AI engineer &middot; Oracle &middot; Bengaluru, India</p>
+      </div>
       <h1 class="name">Aprameya<br><span>C V</span></h1>
       <p class="role">I build agentic and generative AI systems, and measure what they actually do.</p>
       <p class="lede">I take AI from a customer's first conversation to production at Oracle: retrieval, agent design, GPU serving, and the infrastructure underneath. Every project on this site ships with its own benchmark and its own list of what it does not prove.</p>
@@ -430,10 +433,7 @@ def home():
         <div><dt class="mono">Open to</dt><dd>Applied AI, forward-deployed</dd></div>
       </dl>
     </div>
-    <figure class="portrait reveal">
-      <img src="assets/portrait.jpg" width="960" height="1315" alt="Portrait of Aprameya C V" fetchpriority="high">
-      <figcaption class="mono"><span class="live"></span>Aprameya C V &middot; Bengaluru, India</figcaption>
-    </figure>
+
   </div>
   <a class="scrollcue mono" href="#work" aria-label="Scroll to work">Scroll {ARROW_DOWN}</a>
 </header>
