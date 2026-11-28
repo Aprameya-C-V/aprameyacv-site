@@ -82,7 +82,6 @@ def head(title, desc, base, page="", canon="/", ld=""):
       <a href="{base}index.html#contact">Contact</a>
     </div>
     <button class="theme-toggle" type="button" aria-pressed="false" aria-label="Switch to dark mode"><svg class="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg><svg class="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></button>
-    <a class="pill" href="{base}resume.pdf" target="_blank" rel="noreferrer">Resume {ARROW}</a>
   </nav>
 </header>
 <main id="main">
@@ -518,7 +517,6 @@ def home():
       <p class="lede">I work across applied AI end to end: agent design, retrieval, fine-tuning and model serving, and the cloud infrastructure that runs them. I like problems with a measurable answer, so every project here comes with its numbers and its limits.</p>
       <div class="cta-row">
         <a class="btn" href="#work" data-magnet>See the work {ARROW_DOWN}</a>
-        <a class="btn ghost" href="resume.pdf" target="_blank" rel="noreferrer" data-magnet>Resume {ARROW}</a>
       </div>
       <dl class="facts">
         <div><dt class="mono">Role</dt><dd>AI engineer</dd></div>
@@ -622,7 +620,6 @@ def home():
       <a href="{LI}" target="_blank" rel="noreferrer"><span class="mono">LinkedIn</span>aprameyacv {ARROW}</a>
       <a href="{GH}" target="_blank" rel="noreferrer"><span class="mono">GitHub</span>Aprameya-C-V {ARROW}</a>
       <a href="{HF}" target="_blank" rel="noreferrer"><span class="mono">Hugging Face</span>apracv {ARROW}</a>
-      <a href="resume.pdf" target="_blank" rel="noreferrer"><span class="mono">Resume</span>PDF, one page {ARROW}</a>
     </div>
   </div>
 </section>
