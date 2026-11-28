@@ -125,3 +125,10 @@
   const year = document.querySelector("[data-year]");
   if (year) year.textContent = new Date().getFullYear();
 })();
+
+// open a native accordion when its anchor is targeted
+for (const el of document.querySelectorAll("details.acc")) {
+  const open = () => { if (location.hash === "#" + el.id) el.open = true; };
+  open();
+  window.addEventListener("hashchange", open);
+}
